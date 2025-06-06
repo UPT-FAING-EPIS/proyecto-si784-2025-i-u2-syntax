@@ -87,8 +87,20 @@ Versión 2.0
 
 ## 1.3 Descripción
 
-- El AMS es una plataforma web (PHP + MySQL) que gestiona sesiones de mentoría entre estudiantes y mentores, con el objetivo de mejorar el rendimiento académico y reducir la deserción en la Facultad de Ingeniería.
-- El despliegue final contempla tres ambientes (Dev, QA y Prod) alojados en AWS con infraestructura mínima modelada como código (IaC) para facilitar pruebas continuas y escalabilidad.
+- El AMS es una plataforma web (PHP + MySQL) que es una aplicación web desarrollada en PHP nativo con conexión a una base de datos MySQL, diseñada para facilitar la gestión de mentorías académicas en la Escuela Profesional de Ingeniería de Sistemas de la Universidad Privada de Tacna.
+
+Entre las funcionalidades implementadas destacan:
+
+- Registro y autenticación de usuarios (mentores y estudiantes).
+- Gestión de perfiles de mentoría.
+- Asignación y seguimiento de sesiones de mentoría.
+- Panel de administración para la gestión de usuarios.
+
+El sistema está estructurado bajo una arquitectura sencilla de cliente-servidor, utilizando HTML y Bootstrap para la interfaz de usuario, y ejecutándose en un servidor local (XAMPP) o en una instancia virtual básica en la nube.
+
+Actualmente, se encuentra en fase inicial de desarrollo funcional y validación manual, con la posibilidad de ampliar sus capacidades en futuras versiones (por ejemplo: asignación de aulas, indicadores académicos, reportes automatizados).
+
+Las funcionalidades avanzadas como infraestructura como código (IaC), pruebas automatizadas o ambientes de staging aún no han sido implementadas, pero están consideradas para fases futuras del proyecto.
 
 ## 1.4 Objetivos
 
@@ -146,9 +158,9 @@ Versión 2.0
 | Capa                       | Herramienta / Tecnología                              |
 | -------------------------- | ----------------------------------------------------- |
 | Sistema operativo servidor | Windows 11 (laboratorio) / Amazon Linux 2023 (cloud)  |
-| Backend                    | PHP 8 (Laravel)                                       |
+| Backend                    | PHP 8 (nativo)                                       |
 | Base de datos              | MySQL 8 – HeidiSQL                                    |
-| Frontend                   | Blade + Bootstrap (PHP)                               |
+| Frontend                   | HTML + Bootstrap (PHP)                               |
 | Servidor de aplicaciones   | Apache + PHP-FPM (EC2)                                |
 | Control de versiones       | Git (GitHub)                                          |
 | IaC / Cloud                | Terraform 1.8 + Infracost                             |
@@ -167,7 +179,7 @@ Versión 2.0
 
 **Stack de referencia y prácticas DevOps**
 
-- **Stack**: PHP 8 (Laravel), MySQL 8, Apache + PHP-FPM sobre EC2 t3.micro.
+- **Stack**: PHP 8 (nativo), MySQL 8, Apache + PHP-FPM sobre EC2 t3.micro.
 - **Infraestructura**: Definida como código con Terraform; ambientes Dev/QA apagados fuera de horario.
 - **CI/CD**: GitHub Actions con PHPUnit + Selenium; despliegue automatizado a S3/EC2.
 - **Escalabilidad y disponibilidad**: Auto-scaling opcional; ALB + ELB; disponibilidad prometida 99,9 %.
@@ -259,7 +271,7 @@ Considerando estos factores, el proyecto parece ser económicamente factible, es
 | Factor                 | Evaluación                                                                                      |
 | ---------------------- | ------------------------------------------------------------------------------------------------ |
 | Aceptación de usuarios | El sistema resuelve necesidades reales de estudiantes y docentes; se espera alta adopción.       |
-| Facilidad de uso       | La UI intuitiva (Laravel Blade + Bootstrap) y flujos simples favorecen el aprendizaje en < 1 h.    |
+| Facilidad de uso       | La UI intuitiva (HTML + Bootstrap) y flujos simples favorecen el aprendizaje en < 1 h.    |
 | Procesos alineados     | Complementa procesos académicos existentes (registro, asesorías) sin sustituirlos.               |
 | Capacitación           | Personal de la Facultad de Ingeniería capacitará a usuarios finales mediante talleres de 4 h.    |
 | Soporte técnico        | Equipo de TI universitaria brindará soporte de 1er y 2º nivel, con SLAs académicos (8×5).       |
@@ -270,7 +282,7 @@ Considerando estos factores, el proyecto parece ser económicamente factible, es
 | --------------------- | ---------------------------------------------------------------------------------------------------------- |
 | Protección de datos   | Ley 29733: almacenamiento en AWS cifrado (RDS AES-256), política de privacidad y consentimiento.            |
 | Derechos de autor     | Código propiedad de la Universidad Privada de Tacna; licenciamiento interno.                               |
-| Licencias de software | Uso de OSS (Laravel MIT, MySQL GPL, Bootstrap MIT); cumplimiento de términos.                               |
+| Licencias de software | Uso de OSS (PHP OSS, MySQL GPL, Bootstrap MIT); cumplimiento de términos.                               |
 | Normativas educativas | Alineado con reglamentos universitarios y directivas SUNEDU sobre tutorías académicas.                     |
 
 ## 4.5 Factibilidad Social
