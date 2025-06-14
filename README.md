@@ -1,4 +1,12 @@
 # Sistema de Mentoría Académica - AMS
+
+![GitHub repo size](https://img.shields.io/github/repo-size/UPT-FAING-EPIS/proyecto-si784-2025-i-u2-syntax)
+![GitHub last commit](https://img.shields.io/github/last-commit/UPT-FAING-EPIS/proyecto-si784-2025-i-u2-syntax)
+![Sonar Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=UPT-FAING-EPIS_proyecto-si784-2025-i-u2-syntax&metric=alert_status)
+![Coverage](https://img.shields.io/badge/coverage-80%25-brightgreen)
+![Semgrep Scan](https://img.shields.io/badge/Semgrep-passed-blue)
+![Snyk Vulnerabilities](https://img.shields.io/badge/Snyk-no%20vulns-success)
+
 Una plataforma integral para la gestión de mentorías universitarias y la mejora del rendimiento académico.
 
 ## 📝 Descripción General
