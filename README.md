@@ -66,9 +66,9 @@ Resuelve problemas clave como la alta tasa de deserción, el bajo rendimiento es
 
 ## 👥 Autores y Colaboradores
 
-- **Gregory Brandon Huanca Merma** – Desarrollador Backend – gregory@example.com  
-- **Joan Cristian Medina Quispe** – Desarrollador FullStack – joan@example.com  
-- **Rodrigo Samael Adonai Lira Álvarez** – Especialista en UI/UX – rodrigo@example.com  
+- **Gregory Brandon Huanca Merma** – Desarrollador FullStack
+- **Joan Cristian Medina Quispe** – Desarrollador Backend
+- **Rodrigo Samael Adonai Lira Álvarez** – Especialista en UI/UX
 
 ## 📝 Licencia
 
