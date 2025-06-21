@@ -1,97 +1,122 @@
-# Sistema de Mentoría Académica - AMS
+# 🎓 Sistema de Mentoría Académica – AMS
 
-![GitHub repo size](https://img.shields.io/github/repo-size/UPT-FAING-EPIS/proyecto-si784-2025-i-u2-syntax)
-![GitHub last commit](https://img.shields.io/github/last-commit/UPT-FAING-EPIS/proyecto-si784-2025-i-u2-syntax)
-![Sonar Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=UPT-FAING-EPIS_proyecto-si784-2025-i-u2-syntax&metric=alert_status)
-![Coverage](https://img.shields.io/badge/coverage-80%25-brightgreen)
-![Semgrep Scan](https://img.shields.io/badge/Semgrep-passed-blue)
-![Snyk Vulnerabilities](https://img.shields.io/badge/Snyk-no%20vulns-success)
+**AMS-UPT** es una plataforma web integral para la gestión de mentorías universitarias, creada para mejorar el rendimiento académico, automatizar procesos y fomentar el acompañamiento personalizado.
 
-Una plataforma integral para la gestión de mentorías universitarias y la mejora del rendimiento académico.
+---
 
-## 📝 Descripción General
-El Sistema de Mentoría Académica (AMS) es una plataforma web diseñada para automatizar la gestión de tutorías y sesiones de refuerzo académico en universidades, con un enfoque inicial en la Escuela Profesional de Ingeniería de Sistemas de la Universidad Privada de Tacna.
+## 📘 Descripción General
 
-Resuelve problemas clave como la alta tasa de deserción, el bajo rendimiento estudiantil, la sobrecarga de docentes y la falta de acompañamiento personalizado. Facilita el emparejamiento entre mentores y estudiantes, la programación de clases, el seguimiento del progreso y la generación de informes.
+Este sistema fue desarrollado por estudiantes de Ingeniería de Sistemas de la **Universidad Privada de Tacna**, con el propósito de:
 
-## 🔧 Tecnologías Utilizadas
+- Reducir la deserción universitaria.
+- Aumentar el rendimiento académico.
+- Optimizar la carga docente.
+- Conectar estudiantes con mentores de forma efectiva.
 
-- PHP 8 (nativo)
-- MySQL 8 (gestión con HeidiSQL)
-- HTML5 + CSS3
-- Bootstrap 5
-- Apache + PHP-FPM
-- XAMPP (modo local)
-- Git y GitHub
-- Terraform + Infracost (para estimación de infraestructura)
-- Jira (gestión ágil con Scrum)
-- Figma y Balsamiq (UI/UX)
+Incluye módulos para la gestión de usuarios, programación de clases, registro de asistencia, evaluación y generación de reportes académicos.
 
-## ⚙️ Instalación / Deploy
+---
 
-1. Clona este repositorio:
+## 🧪 Tecnologías Utilizadas
+
+| Categoría       | Tecnologías                           |
+|------------------|----------------------------------------|
+| Lenguaje         | PHP 8                                  |
+| Base de Datos    | MySQL 8 (HeidiSQL)                     |
+| Frontend         | HTML5, CSS3, Bootstrap 5               |
+| Backend          | Apache + PHP-FPM                       |
+| Local Dev        | XAMPP                                  |
+| DevOps           | Git, GitHub, Terraform, Infracost      |
+| Gestión Ágil     | Jira (Scrum)                           |
+| UI/UX            | Figma, Balsamiq                        |
+
+---
+
+## ⚙️ Instalación y Ejecución Local
+- Clona el repositorio:
    ```bash
    git clone https://github.com/usuario/proyecto-ams.git
-   ```
+    ```
+- Importa la base de datos desde el archivo `ams_db.sql` a tu servidor MySQL.
+- Configura el archivo `config/Conexion.php` con tus credenciales locales.
+- Asegúrate de tener habilitadas las extensiones `mysqli` y `openssl` en tu `php.ini`.
+- Copia el proyecto en htdocs y abre en navegador:
 
-2. Configura la base de datos ejecutando el script `ams_db.sql` en MySQL.
+   http://localhost/web_asm/public/index.php
 
-3. Copia los archivos del sistema en la carpeta `htdocs` de XAMPP o súbelos a tu servidor web.
+---
 
-4. Inicia Apache y MySQL desde el panel de XAMPP.
+## 🚀 Funcionalidades Principales
 
-5. Abre el navegador y accede a `http://localhost/ams`.
+### 🔐 Login y Roles
+- Acceso diferenciado para administrador, estudiante y mentor.
 
-## 🧩 Configuración del Entorno
+### 📅 Gestión Académica
+- Registro y asignación de clases, aulas, horarios y ciclos.
+- Emparejamiento mentor–estudiante.
 
-- Modificar el archivo `config/Conexion.php` con las credenciales correctas de la base de datos.
-- Asegurar que los módulos `mysqli` y `openssl` estén habilitados en `php.ini`.
-- Para despliegue en nube (AWS), configurar la instancia EC2, habilitar el puerto 80/443 y subir el código.
+### 🎯 Seguimiento y Evaluación
+- Registro de asistencia.
+- Calificaciones y observaciones.
+- Reportes de rendimiento.
 
-## 🚀 Uso del Sistema
+### 📊 Administración y Reportes
+- Panel de control.
+- Visualización de métricas.
+- Notificaciones y alertas internas.
 
-1. **Login**:
-   - Administrador: `admin / admin123`
-   - Estudiante o Mentor: credenciales registradas.
-
-2. **Gestión Académica**:
-   - Crear usuarios (mentores y estudiantes)
-   - Programar sesiones de mentoría
-   - Asignar aulas y horarios
-
-3. **Seguimiento**:
-   - Registrar asistencia y comentarios
-   - Ver historial de clases y rendimiento
-
-4. **Administración**:
-   - Panel de reportes
-   - Asignación automática de mentorías
-   - Sistema de notificaciones y alertas
+---
 
 ## 📷 Capturas de Pantalla
 
-> *(Puedes agregar aquí imágenes del sistema o capturas de las vistas principales como login, dashboard, programación de clases, reportes, etc.)*
+### 🔑 Pantalla de Login
+![Login](ruta/a/captura_login.png)
 
-## 👥 Autores y Colaboradores
+### 🏠 Dashboard del Mentor
+![Dashboard Mentor](ruta/a/captura_dashboard_mentor.png)
 
-- **Gregory Brandon Huanca Merma** – Desarrollador FullStack
-- **Joan Cristian Medina Quispe** – Desarrollador Backend
-- **Rodrigo Samael Adonai Lira Álvarez** – Especialista en UI/UX
+### 📚 Vista de Clases Asignadas
+![Clases Asignadas](ruta/a/captura_clases_asignadas.png)
 
-## 📝 Licencia
+### 📝 Calificación de Estudiantes
+![Calificaciones](ruta/a/captura_calificaciones.png)
 
-Este proyecto fue desarrollado con fines académicos como parte del curso **Calidad y Pruebas de Software** de la Universidad Privada de Tacna.  
-**Uso educativo y sin fines comerciales.**
+### 📈 Vista de Reportes de Clases
+![Reportes](ruta/a/captura_reportes.png)
 
-## 📈 Estado del Proyecto / Roadmap
+### 👨‍🎓 Vista del Estudiante – Clases Asignadas
+![Clases Estudiante](ruta/a/captura_estudiante_clases.png)
 
-- ✅ Registro y autenticación de usuarios
-- ✅ Gestión de clases y asignación de aulas
-- ✅ Seguimiento de asistencia y rendimiento
-- ✅ Panel de administración y reportes
-- 🔄 Implementación de análisis predictivo (en progreso)
-- 🔄 Versión móvil multiplataforma (planeado)
-- 🔄 Integración con sistemas académicos existentes (planeado)
+### 📆 Programación de Mentorías
+![Programación](ruta/a/captura_programacion.png)
 
 ---
-Desarrollado con ❤️ por estudiantes de Ingeniería de Sistemas - UPT
+
+## 👥 Autores
+
+- 👨‍💻 Gregory Brandon Huanca Merma – Full Stack Developer  
+- 👨‍💻 Joan Cristian Medina Quispe – Backend Developer  
+- 🎨 Rodrigo Samael Adonai Lira Álvarez – UI/UX Specialist  
+
+---
+
+## 📜 Licencia
+
+Proyecto académico desarrollado como parte del curso  
+**Calidad y Pruebas de Software – Universidad Privada de Tacna.**  
+**Uso exclusivo con fines educativos.**
+
+---
+
+## 🛣️ Roadmap del Proyecto
+
+- ✅ Registro y autenticación de usuarios
+- ✅ Gestión de clases y asignación de mentorías
+- ✅ Evaluación y seguimiento académico
+- 🔄 Implementación de análisis predictivo *(en desarrollo)*
+- 🔄 Versión móvil multiplataforma *(planeado)*
+- 🔄 Integración con sistemas académicos UPT *(planeado)*
+
+---
+
+Desarrollado con ❤️ por estudiantes de Ingeniería de Sistemas – UPT
