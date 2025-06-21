@@ -1,12 +1,13 @@
 provider "aws" {
-  region = "us-east-1"
+  region     = "us-east-1"
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
 
-resource "random_id" "bucket_id" {
-  byte_length = 4
-}
-
-resource "aws_s3_bucket" "bucket" {
-  bucket = "ams-mentor-${random_id.bucket_id.hex}"
-  acl    = "private"
+resource "aws_instance" "ejemplo" {
+  ami           = "ami-0c55b159cbfafe1f0" # Ubuntu en us-east-1
+  instance_type = "t2.micro"
+  tags = {
+    Name = "ServidorDeMentoria"
+  }
 }
