@@ -1,0 +1,36 @@
+name: Terraform Plan
+
+on:
+  push:
+    paths:
+      - 'infra/**'
+      - '.github/workflows/terraform.yml'
+  pull_request:
+    paths:
+      - 'infra/**'
+
+jobs:
+  terraform:
+    name: Validar Terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v3
+
+      - name: Instalar Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.7
+
+      - name: Inicializar Terraform
+        working-directory: infra
+        run: terraform init
+
+      - name: Validar sintaxis de Terraform
+        working-directory: infra
+        run: terraform validate
+
+      - name: Simular plan de Terraform
+        working-directory: infra
+        run: terraform plan
