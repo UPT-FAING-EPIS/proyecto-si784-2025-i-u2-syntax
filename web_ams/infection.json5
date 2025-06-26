@@ -1,0 +1,17 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "auth",
+            "config",
+            "controllers",
+            "core",
+            "infra",
+            "models",
+            "utils"
+        ]
+    },
+    "mutators": {
+        "@default": true
+    }
+}

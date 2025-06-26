@@ -1,0 +1,30 @@
+name: Coverage Report
+
+on:
+  push:
+    branches: [ "main" ]  # o la rama principal que uses
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install dependencies
+        run: composer install
+
+      - name: Run PHPUnit tests with coverage
+        run: vendor/bin/phpunit --coverage-html docs/coverage
+
+      - name: Upload coverage report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/coverage
