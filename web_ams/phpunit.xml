@@ -14,6 +14,7 @@
         </include>
         <report>
             <html outputDirectory="./docs/coverage"/>
+            <clover outputFile="./docs/coverage/clover.xml"/>
         </report>
     </coverage>
 </phpunit>

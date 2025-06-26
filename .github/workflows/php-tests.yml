@@ -25,9 +25,9 @@ jobs:
         working-directory: web_ams
         run: composer install
 
-      - name: Ejecutar PHPUnit con cobertura
+      - name: Ejecutar PHPUnit con configuración xml
         working-directory: web_ams
-        run: vendor/bin/phpunit --coverage-html docs/coverage
+        run: vendor/bin/phpunit
 
       - name: Subir reporte de cobertura al repositorio
         working-directory: web_ams
