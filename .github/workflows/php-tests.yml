@@ -22,12 +22,15 @@ jobs:
           coverage: xdebug
 
       - name: Instalar dependencias
+        working-directory: web_ams
         run: composer install
 
       - name: Ejecutar PHPUnit con cobertura
+        working-directory: web_ams
         run: vendor/bin/phpunit --coverage-html docs/coverage
 
       - name: Subir reporte de cobertura al repositorio
+        working-directory: web_ams
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'

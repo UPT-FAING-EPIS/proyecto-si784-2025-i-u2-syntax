@@ -1,0 +1,29 @@
+name: Pruebas Mutacionales con Infection
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  infection:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer, phpunit
+
+      - name: Instalar dependencias
+        run: composer install
+
+      - name: Instalar Infection
+        run: composer require --dev infection/infection
+
+      - name: Ejecutar Infection
+        run: vendor/bin/infection --ansi --no-interaction
