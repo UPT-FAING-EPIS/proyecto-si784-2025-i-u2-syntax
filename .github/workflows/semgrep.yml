@@ -19,5 +19,18 @@ jobs:
         with:
           config: "auto"
 
-      - name: Publicar resultados
-        run: echo "✅ Análisis Semgrep completado"
+      - name: Generar reporte SARIF
+        run: semgrep --config=auto --sarif > semgrep.sarif
+
+      - name: Convertir SARIF a HTML básico
+        run: |
+          mkdir -p docs/seguridad
+          echo "<html><head><meta charset='UTF-8'><title>Reporte Semgrep</title></head><body><h1>Reporte de Seguridad - Semgrep</h1><pre>$(cat semgrep.sarif)</pre></body></html>" > docs/seguridad/index.html
+
+      - name: Subir reporte al repositorio
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add docs/seguridad/index.html
+          git commit -m "chore: agregar reporte Semgrep HTML"
+          git push
