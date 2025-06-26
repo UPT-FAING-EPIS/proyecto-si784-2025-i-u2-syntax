@@ -1,0 +1,23 @@
+name: Análisis Semgrep
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  semgrep:
+    name: Run Semgrep
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Ejecutar Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: "auto"
+
+      - name: Publicar resultados
+        run: echo "✅ Análisis Semgrep completado"
