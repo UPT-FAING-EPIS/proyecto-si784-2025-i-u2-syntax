@@ -1,0 +1,35 @@
+name: CI - Pruebas con PHPUnit
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Ejecutar pruebas y cobertura
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          extensions: mbstring, xml
+          coverage: xdebug
+
+      - name: Instalar dependencias
+        run: composer install
+
+      - name: Ejecutar PHPUnit con cobertura
+        run: vendor/bin/phpunit --coverage-html docs/coverage
+
+      - name: Subir reporte de cobertura al repositorio
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add docs/coverage
+          git diff --cached --quiet || (git commit -m "chore: subir cobertura PHPUnit" && git push)
