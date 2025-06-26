@@ -1,8 +1,10 @@
+# .github/workflows/coverage.yml
+
 name: Coverage Report
 
 on:
   push:
-    branches: [ "main" ]  # o la rama principal que uses
+    branches: [ "main" ]  # Asegúrate de que sea tu rama principal
 
 jobs:
   coverage:
@@ -21,10 +23,4 @@ jobs:
         run: composer install
 
       - name: Run PHPUnit tests with coverage
-        run: vendor/bin/phpunit --coverage-html docs/coverage
-
-      - name: Upload coverage report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/coverage
+        run: vendor/bin/phpunit --coverage-html docs
