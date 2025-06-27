@@ -4,7 +4,7 @@ name: Coverage Report
 
 on:
   push:
-    branches: [ "main" ]  # Asegúrate de que sea tu rama principal
+    branches: [ "main" ]
 
 jobs:
   coverage:
@@ -18,9 +18,30 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          coverage: xdebug
 
       - name: Install dependencies
         run: composer install
 
       - name: Run PHPUnit tests with coverage
-        run: vendor/bin/phpunit --coverage-html docs
+        run: vendor/bin/phpunit --coverage-html docs/coverage
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: docs
+
+  deploy:
+    needs: coverage
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
