@@ -1,0 +1,19 @@
+{
+  "name": "proyecto-si784-2025-i-u2-syntax",
+  "version": "1.0.0",
+  "description": "**AMS-UPT** es una plataforma web integral para la gestión de mentorías universitarias, creada para mejorar el rendimiento académico, automatizar procesos y fomentar el acompañamiento personalizado.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.53.1",
+    "playwright": "^1.53.1"
+  }
+}

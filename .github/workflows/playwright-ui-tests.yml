@@ -1,0 +1,42 @@
+name: UI Tests with Playwright
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-ui:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run UI Tests
+        run: npx playwright test
+
+      - name: Generate HTML Report
+        if: always()
+        run: npx playwright show-report --output=docs/ui-report
+
+      - name: Commit UI Report to GitHub Pages
+        if: always()
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add docs/ui-report
+          git commit -m "🔄 Actualizar reporte UI Playwright [auto]" || echo "No changes"
+          git push origin main

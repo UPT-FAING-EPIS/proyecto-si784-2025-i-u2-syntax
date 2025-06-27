@@ -52,7 +52,8 @@ Incluye módulos para la gestión de usuarios, programación de clases, registro
 - Acceso diferenciado para administrador, estudiante y mentor.
 
 ### 📅 Gestión Académica
-- Registro y asignación de clases, aulas, horarios y ciclos.
+- Registro y programación de clases.
+- Asignación de aulas, horarios y ciclos.
 - Emparejamiento mentor–estudiante.
 
 ### 🎯 Seguimiento y Evaluación
@@ -64,6 +65,19 @@ Incluye módulos para la gestión de usuarios, programación de clases, registro
 - Panel de control.
 - Visualización de métricas.
 - Notificaciones y alertas internas.
+
+### Integración con Discord y Google Meet
+- Acceso controlado a canal privado de Discord del sistema.
+- Gestión de roles y códigos de acceso automáticos para clases en Discord.
+- Selección del modo de reunión por parte del mentor (Discord y/o Google Meet).
+- Generación automática de enlaces de reunión según plataforma seleccionada.
+
+### Dashboard General
+- Panel centralizado con:
+- Actividad reciente.
+- Clases programadas.
+- Estadísticas de asistencia y desempeño.
+- Alertas y notificaciones internas.
 
 ---
 
@@ -108,11 +122,37 @@ Proyecto académico desarrollado como parte del curso
 
 ---
 
+## 🚀 Terraform: Automatización de Infraestructura
+
+Este proyecto utiliza Terraform para desplegar una instancia EC2 en AWS como parte del sistema de mentoría académica.
+
+### 📁 Estructura:
+- `infra/main.tf`: Define la instancia EC2.
+- `infra/variables.tf`: Variables sensibles (AWS).
+- `terraform_apply.yml`: Workflow automático.
+
+### 🔐 Seguridad
+Las claves de acceso a AWS se manejan mediante GitHub Secrets.
+
+## 🧪 Reportes de Cobertura y Análisis Estático
+
+Este sistema cuenta con pruebas unitarias y generación de reportes de cobertura y análisis estático:
+
+- ✅ Generación automática de reportes HTML y XML con PHPUnit.
+- ✅ Más del 70% de cobertura alcanzada.
+- ✅ Publicación en GitHub Pages (`docs/coverage`).
+- ✅ Integración con SonarQube y Semgrep para análisis estático.
+
+📁 Ruta: `/docs/coverage/index.html`  
+🔗 [Ver cobertura online](https://tuusuario.github.io/PROYECTO-SI784-2025-I-U2-SYNTAX/coverage/)
+
 ## 🛣️ Roadmap del Proyecto
 
 - ✅ Registro y autenticación de usuarios
 - ✅ Gestión de clases y asignación de mentorías
 - ✅ Evaluación y seguimiento académico
+- ✅ Integración con Discord y Google Meet
+- ✅ Dashboard centralizado
 - 🔄 Implementación de análisis predictivo *(en desarrollo)*
 - 🔄 Versión móvil multiplataforma *(planeado)*
 - 🔄 Integración con sistemas académicos UPT *(planeado)*

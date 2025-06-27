@@ -1,5 +1,7 @@
 <?php
-require_once BASE_PATH . '/core/BaseController.php';
+ob_start();
+require_once __DIR__ . '/../core/BaseController.php';
+
 require_once BASE_PATH . '/models/DocenteModel.php';
 require_once BASE_PATH . '/config/mongodb.php';
 
@@ -9,14 +11,19 @@ class DocenteController extends BaseController {
     private $mongoDiscord;
 
     public function __construct() {
-        $this->docenteModel = new DocenteModel();
-        
-        try {
-            $this->mongoDiscord = new Mongodb();
-        } catch (Exception $e) {
-            $this->mongoDiscord = null;
-        }
+    // 🔒 Solución al problema de session_start()
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
     }
+
+    $this->docenteModel = new DocenteModel();
+    
+    try {
+        $this->mongoDiscord = new Mongodb();
+    } catch (Exception $e) {
+        $this->mongoDiscord = null;
+    }
+}
 
     public function handle($accion) {
         switch($accion) {

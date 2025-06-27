@@ -2,22 +2,43 @@
 <phpunit bootstrap="vendor/autoload.php"
          colors="true"
          verbose="true"
-         stopOnFailure="false">
+         stopOnFailure="false"
+         beStrictAboutTestsThatDoNotTestAnything="true"
+         beStrictAboutOutputDuringTests="true"
+         failOnWarning="true"
+         failOnRisky="true"
+         executionOrder="default"
+         resolveDependencies="true">
+
+    <php>
+        <ini name="xdebug.mode" value="coverage"/>
+        <server name="BASE_PATH" value="."/>
+    </php>
+
     <testsuites>
         <testsuite name="Test Suite">
             <directory>./tests</directory>
         </testsuite>
     </testsuites>
-<coverage>
-    <include>
-    <directory suffix=".php">./controllers</directory>
-    <directory suffix=".php">./models</directory>
-    <directory suffix=".php">./core</directory>
-</include>
-    <report>
-        <html outputDirectory="docs/coverage"/>
-        <clover outputFile="docs/coverage/clover.xml"/>
-        <xml outputDirectory="docs/coverage-xml"/>
-    </report>
-</coverage>
+
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./controllers</directory>
+            <directory suffix=".php">./models</directory>
+            <directory suffix=".php">./core</directory>
+        </include>
+
+        <exclude>
+            <directory>./views</directory>
+            <directory>./public</directory>
+            <directory>./vendor</directory>
+            <file>./config/constants.php</file>
+        </exclude>
+
+        <report>
+            <html outputDirectory="docs/coverage"/>
+            <clover outputFile="docs/coverage/clover.xml"/>
+            <xml outputDirectory="docs/coverage-xml"/>
+        </report>
+    </coverage>
 </phpunit>

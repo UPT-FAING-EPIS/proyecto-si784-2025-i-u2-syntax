@@ -1,7 +1,14 @@
 <?php
-require_once BASE_PATH . '/models/Usuario.php';
+require_once __DIR__ . '/../core/BaseController.php';
+require_once __DIR__ . '/../models/Usuario.php';
 
 class AuthController extends BaseController {
+
+    private $usuarioModel;
+
+    public function setUsuarioModel($model) {
+        $this->usuarioModel = $model;
+    }
 
     public function handle($accion) {
         switch ($accion) {
@@ -34,8 +41,8 @@ class AuthController extends BaseController {
         $email = $_POST['email'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        $usuario = new Usuario();
-        $datos = $usuario->verificarCredenciales($email, $password);
+        $usuarioModel = $this->usuarioModel ?? new Usuario();
+        $datos = $usuarioModel->verificarCredenciales($email, $password);
 
         if ($datos) {
             session_start();
@@ -52,6 +59,7 @@ class AuthController extends BaseController {
     public function registroGet() {
         require BASE_PATH . '/views/register.php';
     }
+
     public function registroPost() {
         header('Content-Type: application/json');
 
@@ -62,7 +70,7 @@ class AuthController extends BaseController {
         $password = $_POST['password'] ?? '';
 
         try {
-            $usuarioModel = new Usuario();
+            $usuarioModel = $this->usuarioModel ?? new Usuario();
             $user_id = $usuarioModel->registrarUsuario($dni, $nombre, $apellido, $email, $password);
 
             if ($user_id) {
@@ -98,9 +106,10 @@ class AuthController extends BaseController {
 
         exit;
     }
+
     private function consultaDNI() {
         header('Content-Type: application/json; charset=utf-8');
-        
+
         try {
             if (!isset($_GET['dni']) || !preg_match('/^\d{8}$/', $_GET['dni'])) {
                 $this->sendErrorResponse(400, 'DNI inválido. Debe contener exactamente 8 dígitos.');
@@ -109,7 +118,7 @@ class AuthController extends BaseController {
 
             $dni = $_GET['dni'];
             $token = 'apis-token-16209.4jn7mUQ93GRnE1lHfPq1eQ20s0Ywir8P';
-            
+
             $curl = curl_init();
             curl_setopt_array($curl, [
                 CURLOPT_URL => 'https://api.apis.net.pe/v2/reniec/dni?numero=' . $dni,

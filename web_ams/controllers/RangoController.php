@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../core/BaseController.php';
+
 require_once BASE_PATH . '/models/Usuario.php';
 require_once BASE_PATH . '/config/mongodb.php';
 
