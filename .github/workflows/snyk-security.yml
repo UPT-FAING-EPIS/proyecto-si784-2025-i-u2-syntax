@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  snyk-php-analysis:
+  snyk-security-analysis:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,47 +19,62 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        tools: composer
+        tools: composer, pecl
+        extensions: mbstring, intl
 
-    # 3. Instalar dependencias PHP
+    # 3. Eliminar y reinstalar la extensión mongodb específica
+    - name: Remove and install ext-mongodb 1.15.0
+      run: |
+        sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
+        sudo pecl uninstall -r mongodb || true
+        sudo pecl install mongodb-1.15.0
+        echo "extension=mongodb.so" | sudo tee /etc/php/8.1/cli/conf.d/20-mongodb.ini
+
+    # 4. Instalar dependencias PHP
     - name: Install PHP dependencies
       working-directory: web_ams
       run: composer install --no-progress --prefer-dist
 
-    # 4. Instalar Node.js (para usar Snyk CLI y convertir a HTML)
+    # 5. Configurar Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '16'
 
-    # 5. Instalar Snyk CLI
-    - name: Install Snyk CLI
-      run: npm install -g snyk
+    # 6. Instalar dependencias Node.js si existen
+    - name: Install Node.js dependencies
+      working-directory: web_ams
+      run: |
+        if [ -f package.json ]; then
+          npm install
+        fi
 
-    # 6. Autenticar con el token de Snyk
+    # 7. Instalar Snyk CLI
+    - name: Install Snyk CLI
+      run: npm install -g snyk snyk-to-html
+
+    # 8. Autenticar Snyk
     - name: Authenticate Snyk
       run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
-    # 7. Ejecutar análisis Snyk para PHP (composer)
+    # 9. Ejecutar análisis de Snyk y guardar en JSON
     - name: Run Snyk analysis
       working-directory: web_ams
-      run: snyk test --all-projects --json > snyk-report.json || true
+      run: snyk test --json > snyk-report.json || true
 
-    # 8. Convertir a HTML
+    # 10. Convertir JSON a HTML
     - name: Convert Snyk JSON to HTML
       working-directory: web_ams
-      run: |
-        npm install -g snyk-to-html
-        snyk-to-html -i snyk-report.json -o snyk-report.html
+      run: snyk-to-html -i snyk-report.json -o snyk-report.html
 
-    # 9. Preparar para GitHub Pages
+    # 11. Preparar reporte para publicación
     - name: Prepare Snyk report for deployment
       run: |
         mkdir -p snyk-output
         cp web_ams/snyk-report.html snyk-output/index.html
         ls -la snyk-output
 
-    # 10. Publicar en GitHub Pages
+    # 12. Publicar en GitHub Pages
     - name: Deploy Snyk Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
