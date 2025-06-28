@@ -19,8 +19,15 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        extensions: mbstring, intl, mongodb
-        coverage: xdebug
+        tools: pecl
+        extensions: mbstring, intl
+        coverage: none
+    
+    # Instalar versión exacta de la extensión ext-mongodb 1.15.0
+    - name: Install ext-mongodb 1.15.0
+      run: |
+        sudo pecl uninstall mongodb || true
+        sudo pecl install mongodb-1.15.0
 
     # 3. Instalar dependencias de Composer
     - name: Install PHP dependencies
