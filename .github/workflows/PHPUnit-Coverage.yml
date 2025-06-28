@@ -1,4 +1,4 @@
-name: PHPUnit Test Coverage Report
+name: PHP Unit Coverage Report
 
 on:
   push:
@@ -6,52 +6,65 @@ on:
       - main
 
 jobs:
-  phpunit-test-coverage:
+  phpunit-coverage:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout del código
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # 1. Checkout del código
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # 2. Set up PHP con Xdebug
-      - name: Set up PHP with Xdebug
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-          extensions: mbstring, intl, xdebug
+    # 2. Configurar PHP con extensiones necesarias (incluyendo Xdebug y mongodb)
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, intl, xdebug, mongodb
+        tools: composer, pecl
 
-      # 3. Instalar dependencias Composer
-      - name: Install PHP dependencies
-        working-directory: web_ams
-        run: composer install --no-progress --prefer-dist
+    # 3. Eliminar posible versión conflictiva de ext-mongodb
+    - name: Remove conflicting ext-mongodb
+      run: sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
 
-      # 4. Ejecutar pruebas con PHPUnit y cobertura
-      - name: Run PHPUnit with coverage
-        working-directory: web_ams
-        run: |
-          chmod +x ./vendor/bin/phpunit
-          ./vendor/bin/phpunit
+    # 4. Instalar la versión correcta de ext-mongodb
+    - name: Install ext-mongodb 1.15.0
+      run: sudo pecl install mongodb-1.15.0
 
-      # 5. Verificar si la cobertura fue generada
-      - name: Check for coverage output
-        run: ls -la web_ams/docs/coverage || echo "Coverage folder not found"
+    # 5. Habilitar manualmente ext-mongodb
+    - name: Enable ext-mongodb
+      run: echo "extension=mongodb.so" | sudo tee /etc/php/8.1/cli/conf.d/20-mongodb.ini
 
-      # 6. Preparar reporte de cobertura para despliegue
-      - name: Prepare coverage report for deployment
-        run: |
-          mkdir -p phpunit-output
-          if [ -d "web_ams/docs/coverage" ]; then
-            cp -r web_ams/docs/coverage/* phpunit-output/
-          else
-            echo "No coverage report found"
-          fi
+    # 6. Instalar dependencias del proyecto
+    - name: Install PHP dependencies
+      working-directory: web_ams
+      run: composer install --no-progress --prefer-dist
 
-      # 7. Desplegar a GitHub Pages
-      - name: Deploy PHPUnit Coverage Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: phpunit-output
-          publish_branch: gh-pages
-          destination_dir: phpunit-coverage
+    # 7. Dar permisos al ejecutable de PHPUnit
+    - name: Ensure PHPUnit is executable
+      working-directory: web_ams
+      run: chmod +x ./vendor/bin/phpunit
+
+    # 8. Ejecutar pruebas con cobertura
+    - name: Run phpunit with code coverage
+      working-directory: web_ams
+      run: ./vendor/bin/phpunit
+
+    # 9. Verificar si se generaron los reportes
+    - name: Check for generated coverage reports
+      working-directory: web_ams
+      run: ls -la docs/coverage
+
+    # 10. Preparar carpeta para despliegue
+    - name: Prepare report for GitHub Pages
+      run: |
+        mkdir -p phpunit-output
+        cp -r web_ams/docs/coverage/* phpunit-output/
+
+    # 11. Publicar en GitHub Pages
+    - name: Deploy PHPUnit Coverage to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: phpunit-output
+        publish_branch: gh-pages
+        destination_dir: phpunit-coverage
