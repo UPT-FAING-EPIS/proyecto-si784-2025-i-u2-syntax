@@ -1,0 +1,69 @@
+name: Snyk PHP Report Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  snyk-php-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout del código
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Configurar PHP
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        tools: composer
+
+    # 3. Instalar dependencias PHP
+    - name: Install PHP dependencies
+      working-directory: web_ams
+      run: composer install --no-progress --prefer-dist
+
+    # 4. Instalar Node.js (para usar Snyk CLI y convertir a HTML)
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    # 5. Instalar Snyk CLI
+    - name: Install Snyk CLI
+      run: npm install -g snyk
+
+    # 6. Autenticar con el token de Snyk
+    - name: Authenticate Snyk
+      run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+    # 7. Ejecutar análisis Snyk para PHP (composer)
+    - name: Run Snyk analysis
+      working-directory: web_ams
+      run: snyk test --all-projects --json > snyk-report.json || true
+
+    # 8. Convertir a HTML
+    - name: Convert Snyk JSON to HTML
+      working-directory: web_ams
+      run: |
+        npm install -g snyk-to-html
+        snyk-to-html -i snyk-report.json -o snyk-report.html
+
+    # 9. Preparar para GitHub Pages
+    - name: Prepare Snyk report for deployment
+      run: |
+        mkdir -p snyk-output
+        cp web_ams/snyk-report.html snyk-output/index.html
+        ls -la snyk-output
+
+    # 10. Publicar en GitHub Pages
+    - name: Deploy Snyk Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: snyk-output
+        publish_branch: gh-pages
+        destination_dir: snyk-report
