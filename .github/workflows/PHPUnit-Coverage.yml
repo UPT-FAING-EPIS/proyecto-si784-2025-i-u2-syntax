@@ -34,6 +34,11 @@ jobs:
       working-directory: web_ams
       run: composer install --no-progress --prefer-dist
 
+    # 5.1. Dar permisos a phpunit
+    - name: Give execute permission to phpunit
+      run: chmod +x ./vendor/bin/phpunit
+      working-directory: web_ams
+
     # 5. Ejecutar PHPUnit con cobertura HTML
     - name: Run PHPUnit with code coverage
       working-directory: web_ams
