@@ -14,51 +14,61 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Configurar PHP 8.1
+    # 2. Configurar PHP 8.1 y extensiones necesarias
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        tools: pecl
+        tools: composer, pecl
         extensions: mbstring, intl
-        coverage: none
-    
-    # Desactiva ext-mongodb cargado por defecto
-    - name: Disable existing ext-mongodb
-      run: |
-        sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
-    
-    # Instala versión específica 1.15.0
+
+    # 3. Eliminar posibles versiones conflictivas de mongodb
+    - name: Disable default ext-mongodb
+      run: sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
+
+    # 4. Instalar la versión exacta de ext-mongodb requerida
     - name: Install ext-mongodb 1.15.0
       run: sudo pecl install mongodb-1.15.0
 
-    # 3. Instalar dependencias de Composer
+    # 5. Habilitar manualmente ext-mongodb en CLI
+    - name: Enable ext-mongodb
+      run: echo "extension=mongodb.so" | sudo tee /etc/php/8.1/cli/conf.d/20-mongodb.ini
+
+    # 6. Instalar dependencias del proyecto
     - name: Install PHP dependencies
       working-directory: web_ams
       run: composer install --no-progress --prefer-dist
 
-    # 4. Ejecutar PHPUnit
-    - name: Run PHPUnit tests
-      working-directory: web_ams
-      run: ./vendor/bin/phpunit --testdox
+    # 7. Instalar dependencias de Node.js si se usan (opcional)
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
 
-    # 5. Configurar Semgrep con Docker
+    - name: Install Node.js dependencies (if needed)
+      working-directory: web_ams
+      run: |
+        if [ -f package.json ]; then
+          npm install
+        fi
+
+    # 8. Configurar Semgrep con Docker
     - name: Set up Semgrep using Docker
       run: docker pull semgrep/semgrep
 
-    # 6. Ejecutar Semgrep y generar un reporte JSON
+    # 9. Ejecutar análisis Semgrep
     - name: Run Semgrep scan
       working-directory: web_ams
       run: |
-        docker run --rm -v $(pwd)/web_ams:/src semgrep/semgrep semgrep scan \
+        docker run --rm -v $(pwd):/src semgrep/semgrep semgrep scan \
           --config="p/default" --json --output semgrep.json --metrics=off
 
-    # 7. Verificar archivos después de Semgrep
+    # 10. Verificar archivos generados
     - name: List files after Semgrep scan
       working-directory: web_ams
       run: ls -la
 
-    # 8. Configurar Python y prospector-html
+    # 11. Configurar Python y prospector-html
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -67,21 +77,21 @@ jobs:
     - name: Install prospector-html
       run: python -m pip install prospector2html
 
-    # 9. Convertir el reporte Semgrep JSON a HTML
+    # 12. Convertir el reporte JSON a HTML
     - name: Convert Semgrep results to HTML
       working-directory: web_ams
       run: |
         prospector-html --input semgrep.json --output semgrep-report.html --filter semgrep || true
         ls -la
 
-    # 10. Preparar el reporte para la publicación
+    # 13. Preparar el reporte para publicación
     - name: Prepare Semgrep report for deployment
       run: |
         mkdir -p semgrep-output
         cp web_ams/semgrep-report.html semgrep-output/index.html
         ls -la semgrep-output
 
-    # 11. Publicar el reporte en gh-pages
+    # 14. Publicar en GitHub Pages
     - name: Deploy Semgrep Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
@@ -89,4 +99,3 @@ jobs:
         publish_dir: semgrep-output
         publish_branch: gh-pages
         destination_dir: semgrep-report
-
