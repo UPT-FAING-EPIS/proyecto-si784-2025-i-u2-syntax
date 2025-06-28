@@ -101,14 +101,6 @@ jobs:
     
         echo '</body></html>' >> semgrep-output/index.html
 
-
-    # 13. Preparar el reporte para publicación
-    - name: Prepare Semgrep report for deployment
-      run: |
-        mkdir -p semgrep-output
-        cp web_ams/semgrep-report.html semgrep-output/index.html
-        ls -la semgrep-output
-
     # 14. Publicar en GitHub Pages
     - name: Deploy Semgrep Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
