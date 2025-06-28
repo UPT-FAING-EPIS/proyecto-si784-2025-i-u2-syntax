@@ -23,11 +23,14 @@ jobs:
         extensions: mbstring, intl
         coverage: none
     
-    # Instalar versión exacta de la extensión ext-mongodb 1.15.0
-    - name: Install ext-mongodb 1.15.0
+    # Desactiva ext-mongodb cargado por defecto
+    - name: Disable existing ext-mongodb
       run: |
-        sudo pecl uninstall mongodb || true
-        sudo pecl install mongodb-1.15.0
+        sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
+    
+    # Instala versión específica 1.15.0
+    - name: Install ext-mongodb 1.15.0
+      run: sudo pecl install mongodb-1.15.0
 
     # 3. Instalar dependencias de Composer
     - name: Install PHP dependencies
