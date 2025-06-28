@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Checkout del código
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Configurar PHP con extensiones necesarias (incluyendo Xdebug y mongodb)
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -22,45 +20,41 @@ jobs:
         extensions: mbstring, intl, xdebug, mongodb
         tools: composer, pecl
 
-    # 3. Eliminar posible versión conflictiva de ext-mongodb
     - name: Remove conflicting ext-mongodb
       run: sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
 
-    # 4. Instalar la versión correcta de ext-mongodb
     - name: Install ext-mongodb 1.15.0
       run: sudo pecl install mongodb-1.15.0
 
-    # 5. Habilitar manualmente ext-mongodb
     - name: Enable ext-mongodb
       run: echo "extension=mongodb.so" | sudo tee /etc/php/8.1/cli/conf.d/20-mongodb.ini
 
-    # 6. Instalar dependencias del proyecto
+    - name: Confirm Xdebug mode
+      run: php -i | grep xdebug.mode
+
     - name: Install PHP dependencies
       working-directory: web_ams
       run: composer install --no-progress --prefer-dist
 
-    # 7. Dar permisos al ejecutable de PHPUnit
     - name: Ensure PHPUnit is executable
       working-directory: web_ams
       run: chmod +x ./vendor/bin/phpunit
 
-    # 8. Ejecutar pruebas con cobertura
-    - name: Run phpunit with code coverage
-      working-directory: web_ams
-      run: ./vendor/bin/phpunit
+    - name: Create coverage directory if missing
+      run: mkdir -p web_ams/docs/coverage
 
-    # 9. Verificar si se generaron los reportes
-    - name: Check for generated coverage reports
+    - name: Run PHPUnit with coverage explicitly
       working-directory: web_ams
-      run: ls -la docs/coverage
+      run: ./vendor/bin/phpunit --coverage-html docs/coverage
 
-    # 10. Preparar carpeta para despliegue
+    - name: List generated coverage files
+      run: ls -la web_ams/docs/coverage
+
     - name: Prepare report for GitHub Pages
       run: |
         mkdir -p phpunit-output
         cp -r web_ams/docs/coverage/* phpunit-output/
 
-    # 11. Publicar en GitHub Pages
     - name: Deploy PHPUnit Coverage to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
