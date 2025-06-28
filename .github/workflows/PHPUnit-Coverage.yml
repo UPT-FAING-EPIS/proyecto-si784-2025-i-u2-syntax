@@ -1,0 +1,57 @@
+name: PHPUnit Coverage Report
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  phpunit-coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Checkout del código
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # 2. Configurar PHP
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        tools: composer, pecl
+        extensions: mbstring, intl, xdebug
+
+    # 3. Instalar versión específica de ext-mongodb
+    - name: Install compatible ext-mongodb
+      run: |
+        sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini || true
+        sudo pecl install mongodb-1.15.0
+        echo "extension=mongodb.so" | sudo tee /etc/php/8.1/cli/conf.d/20-mongodb.ini
+
+    # 4. Instalar dependencias PHP
+    - name: Install dependencies
+      working-directory: web_ams
+      run: composer install --no-progress --prefer-dist
+
+    # 5. Ejecutar PHPUnit con cobertura HTML
+    - name: Run PHPUnit with code coverage
+      working-directory: web_ams
+      run: |
+        ./vendor/bin/phpunit
+
+    # 6. Preparar reporte para publicación
+    - name: Prepare coverage report for deployment
+      run: |
+        mkdir -p phpunit-output
+        cp -r web_ams/docs/coverage/* phpunit-output/
+        ls -la phpunit-output
+
+    # 7. Publicar en GitHub Pages
+    - name: Deploy PHPUnit Coverage Report to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: phpunit-output
+        publish_branch: gh-pages
+        destination_dir: test-coverage
