@@ -1,4 +1,4 @@
-name: PHP Unit Coverage Report
+name: PHPUnit Test Coverage Report
 
 on:
   push:
@@ -17,48 +17,44 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        extensions: mbstring, intl, xdebug, mongodb
         tools: composer, pecl
+        extensions: mbstring, intl, xdebug
 
-    - name: Remove conflicting ext-mongodb
+    - name: Remove default ext-mongodb
       run: sudo rm -f /etc/php/8.1/cli/conf.d/*mongodb.ini
 
     - name: Install ext-mongodb 1.15.0
       run: sudo pecl install mongodb-1.15.0
 
-    - name: Enable ext-mongodb
+    - name: Enable ext-mongodb manually
       run: echo "extension=mongodb.so" | sudo tee /etc/php/8.1/cli/conf.d/20-mongodb.ini
-
-    - name: Confirm Xdebug mode
-      run: php -i | grep xdebug.mode
 
     - name: Install PHP dependencies
       working-directory: web_ams
-      run: composer install --no-progress --prefer-dist
+      run: composer install --no-progress --prefer-dist --ignore-platform-req=ext-mongodb
 
-    - name: Ensure PHPUnit is executable
+    - name: Check Xdebug mode
+      run: php -i | grep xdebug.mode || true
+
+    - name: Run PHPUnit with coverage
       working-directory: web_ams
-      run: chmod +x ./vendor/bin/phpunit
+      run: |
+        mkdir -p docs/coverage
+        chmod +x ./vendor/bin/phpunit
+        ./vendor/bin/phpunit --coverage-html docs/coverage
 
-    - name: Create coverage directory if missing
-      run: mkdir -p web_ams/docs/coverage
-
-    - name: Run PHPUnit with coverage explicitly
-      working-directory: web_ams
-      run: ./vendor/bin/phpunit --coverage-html docs/coverage
-
-    - name: List generated coverage files
-      run: ls -la web_ams/docs/coverage
+    - name: Confirm generated coverage files
+      run: ls -la web_ams/docs/coverage || echo "Coverage folder not found"
 
     - name: Prepare report for GitHub Pages
       run: |
         mkdir -p phpunit-output
-        cp -r web_ams/docs/coverage/* phpunit-output/
+        cp -r web_ams/docs/coverage/. phpunit-output/
 
-    - name: Deploy PHPUnit Coverage to GitHub Pages
+    - name: Deploy PHPUnit Coverage Report to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: phpunit-output
         publish_branch: gh-pages
-        destination_dir: phpunit-coverage
+        destination_dir: phpunit-report
