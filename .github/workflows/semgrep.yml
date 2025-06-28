@@ -14,11 +14,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Configurar PHP
+    # 2. Configurar PHP 8.1
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'
+        php-version: '8.1'
         extensions: mbstring, intl, mongodb
         coverage: xdebug
 
@@ -79,3 +79,4 @@ jobs:
         publish_dir: semgrep-output
         publish_branch: gh-pages
         destination_dir: semgrep-report
+
