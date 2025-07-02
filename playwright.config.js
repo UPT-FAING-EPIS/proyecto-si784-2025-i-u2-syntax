@@ -9,7 +9,7 @@ module.exports = defineConfig({
     headless: true,
     baseURL: 'http://localhost/proyecto-si784-2025-i-u2-syntax/web_ams/',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    video: 'on', // ✅ Graba video en todas las ejecuciones
   },
   reporter: [['html', { outputFolder: 'docs/ui-report', open: 'never' }]]
 });

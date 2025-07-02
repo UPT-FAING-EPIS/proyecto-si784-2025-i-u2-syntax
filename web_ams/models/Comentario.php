@@ -1,5 +1,5 @@
 <?php
-require_once '../config/Database.php';
+require_once BASE_PATH . '/config/Database.php';
 
 class Comentario {
     private $pdo;

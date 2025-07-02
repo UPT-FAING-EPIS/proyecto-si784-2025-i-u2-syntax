@@ -36,9 +36,9 @@
         </exclude>
 
         <report>
-            <html outputDirectory="docs/coverage"/>
-            <clover outputFile="docs/coverage/clover.xml"/>
-            <xml outputDirectory="docs/coverage-xml"/>
+            <html outputDirectory="./docs/coverage"/>
+            <clover outputFile="./docs/coverage/clover.xml"/>
+            <xml outputDirectory="./docs/coverage-xml"/>
         </report>
     </coverage>
 </phpunit>

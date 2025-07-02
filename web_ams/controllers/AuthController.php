@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../core/BaseController.php';
 require_once __DIR__ . '/../models/Usuario.php';
 
@@ -37,75 +38,115 @@ class AuthController extends BaseController {
         require BASE_PATH . '/views/login.php';
     }
 
-    public function loginPost() {
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+  public function loginPost() {
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-        $usuarioModel = $this->usuarioModel ?? new Usuario();
-        $datos = $usuarioModel->verificarCredenciales($email, $password);
-
-        if ($datos) {
-            session_start();
-            $_SESSION['usuario_id'] = $datos['ID_USUARIO'];
-            $_SESSION['rol_id'] = (int)$datos['ID_ROL']; 
-            $_SESSION['rol_nombre'] = $datos['ROL'];   
-
-            header('Location: ' . BASE_URL . '/index.php');
-        } else {
-            echo "<script>alert('Credenciales incorrectas');window.location.href='" . BASE_URL . "/index.php?accion=login';</script>";
+    // ✅ VALIDACIÓN DE CAMPOS VACÍOS
+    if (empty($email) || empty($password)) {
+        if (defined('PHPUNIT_RUNNING')) {
+            echo "Campos vacíos";
+            return;
         }
+        header("Location: " . BASE_URL . "/index.php?accion=login&error=2");
+        exit;
     }
+
+    $usuarioModel = $this->usuarioModel ?? new Usuario();
+    $datos = $usuarioModel->verificarCredenciales($email, $password);
+
+    if ($datos) {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['usuario_id'] = $datos['ID_USUARIO'];
+        $_SESSION['rol_id'] = (int)$datos['ID_ROL']; 
+        $_SESSION['rol_nombre'] = $datos['ROL'];   
+
+        if (defined('PHPUNIT_RUNNING')) {
+            return;
+        }
+
+        header('Location: ' . BASE_URL . '/index.php');
+        exit;
+    } else {
+        if (defined('PHPUNIT_RUNNING')) {
+            echo "Credenciales incorrectas";
+            return;
+        }
+
+        header("Location: " . BASE_URL . "/index.php?accion=login&error=1");
+        exit;
+    }
+}
+
+
 
     public function registroGet() {
         require BASE_PATH . '/views/register.php';
     }
 
-    public function registroPost() {
-        header('Content-Type: application/json');
+public function registroPost() {
+    header('Content-Type: application/json');
 
-        $dni      = $_POST['dni'] ?? '';
-        $nombre   = $_POST['nombre'] ?? '';
-        $apellido = $_POST['apellido'] ?? '';
-        $email    = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
+    $dni      = $_POST['dni'] ?? '';
+    $nombre   = $_POST['nombre'] ?? '';
+    $apellido = $_POST['apellido'] ?? '';
+    $email    = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-        try {
-            $usuarioModel = $this->usuarioModel ?? new Usuario();
-            $user_id = $usuarioModel->registrarUsuario($dni, $nombre, $apellido, $email, $password);
+    try {
+        // Asegurar que el modelo esté instanciado o mockeado
+        if (!$this->usuarioModel) {
+            $this->usuarioModel = new Usuario();
+        }
+        $usuarioModel = $this->usuarioModel;
 
-            if ($user_id) {
-                if (session_status() === PHP_SESSION_NONE) {
-                    session_start();
-                }
+        $user_id = $usuarioModel->registrarUsuario($dni, $nombre, $apellido, $email, $password);
 
-                $_SESSION['usuario_id'] = $user_id;
-
-                $datosUsuario = $usuarioModel->buscarPorCorreo($email);
-                if ($datosUsuario) {
-                    $_SESSION['rol_id'] = (int)$datosUsuario['ID_ROL'];
-                    $_SESSION['rol_nombre'] = $datosUsuario['ROL'];
-                }
-
-                echo json_encode([
-                    'success' => true,
-                    'message' => 'Registro exitoso'
-                ]);
-            } else {
-                echo json_encode([
-                    'success' => false,
-                    'message' => 'Error al registrar el usuario'
-                ]);
+        if ($user_id) {
+            if (session_status() === PHP_SESSION_NONE) {
+                session_start();
             }
 
-        } catch (Exception $e) {
-            echo json_encode([
+            $_SESSION['usuario_id'] = $user_id;
+
+            $datosUsuario = $usuarioModel->buscarPorCorreo($email);
+            if ($datosUsuario) {
+                $_SESSION['rol_id'] = (int)$datosUsuario['ID_ROL'];
+                $_SESSION['rol_nombre'] = $datosUsuario['ROL'];
+            }
+
+            $response = [
+                'success' => true,
+                'message' => 'Registro exitoso'
+            ];
+        } else {
+            $response = [
                 'success' => false,
-                'message' => 'Error en el registro'
-            ]);
+                'message' => 'Error al registrar el usuario'
+            ];
         }
 
-        exit;
+    } catch (Exception $e) {
+        $response = [
+            'success' => false,
+            'message' => 'Error en el registro'
+        ];
     }
+
+    // ✅ Imprimir respuesta como JSON para PHPUnit y producción
+    $json = json_encode($response);
+
+    if (defined('PHPUNIT_RUNNING')) {
+        echo $json;
+        return;
+    }
+
+    echo $json;
+    exit;
+}
 
     private function consultaDNI() {
         header('Content-Type: application/json; charset=utf-8');

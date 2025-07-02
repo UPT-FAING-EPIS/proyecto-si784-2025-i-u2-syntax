@@ -5,27 +5,38 @@ require_once BASE_PATH . '/config/constants.php';
 
 require_once BASE_PATH . '/controllers/EstudianteController.php';
 
+/**
+ * @coversDefaultClass EstudianteController
+ */
 class EstudianteControllerTest extends TestCase
 {
     protected function setUp(): void
-    {
-        if (ob_get_level() === 0) {
-            ob_start();
-        }
-
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
-
-        $_SESSION = [];
+{
+    // ⚠️ Esto evita warnings de headers enviados
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        @session_start(); // el @ evita que PHPUnit se queje si ya se enviaron headers
     }
+
+    $_SESSION = [];
+    $_POST = [];
+    $_GET = [];
+
+    // También puede prevenir errores en views
+    $_SERVER['REQUEST_URI'] = '/test';
+}
 
     protected function tearDown(): void
     {
-        ob_end_clean();
+        if (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+
         $_SESSION = [];
     }
 
+    /**
+ * @covers EstudianteController::verificar_codigo_vinculacionPost
+ */
     public function testVerificarCodigoVinculacionPostConDatosValidos()
     {
         // Simular sesión válida
@@ -78,6 +89,10 @@ class EstudianteControllerTest extends TestCase
         $this->assertTrue($_SESSION['vinculacion_exitosa']);
         $this->assertEquals('¡Vinculación exitosa! Ahora eres parte de la comunidad UPT.', $_SESSION['mensaje']);
     }
+
+    /**
+ * @covers EstudianteController::verificar_codigo_vinculacionPost
+ */
     public function testVerificarCodigoVinculacionPostConCodigoIncompleto()
 {
     $_SESSION['usuario_id'] = 10;
@@ -108,7 +123,9 @@ class EstudianteControllerTest extends TestCase
     // Se espera mensaje de error en sesión
     $this->assertEquals('Código incompleto. Ingresa los 6 dígitos.', $_SESSION['error']);
 }
-
+/**
+ * @covers EstudianteController::buscar_estudiantePost
+ */
 public function testBuscarEstudiantePostConCodigoValido()
 {
     $_SESSION['usuario_id'] = 10;
@@ -139,6 +156,9 @@ public function testBuscarEstudiantePostConCodigoValido()
     $this->assertEquals('Estudiante encontrado. Verifica tus datos antes de continuar.', $_SESSION['mensaje']);
     $this->assertEquals('success', $_SESSION['tipo_mensaje']);
 }
+/**
+ * @covers EstudianteController::buscar_estudiantePost
+ */
 public function testBuscarEstudiantePostCodigoYaVinculado()
 {
     $_SESSION['usuario_id'] = 10;
@@ -160,6 +180,9 @@ public function testBuscarEstudiantePostCodigoYaVinculado()
 
     $this->assertEquals('Este código de estudiante ya está vinculado a otra cuenta', $_SESSION['error']);
 }
+/**
+ * @covers EstudianteController::buscar_estudiantePost
+ */
 public function testBuscarEstudiantePostCodigoNoExiste()
 {
     $_SESSION['usuario_id'] = 10;
@@ -181,4 +204,69 @@ public function testBuscarEstudiantePostCodigoNoExiste()
 
     $this->assertEquals('Código de estudiante no encontrado en el sistema UPT', $_SESSION['error']);
 }
+/**
+ * @covers EstudianteController::enviar_codigo_vinculacionPost
+ */
+public function testEnviarCodigoVinculacionExitoso()
+{
+    $_SESSION['usuario_id'] = 10;
+    $_SESSION['rol_id'] = 1;
+    $_POST['codigo_estudiante'] = '2022123456';
+
+    $mockModel = $this->createMock(EstudianteModel::class);
+    $mockModel->method('buscarPorCodigo')->willReturn([
+        'codigo_estudiante' => '2022123456',
+        'nombres' => 'Luis',
+        'apellidos' => 'Sánchez',
+        'email_institucional' => 'lsanchez@virtual.upt.pe'
+    ]);
+    $mockModel->method('guardarCodigoVerificacion')->willReturn(true);
+
+    // Subclase anónima para mockear métodos privados
+    $controller = new class($mockModel) extends EstudianteController {
+        public function __construct($model) {
+            parent::__construct();
+            $this->estudianteModel = $model;
+        }
+        public function generarCodigoVerificacion() {
+            return '123456';
+        }
+        public function enviarEmailVerificacion($email, $codigo, $estudiante) {
+            return true;
+        }
+    };
+
+    ob_start();
+    $controller->enviar_codigo_vinculacionPost();
+    ob_end_clean();
+
+    $this->assertEquals('Código de verificación enviado correctamente', $_SESSION['mensaje']);
+    $this->assertEquals('success', $_SESSION['tipo_mensaje']);
+    $this->assertTrue($_SESSION['codigo_enviado']);
+    $this->assertEquals('2022123456', $_SESSION['datos_estudiante']['codigo_estudiante']);
+}
+/**
+ * @covers EstudianteController::reenviar_codigo_vinculacionPost
+ */
+public function testReenviarCodigoVinculacionConLimiteExcedido()
+{
+    $_SESSION['usuario_id'] = 10;
+    $_SESSION['rol_id'] = 1;
+    $_POST['codigo_estudiante'] = '2022123456';
+
+    $mockModel = $this->createMock(EstudianteModel::class);
+    $mockModel->method('contarIntentosRecientes')->willReturn(3);
+
+    $controller = new EstudianteController();
+    $refProp = new ReflectionProperty($controller, 'estudianteModel');
+    $refProp->setAccessible(true);
+    $refProp->setValue($controller, $mockModel);
+
+    ob_start();
+    $controller->reenviar_codigo_vinculacionPost();
+    ob_end_clean();
+
+    $this->assertEquals('Has alcanzado el límite de reenvíos. Intenta en una hora.', $_SESSION['error']);
+}
+
 }

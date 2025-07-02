@@ -8,6 +8,9 @@ if (!defined('BASE_PATH')) {
 require_once BASE_PATH . '/config/constants.php';
 require_once BASE_PATH . '/controllers/HomeController.php';
 
+/**
+ * @coversDefaultClass HomeController
+ */
 class HomeControllerTest extends TestCase
 {
     private $controller;
@@ -26,6 +29,8 @@ class HomeControllerTest extends TestCase
                 file_put_contents($path, "<h1>{$vista}</h1>");
             }
         }
+        $_SERVER['REQUEST_URI'] = '/test';
+
     }
 
     protected function tearDown(): void
@@ -39,6 +44,9 @@ class HomeControllerTest extends TestCase
         }
     }
 
+    /**
+     * @covers HomeController::inicioGet
+     */
     public function testInicioGetMuestraVistaHomeSiExiste()
     {
         ob_start();
@@ -48,6 +56,9 @@ class HomeControllerTest extends TestCase
         $this->assertStringContainsString('<h1>home</h1>', $salida);
     }
 
+    /**
+     * @covers HomeController::inicioGet
+     */
     public function testInicioGetMuestraErrorSiArchivoNoExiste()
     {
         unlink(BASE_PATH . '/views/home.php');
@@ -59,6 +70,9 @@ class HomeControllerTest extends TestCase
         $this->assertStringContainsString('La página de inicio no existe', $salida);
     }
 
+    /**
+     * @covers HomeController::mostrarSeccionGet
+     */
     public function testMostrarSeccionValidaCargaArchivo()
     {
         $_GET['accion'] = 'mentoria';
@@ -70,6 +84,9 @@ class HomeControllerTest extends TestCase
         $this->assertStringContainsString('<h1>mentoria</h1>', $salida);
     }
 
+    /**
+     * @covers HomeController::mostrarSeccionGet
+     */
     public function testMostrarSeccionNoPermitida()
     {
         $_GET['accion'] = 'hack';
@@ -81,6 +98,9 @@ class HomeControllerTest extends TestCase
         $this->assertStringContainsString('Sección no permitida', $salida);
     }
 
+    /**
+     * @covers HomeController::handle
+     */
     public function testHandleConInicioLlamaInicioGet()
     {
         ob_start();
@@ -90,6 +110,9 @@ class HomeControllerTest extends TestCase
         $this->assertStringContainsString('<h1>home</h1>', $salida);
     }
 
+    /**
+     * @covers HomeController::handle
+     */
     public function testHandleConSeccionLlamaMostrarSeccionGet()
     {
         $_GET['accion'] = 'mentoria';

@@ -28,15 +28,12 @@ jobs:
       - name: Run UI Tests
         run: npx playwright test
 
-      - name: Generate HTML Report
-        if: always()
-        run: npx playwright show-report --output=docs/ui-report
-
-      - name: Commit UI Report to GitHub Pages
+      - name: Commit UI Report to GitHub
         if: always()
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
+          git pull origin main
           git add docs/ui-report
           git commit -m "🔄 Actualizar reporte UI Playwright [auto]" || echo "No changes"
           git push origin main

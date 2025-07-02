@@ -7,7 +7,7 @@
     ]
   },
   "logs": {
-    "html": "../docs/mutation/index.html"
+    "html": "../docs/infection-report/index.html"
   },
   "phpUnit": {
     "configDir": ".",

@@ -123,7 +123,7 @@ class RangoController {
         }
     }
     
-    private function enviarNotificacionCorreo($email, $nombreCompleto, $codigo, $discordUsername, $tipoUsuario, $dni) {
+    protected function enviarNotificacionCorreo($email, $nombreCompleto, $codigo, $discordUsername, $tipoUsuario, $dni) {
         try {
             // ✅ Ruta correcta para tu estructura
             require_once BASE_PATH . '/utils/CorreoCodigoDiscord.php';
@@ -193,7 +193,7 @@ class RangoController {
         return implode('', $codigoArray);
     }
     
-    private function guardarEnMongoDB($datos) {
+    protected function guardarEnMongoDB($datos) {
         try {
             if (!$this->mongodb->verificarConexion()) {
                 throw new Exception("Sin conexión a MongoDB");

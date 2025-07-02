@@ -186,7 +186,9 @@ window.addEventListener('unhandledrejection', function(e) {});
 
 <?php
 $currentAction = isset($_GET['accion']) ? $_GET['accion'] : '';
-$isClassesPage = ($currentAction === 'mis_clases' || strpos($_SERVER['REQUEST_URI'], 'mis_clases') !== false);
+$requestUri = $_SERVER['REQUEST_URI'] ?? '';
+$isClassesPage = ($currentAction === 'mis_clases' || strpos($requestUri, 'mis_clases') !== false);
+
 if ($isClassesPage):
 ?>
 <script>
