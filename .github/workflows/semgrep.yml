@@ -14,13 +14,11 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Ejecutar Semgrep
-        uses: returntocorp/semgrep-action@v1
-        with:
-          config: "auto"
+      - name: Instalar Semgrep CLI
+        run: pip install semgrep
 
-      - name: Generar reporte SARIF
-        run: semgrep --config=auto --sarif > semgrep.sarif
+      - name: Ejecutar análisis con Semgrep (y guardar en SARIF)
+        run: semgrep --config=auto --sarif --output=semgrep.sarif
 
       - name: Convertir SARIF a HTML básico
         run: |
@@ -32,5 +30,5 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
           git add docs/seguridad/index.html
-          git commit -m "chore: agregar reporte Semgrep HTML"
+          git diff --cached --quiet || git commit -m "chore: agregar reporte Semgrep HTML"
           git push

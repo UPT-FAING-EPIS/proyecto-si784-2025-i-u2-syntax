@@ -15,9 +15,11 @@ class ClaseController extends BaseController {
 
     public function listar_claseGet() {
         try {
-            if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol_id'], [2])) {
-                header('Location: ' . BASE_URL . 'index.php?accion=login');
-                exit;
+           if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol_id'], [2])) {
+                if (!defined('PHPUNIT_RUNNING')) {
+                    header('Location: ' . BASE_URL . 'index.php?accion=login');
+                    exit;
+                }
             }
 
             $usuarioId = $_SESSION['usuario_id'];
@@ -97,8 +99,10 @@ class ClaseController extends BaseController {
             $_SESSION['tipo_mensaje'] = "danger";
         }
 
-        header('Location: ' . BASE_URL . '/index.php?accion=listar_clase');
-        exit;
+        if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=listar_clase');
+    exit;
+}
     }
 
     public function crear_clasePost() {
@@ -164,17 +168,21 @@ class ClaseController extends BaseController {
             $_SESSION['tipo_mensaje'] = "danger";
         }
 
-        header('Location: ' . BASE_URL . '/index.php?accion=listar_clase');
-        exit;
+       if (!defined('PHPUNIT_RUNNING')) {
+            header('Location: ' . BASE_URL . '/index.php?accion=listar_clase');
+            exit;
+        }
     }
 
     public function solicitar_clasePost() {
         return $this->crear_clasePost();
     }
     private function validarSesionEstudiante() {
-        if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol_id'], [2])) {
-            header('Location: ' . BASE_URL . '/index.php?accion=login');
-            exit;
+       if (!isset($_SESSION['usuario_id']) || !in_array($_SESSION['rol_id'], [2])) {
+            if (!defined('PHPUNIT_RUNNING')) {
+                header('Location: ' . BASE_URL . '/index.php?accion=login');
+                exit;
+            }
         }
 
         $idEstudiante = $this->usuarioModel->obtenerIdEstudiante($_SESSION['usuario_id']);

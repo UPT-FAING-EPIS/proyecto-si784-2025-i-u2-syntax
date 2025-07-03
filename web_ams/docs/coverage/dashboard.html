@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="_css/bootstrap.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/nv.d3.min.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/style.css?v=9.2.32" rel="stylesheet" type="text/css">
+  <link href="_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/AuthController.php.html#10">AuthController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#7">ClaseController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#8">DocenteController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#5">HomeController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#7">RangoController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="core/BaseController.php.html#3">BaseController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#4">AdminModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Asistencia.php.html#4">Asistencia</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Aula.php.html#4">Aula</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#4">ClaseModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Comentario.php.html#4">Comentario</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Curso.php.html#4">Curso</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#4">DocenteModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Estudiante.php.html#4">Estudiante</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#4">EstudianteModel</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Nota.php.html#4">Nota</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Unidad.php.html#4">Unidad</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#4">Usuario</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#6">EstudianteController</a></td><td class="text-right">6%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/DocenteController.php.html#8">DocenteController</a></td><td class="text-right">11342</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#10">AuthController</a></td><td class="text-right">2256</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#6">EstudianteController</a></td><td class="text-right">1911</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#4">DocenteModel</a></td><td class="text-right">1892</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#4">ClaseModel</a></td><td class="text-right">1560</td></tr>
+       <tr><td><a href="models/Usuario.php.html#4">Usuario</a></td><td class="text-right">1332</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#7">ClaseController</a></td><td class="text-right">1260</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#4">AdminModel</a></td><td class="text-right">930</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#4">EstudianteModel</a></td><td class="text-right">870</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#7">RangoController</a></td><td class="text-right">756</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#5">HomeController</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="core/BaseController.php.html#3">BaseController</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="models/Asistencia.php.html#4">Asistencia</a></td><td class="text-right">20</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/AuthController.php.html#14"><abbr title="AuthController::setUsuarioModel">setUsuarioModel</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#18"><abbr title="AuthController::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#41"><abbr title="AuthController::loginGet">loginGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#45"><abbr title="AuthController::loginPost">loginPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#82"><abbr title="AuthController::registroGet">registroGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#86"><abbr title="AuthController::registroPost">registroPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#159"><abbr title="AuthController::consultaDNI">consultaDNI</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#238"><abbr title="AuthController::sendErrorResponse">sendErrorResponse</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#252"><abbr title="AuthController::retornarRespuesta">retornarRespuesta</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#11"><abbr title="ClaseController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#16"><abbr title="ClaseController::listar_claseGet">listar_claseGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#69"><abbr title="ClaseController::inscribir_clasePost">inscribir_clasePost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#108"><abbr title="ClaseController::crear_clasePost">crear_clasePost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#177"><abbr title="ClaseController::solicitar_clasePost">solicitar_clasePost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#180"><abbr title="ClaseController::validarSesionEstudiante">validarSesionEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#197"><abbr title="ClaseController::validarLimiteClases">validarLimiteClases</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#13"><abbr title="DocenteController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#28"><abbr title="DocenteController::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#67"><abbr title="DocenteController::clases_asignadas">clases_asignadas</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#132"><abbr title="DocenteController::cerrar_clase">cerrar_clase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#175"><abbr title="DocenteController::empezar_clase">empezar_clase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#238"><abbr title="DocenteController::procesarDiscord">procesarDiscord</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#281"><abbr title="DocenteController::obtener_estudiantes_clase">obtener_estudiantes_clase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#311"><abbr title="DocenteController::calificar_estudiante">calificar_estudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#371"><abbr title="DocenteController::ver_calificaciones">ver_calificaciones</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#400"><abbr title="DocenteController::procesar_tomar_clase">procesar_tomar_clase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#445"><abbr title="DocenteController::info_clase_disponible">info_clase_disponible</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#487"><abbr title="DocenteController::estado_discord">estado_discord</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#508"><abbr title="DocenteController::ver_reportes">ver_reportes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#546"><abbr title="DocenteController::__destruct">__destruct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#9"><abbr title="EstudianteController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#13"><abbr title="EstudianteController::vincularGet">vincularGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#34"><abbr title="EstudianteController::buscar_estudiantePost">buscar_estudiantePost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#144"><abbr title="EstudianteController::verificar_codigo_vinculacionPost">verificar_codigo_vinculacionPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#221"><abbr title="EstudianteController::reenviar_codigo_vinculacionPost">reenviar_codigo_vinculacionPost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#255"><abbr title="EstudianteController::generarCodigoVerificacion">generarCodigoVerificacion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#259"><abbr title="EstudianteController::generarEmailInstitucional">generarEmailInstitucional</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#268"><abbr title="EstudianteController::enviarEmailVerificacion">enviarEmailVerificacion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#7"><abbr title="HomeController::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#16"><abbr title="HomeController::inicioGet">inicioGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#28"><abbr title="HomeController::mostrarSeccionGet">mostrarSeccionGet</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#12"><abbr title="RangoController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#17"><abbr title="RangoController::generarClaveReclamo">generarClaveReclamo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#126"><abbr title="RangoController::enviarNotificacionCorreo">enviarNotificacionCorreo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#149"><abbr title="RangoController::invalidarCodigosAnteriores">invalidarCodigosAnteriores</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#178"><abbr title="RangoController::generarCodigoUnico">generarCodigoUnico</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#196"><abbr title="RangoController::guardarEnMongoDB">guardarEnMongoDB</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="core/BaseController.php.html#5"><abbr title="BaseController::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#7"><abbr title="AdminModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#11"><abbr title="AdminModel::obtenerMetricasGenerales">obtenerMetricasGenerales</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#48"><abbr title="AdminModel::calcularPorcentajeCambio">calcularPorcentajeCambio</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#55"><abbr title="AdminModel::obtenerMetricasPorDefecto">obtenerMetricasPorDefecto</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#67"><abbr title="AdminModel::obtenerEstadisticasGestion">obtenerEstadisticasGestion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#110"><abbr title="AdminModel::obtenerActividadReciente">obtenerActividadReciente</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#226"><abbr title="AdminModel::obtenerActividadPorDefecto">obtenerActividadPorDefecto</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#263"><abbr title="AdminModel::obtenerDatosGraficos">obtenerDatosGraficos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#314"><abbr title="AdminModel::obtenerEstadoSistema">obtenerEstadoSistema</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#338"><abbr title="AdminModel::formatearTiempoTranscurrido">formatearTiempoTranscurrido</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Asistencia.php.html#7"><abbr title="Asistencia::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Asistencia.php.html#11"><abbr title="Asistencia::guardarAsistencia">guardarAsistencia</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Asistencia.php.html#19"><abbr title="Asistencia::obtenerAsistenciaPorClase">obtenerAsistenciaPorClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Aula.php.html#7"><abbr title="Aula::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Aula.php.html#11"><abbr title="Aula::obtenerTodos">obtenerTodos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#7"><abbr title="ClaseModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#12"><abbr title="ClaseModel::obtenerClasesEstudiante">obtenerClasesEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#70"><abbr title="ClaseModel::verificarCalificacionExistente">verificarCalificacionExistente</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#85"><abbr title="ClaseModel::calificarMentor">calificarMentor</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#139"><abbr title="ClaseModel::obtenerClasesDisponiblesParaInscripcion">obtenerClasesDisponiblesParaInscripcion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#176"><abbr title="ClaseModel::obtenerClasesDisponibles">obtenerClasesDisponibles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#222"><abbr title="ClaseModel::inscribirEstudiante">inscribirEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#265"><abbr title="ClaseModel::obtenerCursosDisponibles">obtenerCursosDisponibles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#279"><abbr title="ClaseModel::contarClasesEstudiante">contarClasesEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#289"><abbr title="ClaseModel::solicitarNuevaClase">solicitarNuevaClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#310"><abbr title="ClaseModel::obtenerCiclosDisponibles">obtenerCiclosDisponibles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#318"><abbr title="ClaseModel::obtenerNotasEstudiante">obtenerNotasEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#353"><abbr title="ClaseModel::obtenerClasePorId">obtenerClasePorId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#374"><abbr title="ClaseModel::obtenerAsistenciaEstudiante">obtenerAsistenciaEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#399"><abbr title="ClaseModel::obtenerEstadisticasEstudiante">obtenerEstadisticasEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#430"><abbr title="ClaseModel::desinscribirEstudiante">desinscribirEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Comentario.php.html#7"><abbr title="Comentario::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Comentario.php.html#11"><abbr title="Comentario::registrarComentario">registrarComentario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Comentario.php.html#16"><abbr title="Comentario::obtenerComentariosPorEstudiante">obtenerComentariosPorEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Curso.php.html#7"><abbr title="Curso::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Curso.php.html#11"><abbr title="Curso::obtenerTodos">obtenerTodos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#8"><abbr title="DocenteModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#12"><abbr title="DocenteModel::obtenerIdDocente">obtenerIdDocente</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#27"><abbr title="DocenteModel::obtenerClasesAsignadas">obtenerClasesAsignadas</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#92"><abbr title="DocenteModel::verificarPermisosClase">verificarPermisosClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#103"><abbr title="DocenteModel::cerrarClase">cerrarClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#128"><abbr title="DocenteModel::iniciarClase">iniciarClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#153"><abbr title="DocenteModel::obtenerEstudiantesClase">obtenerEstudiantesClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#177"><abbr title="DocenteModel::obtenerInfoClaseParaDiscord">obtenerInfoClaseParaDiscord</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#193"><abbr title="DocenteModel::calificarEstudiante">calificarEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#257"><abbr title="DocenteModel::obtenerCalificacionesClase">obtenerCalificacionesClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#302"><abbr title="DocenteModel::obtenerInfoDocente">obtenerInfoDocente</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#316"><abbr title="DocenteModel::obtenerClasesDisponibles">obtenerClasesDisponibles</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#375"><abbr title="DocenteModel::tomarClase">tomarClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#395"><abbr title="DocenteModel::puedeTomarClase">puedeTomarClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Estudiante.php.html#7"><abbr title="Estudiante::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Estudiante.php.html#12"><abbr title="Estudiante::listarPorClase">listarPorClase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#7"><abbr title="EstudianteModel::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#10"><abbr title="EstudianteModel::buscarPorCodigo">buscarPorCodigo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#29"><abbr title="EstudianteModel::verificarUsuarioVinculado">verificarUsuarioVinculado</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#44"><abbr title="EstudianteModel::guardarCodigoVerificacion">guardarCodigoVerificacion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#59"><abbr title="EstudianteModel::verificarCodigo">verificarCodigo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#113"><abbr title="EstudianteModel::incrementarIntentos">incrementarIntentos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#125"><abbr title="EstudianteModel::limpiarCodigoVerificacion">limpiarCodigoVerificacion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#134"><abbr title="EstudianteModel::vincularUsuario">vincularUsuario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#179"><abbr title="EstudianteModel::actualizarRolUsuario">actualizarRolUsuario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#188"><abbr title="EstudianteModel::contarIntentosRecientes">contarIntentosRecientes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#202"><abbr title="EstudianteModel::obtenerClasesEstudiante">obtenerClasesEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#229"><abbr title="EstudianteModel::obtenerEstudiantePorUsuario">obtenerEstudiantePorUsuario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Nota.php.html#7"><abbr title="Nota::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Nota.php.html#11"><abbr title="Nota::obtenerEstudiantesConNotas">obtenerEstudiantesConNotas</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Nota.php.html#23"><abbr title="Nota::guardar">guardar</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Unidad.php.html#7"><abbr title="Unidad::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Unidad.php.html#11"><abbr title="Unidad::obtenerTodos">obtenerTodos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#7"><abbr title="Usuario::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#11"><abbr title="Usuario::verificarCredenciales">verificarCredenciales</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#26"><abbr title="Usuario::registrarUsuario">registrarUsuario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#42"><abbr title="Usuario::buscarPorCorreo">buscarPorCorreo</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#52"><abbr title="Usuario::registrarOAuth">registrarOAuth</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#70"><abbr title="Usuario::obtenerPorId">obtenerPorId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#75"><abbr title="Usuario::actualizarPassword">actualizarPassword</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#92"><abbr title="Usuario::obtenerIdEstudiante">obtenerIdEstudiante</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#98"><abbr title="Usuario::obtenerDatosCompletos">obtenerDatosCompletos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#118"><abbr title="Usuario::obtenerRolesUsuario">obtenerRolesUsuario</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#127"><abbr title="Usuario::asignarRol">asignarRol</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#138"><abbr title="Usuario::revocarRol">revocarRol</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#149"><abbr title="Usuario::existeEmail">existeEmail</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#155"><abbr title="Usuario::existeDNI">existeDNI</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#161"><abbr title="Usuario::actualizarDatos">actualizarDatos</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#188"><abbr title="Usuario::listarUsuarios">listarUsuarios</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="models/Usuario.php.html#224"><abbr title="Usuario::eliminarUsuarioPorId">eliminarUsuarioPorId</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#87"><abbr title="EstudianteController::enviar_codigo_vinculacionPost">enviar_codigo_vinculacionPost</abbr></a></td><td class="text-right">28%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="controllers/RangoController.php.html#17"><abbr title="RangoController::generarClaveReclamo">generarClaveReclamo</abbr></a></td><td class="text-right">272</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#86"><abbr title="AuthController::registroPost">registroPost</abbr></a></td><td class="text-right">240</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#67"><abbr title="DocenteController::clases_asignadas">clases_asignadas</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#144"><abbr title="EstudianteController::verificar_codigo_vinculacionPost">verificar_codigo_vinculacionPost</abbr></a></td><td class="text-right">182</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#28"><abbr title="DocenteController::handle">handle</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#175"><abbr title="DocenteController::empezar_clase">empezar_clase</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#311"><abbr title="DocenteController::calificar_estudiante">calificar_estudiante</abbr></a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#159"><abbr title="AuthController::consultaDNI">consultaDNI</abbr></a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#108"><abbr title="ClaseController::crear_clasePost">crear_clasePost</abbr></a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#110"><abbr title="AdminModel::obtenerActividadReciente">obtenerActividadReciente</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#34"><abbr title="EstudianteController::buscar_estudiantePost">buscar_estudiantePost</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#16"><abbr title="ClaseController::listar_claseGet">listar_claseGet</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#132"><abbr title="DocenteController::cerrar_clase">cerrar_clase</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#400"><abbr title="DocenteController::procesar_tomar_clase">procesar_tomar_clase</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#221"><abbr title="EstudianteController::reenviar_codigo_vinculacionPost">reenviar_codigo_vinculacionPost</abbr></a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#18"><abbr title="AuthController::handle">handle</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#69"><abbr title="ClaseController::inscribir_clasePost">inscribir_clasePost</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#445"><abbr title="DocenteController::info_clase_disponible">info_clase_disponible</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#508"><abbr title="DocenteController::ver_reportes">ver_reportes</abbr></a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#45"><abbr title="AuthController::loginPost">loginPost</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#281"><abbr title="DocenteController::obtener_estudiantes_clase">obtener_estudiantes_clase</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#371"><abbr title="DocenteController::ver_calificaciones">ver_calificaciones</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#338"><abbr title="AdminModel::formatearTiempoTranscurrido">formatearTiempoTranscurrido</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#85"><abbr title="ClaseModel::calificarMentor">calificarMentor</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#27"><abbr title="DocenteModel::obtenerClasesAsignadas">obtenerClasesAsignadas</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#193"><abbr title="DocenteModel::calificarEstudiante">calificarEstudiante</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#316"><abbr title="DocenteModel::obtenerClasesDisponibles">obtenerClasesDisponibles</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#59"><abbr title="EstudianteModel::verificarCodigo">verificarCodigo</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#87"><abbr title="EstudianteController::enviar_codigo_vinculacionPost">enviar_codigo_vinculacionPost</abbr></a></td><td class="text-right">38</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#180"><abbr title="ClaseController::validarSesionEstudiante">validarSesionEstudiante</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#238"><abbr title="DocenteController::procesarDiscord">procesarDiscord</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#487"><abbr title="DocenteController::estado_discord">estado_discord</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="core/BaseController.php.html#5"><abbr title="BaseController::handle">handle</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#222"><abbr title="ClaseModel::inscribirEstudiante">inscribirEstudiante</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#395"><abbr title="DocenteModel::puedeTomarClase">puedeTomarClase</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="models/Usuario.php.html#161"><abbr title="Usuario::actualizarDatos">actualizarDatos</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="models/Usuario.php.html#188"><abbr title="Usuario::listarUsuarios">listarUsuarios</abbr></a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#13"><abbr title="EstudianteController::vincularGet">vincularGet</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#12"><abbr title="ClaseModel::obtenerClasesEstudiante">obtenerClasesEstudiante</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#176"><abbr title="ClaseModel::obtenerClasesDisponibles">obtenerClasesDisponibles</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#103"><abbr title="DocenteModel::cerrarClase">cerrarClase</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#128"><abbr title="DocenteModel::iniciarClase">iniciarClase</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#134"><abbr title="EstudianteModel::vincularUsuario">vincularUsuario</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="models/Usuario.php.html#26"><abbr title="Usuario::registrarUsuario">registrarUsuario</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#238"><abbr title="AuthController::sendErrorResponse">sendErrorResponse</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#13"><abbr title="DocenteController::__construct">__construct</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#28"><abbr title="HomeController::mostrarSeccionGet">mostrarSeccionGet</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#149"><abbr title="RangoController::invalidarCodigosAnteriores">invalidarCodigosAnteriores</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#196"><abbr title="RangoController::guardarEnMongoDB">guardarEnMongoDB</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#48"><abbr title="AdminModel::calcularPorcentajeCambio">calcularPorcentajeCambio</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#318"><abbr title="ClaseModel::obtenerNotasEstudiante">obtenerNotasEstudiante</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#430"><abbr title="ClaseModel::desinscribirEstudiante">desinscribirEstudiante</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/Usuario.php.html#11"><abbr title="Usuario::verificarCredenciales">verificarCredenciales</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="models/Usuario.php.html#75"><abbr title="Usuario::actualizarPassword">actualizarPassword</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="controllers/AuthController.php.html#252"><abbr title="AuthController::retornarRespuesta">retornarRespuesta</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/ClaseController.php.html#197"><abbr title="ClaseController::validarLimiteClases">validarLimiteClases</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/DocenteController.php.html#546"><abbr title="DocenteController::__destruct">__destruct</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/EstudianteController.php.html#268"><abbr title="EstudianteController::enviarEmailVerificacion">enviarEmailVerificacion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#7"><abbr title="HomeController::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/HomeController.php.html#16"><abbr title="HomeController::inicioGet">inicioGet</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#126"><abbr title="RangoController::enviarNotificacionCorreo">enviarNotificacionCorreo</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="controllers/RangoController.php.html#178"><abbr title="RangoController::generarCodigoUnico">generarCodigoUnico</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#11"><abbr title="AdminModel::obtenerMetricasGenerales">obtenerMetricasGenerales</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#67"><abbr title="AdminModel::obtenerEstadisticasGestion">obtenerEstadisticasGestion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#263"><abbr title="AdminModel::obtenerDatosGraficos">obtenerDatosGraficos</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/AdminModel.php.html#314"><abbr title="AdminModel::obtenerEstadoSistema">obtenerEstadoSistema</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/Asistencia.php.html#11"><abbr title="Asistencia::guardarAsistencia">guardarAsistencia</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#70"><abbr title="ClaseModel::verificarCalificacionExistente">verificarCalificacionExistente</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#289"><abbr title="ClaseModel::solicitarNuevaClase">solicitarNuevaClase</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#353"><abbr title="ClaseModel::obtenerClasePorId">obtenerClasePorId</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/ClaseModel.php.html#374"><abbr title="ClaseModel::obtenerAsistenciaEstudiante">obtenerAsistenciaEstudiante</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#12"><abbr title="DocenteModel::obtenerIdDocente">obtenerIdDocente</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#92"><abbr title="DocenteModel::verificarPermisosClase">verificarPermisosClase</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#257"><abbr title="DocenteModel::obtenerCalificacionesClase">obtenerCalificacionesClase</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/DocenteModel.php.html#375"><abbr title="DocenteModel::tomarClase">tomarClase</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#10"><abbr title="EstudianteModel::buscarPorCodigo">buscarPorCodigo</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#29"><abbr title="EstudianteModel::verificarUsuarioVinculado">verificarUsuarioVinculado</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#44"><abbr title="EstudianteModel::guardarCodigoVerificacion">guardarCodigoVerificacion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#113"><abbr title="EstudianteModel::incrementarIntentos">incrementarIntentos</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#125"><abbr title="EstudianteModel::limpiarCodigoVerificacion">limpiarCodigoVerificacion</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#179"><abbr title="EstudianteModel::actualizarRolUsuario">actualizarRolUsuario</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#188"><abbr title="EstudianteModel::contarIntentosRecientes">contarIntentosRecientes</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#202"><abbr title="EstudianteModel::obtenerClasesEstudiante">obtenerClasesEstudiante</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/EstudianteModel.php.html#229"><abbr title="EstudianteModel::obtenerEstudiantePorUsuario">obtenerEstudiantePorUsuario</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/Usuario.php.html#52"><abbr title="Usuario::registrarOAuth">registrarOAuth</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/Usuario.php.html#92"><abbr title="Usuario::obtenerIdEstudiante">obtenerIdEstudiante</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/Usuario.php.html#127"><abbr title="Usuario::asignarRol">asignarRol</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="models/Usuario.php.html#138"><abbr title="Usuario::revocarRol">revocarRol</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 9.2.32</a> using <a href="https://secure.php.net/" target="_top">PHP 8.1.32</a> and <a href="https://phpunit.de/">PHPUnit 9.6.23</a> at Thu Jul 3 15:57:30 CEST 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="_js/jquery.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script src="_js/nv.d3.min.js?v=9.2.32" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([18,1,0,0,0,0,0,0,0,0,0,0], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([134,0,0,1,0,0,0,0,0,0,0,0], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,47,"<a href=\"controllers\/AuthController.php.html#10\">AuthController<\/a>"],[0,35,"<a href=\"controllers\/ClaseController.php.html#7\">ClaseController<\/a>"],[0,106,"<a href=\"controllers\/DocenteController.php.html#8\">DocenteController<\/a>"],[6.832298136645963,48,"<a href=\"controllers\/EstudianteController.php.html#6\">EstudianteController<\/a>"],[0,7,"<a href=\"controllers\/HomeController.php.html#5\">HomeController<\/a>"],[0,27,"<a href=\"controllers\/RangoController.php.html#7\">RangoController<\/a>"],[0,5,"<a href=\"core\/BaseController.php.html#3\">BaseController<\/a>"],[0,30,"<a href=\"models\/AdminModel.php.html#4\">AdminModel<\/a>"],[0,4,"<a href=\"models\/Asistencia.php.html#4\">Asistencia<\/a>"],[0,2,"<a href=\"models\/Aula.php.html#4\">Aula<\/a>"],[0,39,"<a href=\"models\/ClaseModel.php.html#4\">ClaseModel<\/a>"],[0,3,"<a href=\"models\/Comentario.php.html#4\">Comentario<\/a>"],[0,2,"<a href=\"models\/Curso.php.html#4\">Curso<\/a>"],[0,43,"<a href=\"models\/DocenteModel.php.html#4\">DocenteModel<\/a>"],[0,2,"<a href=\"models\/Estudiante.php.html#4\">Estudiante<\/a>"],[0,29,"<a href=\"models\/EstudianteModel.php.html#4\">EstudianteModel<\/a>"],[0,3,"<a href=\"models\/Nota.php.html#4\">Nota<\/a>"],[0,2,"<a href=\"models\/Unidad.php.html#4\">Unidad<\/a>"],[0,36,"<a href=\"models\/Usuario.php.html#4\">Usuario<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"controllers\/AuthController.php.html#14\">AuthController::setUsuarioModel<\/a>"],[0,7,"<a href=\"controllers\/AuthController.php.html#18\">AuthController::handle<\/a>"],[0,1,"<a href=\"controllers\/AuthController.php.html#41\">AuthController::loginGet<\/a>"],[0,6,"<a href=\"controllers\/AuthController.php.html#45\">AuthController::loginPost<\/a>"],[0,1,"<a href=\"controllers\/AuthController.php.html#82\">AuthController::registroGet<\/a>"],[0,15,"<a href=\"controllers\/AuthController.php.html#86\">AuthController::registroPost<\/a>"],[0,11,"<a href=\"controllers\/AuthController.php.html#159\">AuthController::consultaDNI<\/a>"],[0,3,"<a href=\"controllers\/AuthController.php.html#238\">AuthController::sendErrorResponse<\/a>"],[0,2,"<a href=\"controllers\/AuthController.php.html#252\">AuthController::retornarRespuesta<\/a>"],[0,1,"<a href=\"controllers\/ClaseController.php.html#11\">ClaseController::__construct<\/a>"],[0,8,"<a href=\"controllers\/ClaseController.php.html#16\">ClaseController::listar_claseGet<\/a>"],[0,7,"<a href=\"controllers\/ClaseController.php.html#69\">ClaseController::inscribir_clasePost<\/a>"],[0,11,"<a href=\"controllers\/ClaseController.php.html#108\">ClaseController::crear_clasePost<\/a>"],[0,1,"<a href=\"controllers\/ClaseController.php.html#177\">ClaseController::solicitar_clasePost<\/a>"],[0,5,"<a href=\"controllers\/ClaseController.php.html#180\">ClaseController::validarSesionEstudiante<\/a>"],[0,2,"<a href=\"controllers\/ClaseController.php.html#197\">ClaseController::validarLimiteClases<\/a>"],[0,3,"<a href=\"controllers\/DocenteController.php.html#13\">DocenteController::__construct<\/a>"],[0,12,"<a href=\"controllers\/DocenteController.php.html#28\">DocenteController::handle<\/a>"],[0,13,"<a href=\"controllers\/DocenteController.php.html#67\">DocenteController::clases_asignadas<\/a>"],[0,8,"<a href=\"controllers\/DocenteController.php.html#132\">DocenteController::cerrar_clase<\/a>"],[0,12,"<a href=\"controllers\/DocenteController.php.html#175\">DocenteController::empezar_clase<\/a>"],[0,5,"<a href=\"controllers\/DocenteController.php.html#238\">DocenteController::procesarDiscord<\/a>"],[0,6,"<a href=\"controllers\/DocenteController.php.html#281\">DocenteController::obtener_estudiantes_clase<\/a>"],[0,12,"<a href=\"controllers\/DocenteController.php.html#311\">DocenteController::calificar_estudiante<\/a>"],[0,6,"<a href=\"controllers\/DocenteController.php.html#371\">DocenteController::ver_calificaciones<\/a>"],[0,8,"<a href=\"controllers\/DocenteController.php.html#400\">DocenteController::procesar_tomar_clase<\/a>"],[0,7,"<a href=\"controllers\/DocenteController.php.html#445\">DocenteController::info_clase_disponible<\/a>"],[0,5,"<a href=\"controllers\/DocenteController.php.html#487\">DocenteController::estado_discord<\/a>"],[0,7,"<a href=\"controllers\/DocenteController.php.html#508\">DocenteController::ver_reportes<\/a>"],[0,2,"<a href=\"controllers\/DocenteController.php.html#546\">DocenteController::__destruct<\/a>"],[0,1,"<a href=\"controllers\/EstudianteController.php.html#9\">EstudianteController::__construct<\/a>"],[0,4,"<a href=\"controllers\/EstudianteController.php.html#13\">EstudianteController::vincularGet<\/a>"],[0,9,"<a href=\"controllers\/EstudianteController.php.html#34\">EstudianteController::buscar_estudiantePost<\/a>"],[28.947368421052634,9,"<a href=\"controllers\/EstudianteController.php.html#87\">EstudianteController::enviar_codigo_vinculacionPost<\/a>"],[0,13,"<a href=\"controllers\/EstudianteController.php.html#144\">EstudianteController::verificar_codigo_vinculacionPost<\/a>"],[0,8,"<a href=\"controllers\/EstudianteController.php.html#221\">EstudianteController::reenviar_codigo_vinculacionPost<\/a>"],[0,1,"<a href=\"controllers\/EstudianteController.php.html#255\">EstudianteController::generarCodigoVerificacion<\/a>"],[0,1,"<a href=\"controllers\/EstudianteController.php.html#259\">EstudianteController::generarEmailInstitucional<\/a>"],[0,2,"<a href=\"controllers\/EstudianteController.php.html#268\">EstudianteController::enviarEmailVerificacion<\/a>"],[0,2,"<a href=\"controllers\/HomeController.php.html#7\">HomeController::handle<\/a>"],[0,2,"<a href=\"controllers\/HomeController.php.html#16\">HomeController::inicioGet<\/a>"],[0,3,"<a href=\"controllers\/HomeController.php.html#28\">HomeController::mostrarSeccionGet<\/a>"],[0,1,"<a href=\"controllers\/RangoController.php.html#12\">RangoController::__construct<\/a>"],[0,16,"<a href=\"controllers\/RangoController.php.html#17\">RangoController::generarClaveReclamo<\/a>"],[0,2,"<a href=\"controllers\/RangoController.php.html#126\">RangoController::enviarNotificacionCorreo<\/a>"],[0,3,"<a href=\"controllers\/RangoController.php.html#149\">RangoController::invalidarCodigosAnteriores<\/a>"],[0,2,"<a href=\"controllers\/RangoController.php.html#178\">RangoController::generarCodigoUnico<\/a>"],[0,3,"<a href=\"controllers\/RangoController.php.html#196\">RangoController::guardarEnMongoDB<\/a>"],[0,5,"<a href=\"core\/BaseController.php.html#5\">BaseController::handle<\/a>"],[0,1,"<a href=\"models\/AdminModel.php.html#7\">AdminModel::__construct<\/a>"],[0,2,"<a href=\"models\/AdminModel.php.html#11\">AdminModel::obtenerMetricasGenerales<\/a>"],[0,3,"<a href=\"models\/AdminModel.php.html#48\">AdminModel::calcularPorcentajeCambio<\/a>"],[0,1,"<a href=\"models\/AdminModel.php.html#55\">AdminModel::obtenerMetricasPorDefecto<\/a>"],[0,2,"<a href=\"models\/AdminModel.php.html#67\">AdminModel::obtenerEstadisticasGestion<\/a>"],[0,10,"<a href=\"models\/AdminModel.php.html#110\">AdminModel::obtenerActividadReciente<\/a>"],[0,1,"<a href=\"models\/AdminModel.php.html#226\">AdminModel::obtenerActividadPorDefecto<\/a>"],[0,2,"<a href=\"models\/AdminModel.php.html#263\">AdminModel::obtenerDatosGraficos<\/a>"],[0,2,"<a href=\"models\/AdminModel.php.html#314\">AdminModel::obtenerEstadoSistema<\/a>"],[0,6,"<a href=\"models\/AdminModel.php.html#338\">AdminModel::formatearTiempoTranscurrido<\/a>"],[0,1,"<a href=\"models\/Asistencia.php.html#7\">Asistencia::__construct<\/a>"],[0,2,"<a href=\"models\/Asistencia.php.html#11\">Asistencia::guardarAsistencia<\/a>"],[0,1,"<a href=\"models\/Asistencia.php.html#19\">Asistencia::obtenerAsistenciaPorClase<\/a>"],[0,1,"<a href=\"models\/Aula.php.html#7\">Aula::__construct<\/a>"],[0,1,"<a href=\"models\/Aula.php.html#11\">Aula::obtenerTodos<\/a>"],[0,1,"<a href=\"models\/ClaseModel.php.html#7\">ClaseModel::__construct<\/a>"],[0,4,"<a href=\"models\/ClaseModel.php.html#12\">ClaseModel::obtenerClasesEstudiante<\/a>"],[0,2,"<a href=\"models\/ClaseModel.php.html#70\">ClaseModel::verificarCalificacionExistente<\/a>"],[0,6,"<a href=\"models\/ClaseModel.php.html#85\">ClaseModel::calificarMentor<\/a>"],[0,1,"<a href=\"models\/ClaseModel.php.html#139\">ClaseModel::obtenerClasesDisponiblesParaInscripcion<\/a>"],[0,4,"<a href=\"models\/ClaseModel.php.html#176\">ClaseModel::obtenerClasesDisponibles<\/a>"],[0,5,"<a href=\"models\/ClaseModel.php.html#222\">ClaseModel::inscribirEstudiante<\/a>"],[0,1,"<a href=\"models\/ClaseModel.php.html#265\">ClaseModel::obtenerCursosDisponibles<\/a>"],[0,1,"<a href=\"models\/ClaseModel.php.html#279\">ClaseModel::contarClasesEstudiante<\/a>"],[0,2,"<a href=\"models\/ClaseModel.php.html#289\">ClaseModel::solicitarNuevaClase<\/a>"],[0,1,"<a href=\"models\/ClaseModel.php.html#310\">ClaseModel::obtenerCiclosDisponibles<\/a>"],[0,3,"<a href=\"models\/ClaseModel.php.html#318\">ClaseModel::obtenerNotasEstudiante<\/a>"],[0,2,"<a href=\"models\/ClaseModel.php.html#353\">ClaseModel::obtenerClasePorId<\/a>"],[0,2,"<a href=\"models\/ClaseModel.php.html#374\">ClaseModel::obtenerAsistenciaEstudiante<\/a>"],[0,1,"<a href=\"models\/ClaseModel.php.html#399\">ClaseModel::obtenerEstadisticasEstudiante<\/a>"],[0,3,"<a href=\"models\/ClaseModel.php.html#430\">ClaseModel::desinscribirEstudiante<\/a>"],[0,1,"<a href=\"models\/Comentario.php.html#7\">Comentario::__construct<\/a>"],[0,1,"<a href=\"models\/Comentario.php.html#11\">Comentario::registrarComentario<\/a>"],[0,1,"<a href=\"models\/Comentario.php.html#16\">Comentario::obtenerComentariosPorEstudiante<\/a>"],[0,1,"<a href=\"models\/Curso.php.html#7\">Curso::__construct<\/a>"],[0,1,"<a href=\"models\/Curso.php.html#11\">Curso::obtenerTodos<\/a>"],[0,1,"<a href=\"models\/DocenteModel.php.html#8\">DocenteModel::__construct<\/a>"],[0,2,"<a href=\"models\/DocenteModel.php.html#12\">DocenteModel::obtenerIdDocente<\/a>"],[0,6,"<a href=\"models\/DocenteModel.php.html#27\">DocenteModel::obtenerClasesAsignadas<\/a>"],[0,2,"<a href=\"models\/DocenteModel.php.html#92\">DocenteModel::verificarPermisosClase<\/a>"],[0,4,"<a href=\"models\/DocenteModel.php.html#103\">DocenteModel::cerrarClase<\/a>"],[0,4,"<a href=\"models\/DocenteModel.php.html#128\">DocenteModel::iniciarClase<\/a>"],[0,1,"<a href=\"models\/DocenteModel.php.html#153\">DocenteModel::obtenerEstudiantesClase<\/a>"],[0,1,"<a href=\"models\/DocenteModel.php.html#177\">DocenteModel::obtenerInfoClaseParaDiscord<\/a>"],[0,6,"<a href=\"models\/DocenteModel.php.html#193\">DocenteModel::calificarEstudiante<\/a>"],[0,2,"<a href=\"models\/DocenteModel.php.html#257\">DocenteModel::obtenerCalificacionesClase<\/a>"],[0,1,"<a href=\"models\/DocenteModel.php.html#302\">DocenteModel::obtenerInfoDocente<\/a>"],[0,6,"<a href=\"models\/DocenteModel.php.html#316\">DocenteModel::obtenerClasesDisponibles<\/a>"],[0,2,"<a href=\"models\/DocenteModel.php.html#375\">DocenteModel::tomarClase<\/a>"],[0,5,"<a href=\"models\/DocenteModel.php.html#395\">DocenteModel::puedeTomarClase<\/a>"],[0,1,"<a href=\"models\/Estudiante.php.html#7\">Estudiante::__construct<\/a>"],[0,1,"<a href=\"models\/Estudiante.php.html#12\">Estudiante::listarPorClase<\/a>"],[0,1,"<a href=\"models\/EstudianteModel.php.html#7\">EstudianteModel::__construct<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#10\">EstudianteModel::buscarPorCodigo<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#29\">EstudianteModel::verificarUsuarioVinculado<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#44\">EstudianteModel::guardarCodigoVerificacion<\/a>"],[0,6,"<a href=\"models\/EstudianteModel.php.html#59\">EstudianteModel::verificarCodigo<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#113\">EstudianteModel::incrementarIntentos<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#125\">EstudianteModel::limpiarCodigoVerificacion<\/a>"],[0,4,"<a href=\"models\/EstudianteModel.php.html#134\">EstudianteModel::vincularUsuario<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#179\">EstudianteModel::actualizarRolUsuario<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#188\">EstudianteModel::contarIntentosRecientes<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#202\">EstudianteModel::obtenerClasesEstudiante<\/a>"],[0,2,"<a href=\"models\/EstudianteModel.php.html#229\">EstudianteModel::obtenerEstudiantePorUsuario<\/a>"],[0,1,"<a href=\"models\/Nota.php.html#7\">Nota::__construct<\/a>"],[0,1,"<a href=\"models\/Nota.php.html#11\">Nota::obtenerEstudiantesConNotas<\/a>"],[0,1,"<a href=\"models\/Nota.php.html#23\">Nota::guardar<\/a>"],[0,1,"<a href=\"models\/Unidad.php.html#7\">Unidad::__construct<\/a>"],[0,1,"<a href=\"models\/Unidad.php.html#11\">Unidad::obtenerTodos<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#7\">Usuario::__construct<\/a>"],[0,3,"<a href=\"models\/Usuario.php.html#11\">Usuario::verificarCredenciales<\/a>"],[0,4,"<a href=\"models\/Usuario.php.html#26\">Usuario::registrarUsuario<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#42\">Usuario::buscarPorCorreo<\/a>"],[0,2,"<a href=\"models\/Usuario.php.html#52\">Usuario::registrarOAuth<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#70\">Usuario::obtenerPorId<\/a>"],[0,3,"<a href=\"models\/Usuario.php.html#75\">Usuario::actualizarPassword<\/a>"],[0,2,"<a href=\"models\/Usuario.php.html#92\">Usuario::obtenerIdEstudiante<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#98\">Usuario::obtenerDatosCompletos<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#118\">Usuario::obtenerRolesUsuario<\/a>"],[0,2,"<a href=\"models\/Usuario.php.html#127\">Usuario::asignarRol<\/a>"],[0,2,"<a href=\"models\/Usuario.php.html#138\">Usuario::revocarRol<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#149\">Usuario::existeEmail<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#155\">Usuario::existeDNI<\/a>"],[0,5,"<a href=\"models\/Usuario.php.html#161\">Usuario::actualizarDatos<\/a>"],[0,5,"<a href=\"models\/Usuario.php.html#188\">Usuario::listarUsuarios<\/a>"],[0,1,"<a href=\"models\/Usuario.php.html#224\">Usuario::eliminarUsuarioPorId<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

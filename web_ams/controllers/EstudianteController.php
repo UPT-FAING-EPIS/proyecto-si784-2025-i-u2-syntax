@@ -6,15 +6,19 @@ require_once BASE_PATH . '/models/EstudianteModel.php';
 class EstudianteController extends BaseController {
     private $estudianteModel;
 
-    public function __construct() {
-        $this->estudianteModel = new EstudianteModel();
-    }
+   public function __construct($model = null) {
+    $this->estudianteModel = $model ?? new EstudianteModel();
+}
 
     public function vincularGet() {
-        if (!isset($_SESSION['usuario_id']) || $_SESSION['rol_id'] !== 1) {
-            header('Location: ' . BASE_URL . '/index.php?accion=login');
-            exit;
-        }
+       if (!isset($_SESSION['usuario_id']) || $_SESSION['rol_id'] !== 1) {
+   if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=login');
+    exit;
+} else {
+    return;
+}
+}
 
         $mensaje = $_SESSION['mensaje'] ?? '';
         $tipo_mensaje = $_SESSION['tipo_mensaje'] ?? '';
@@ -72,8 +76,12 @@ class EstudianteController extends BaseController {
             $_SESSION['error'] = $e->getMessage();
         }
 
-        header('Location: ' . BASE_URL . '/index.php?accion=vincularme');
-        exit;
+      if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=vincularme');
+    exit;
+} else {
+    return;
+}
     }
 
     public function enviar_codigo_vinculacionPost() {
@@ -125,16 +133,24 @@ class EstudianteController extends BaseController {
             $_SESSION['error'] = $e->getMessage();
         }
 
-        header('Location: ' . BASE_URL . '/index.php?accion=vincular');
-        exit;
+    if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=vincular');
+    exit;
+} else {
+    return;
+}
     }
 
     public function verificar_codigo_vinculacionPost() {
         try {
             if (!isset($_SESSION['usuario_id']) || $_SESSION['rol_id'] !== 1) {
-                header('Location: ' . BASE_URL . '/index.php?accion=login');
-                exit;
-            }
+   if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=login');
+    exit;
+} else {
+    return;
+}
+}
 
             $codigoEstudiante = trim($_POST['codigo_estudiante'] ?? '');
             $codigoIngresado = '';
@@ -149,11 +165,15 @@ class EstudianteController extends BaseController {
 
             $verificacion = $this->estudianteModel->verificarCodigo($codigoEstudiante, $codigoIngresado);
 
-            if (!$verificacion['valido']) {
-                $_SESSION['error_verificacion'] = $verificacion['mensaje'];
-                header('Location: ' . BASE_URL . '/index.php?accion=vincular');
-                exit;
-            }
+          if (!$verificacion['valido']) {
+    $_SESSION['error_verificacion'] = $verificacion['mensaje'];
+    if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=vincular');
+    exit;
+} else {
+    return;
+}
+}
 
             $estudiante = $this->estudianteModel->buscarPorCodigo($codigoEstudiante);
             if (!$estudiante) {
@@ -190,16 +210,22 @@ class EstudianteController extends BaseController {
             $_SESSION['error'] = $e->getMessage();
         }
 
-        header('Location: ' . BASE_URL . '/index.php?accion=inicio');
-        exit;
+   if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=inicio');
+    exit;
+} else {
+    return;
+}
     }
 
     public function reenviar_codigo_vinculacionPost() {
         try {
             if (!isset($_SESSION['usuario_id']) || $_SESSION['rol_id'] !== 1) {
-                header('Location: ' . BASE_URL . '/index.php?accion=login');
-                exit;
-            }
+    if (!defined('PHPUNIT_RUNNING')) {
+        header('Location: ' . BASE_URL . '/index.php?accion=login');
+        exit;
+    }
+}
 
             $codigoEstudiante = trim($_POST['codigo_estudiante'] ?? '');
 
@@ -217,8 +243,12 @@ class EstudianteController extends BaseController {
         } catch (Exception $e) {
             error_log("Error en reenviar_codigo_vinculacionPost: " . $e->getMessage());
             $_SESSION['error'] = $e->getMessage();
-            header('Location: ' . BASE_URL . '/index.php?accion=vincular');
-            exit;
+   if (!defined('PHPUNIT_RUNNING')) {
+    header('Location: ' . BASE_URL . '/index.php?accion=vincular');
+    exit;
+} else {
+    return;
+}
         }
     }
 

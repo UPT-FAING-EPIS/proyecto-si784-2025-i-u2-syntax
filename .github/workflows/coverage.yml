@@ -1,10 +1,13 @@
-# .github/workflows/coverage.yml
-
-name: Coverage Report
+name: Coverage and Security Report
 
 on:
   push:
     branches: [ "main" ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   coverage:
@@ -26,17 +29,20 @@ jobs:
       - name: Run PHPUnit tests with coverage
         run: vendor/bin/phpunit --coverage-html docs/coverage
 
-      - name: Upload Pages artifact
+      - name: Upload Coverage Pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: docs
+          path: docs/coverage
+
+      - name: Upload Semgrep Security Report artifact
+        if: always()
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: docs/seguridad
 
   deploy:
     needs: coverage
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
 
     environment:
       name: github-pages
@@ -44,4 +50,5 @@ jobs:
 
     steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v2

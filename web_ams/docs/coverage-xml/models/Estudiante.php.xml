@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
+  <file name="Estudiante.php" path="\models">
+    <totals>
+      <lines total="24" comments="1" code="23" executable="6" executed="0" percent="0.00"/>
+      <methods count="2" tested="0" percent="0.00"/>
+      <functions count="0" tested="0" percent="0"/>
+      <classes count="1" tested="0" percent="0.00"/>
+      <traits count="0" tested="0" percent="0"/>
+    </totals>
+    <class name="Estudiante" start="4" executable="5" executed="0" crap="6">
+      <namespace name=""/>
+      <method name="__construct" signature="__construct()" start="7" end="9" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="listarPorClase" signature="listarPorClase($claseId)" start="12" end="22" crap="2" executable="4" executed="0" coverage="0"/>
+    </class>
+    <source>
+      <line no="1">
+        <token name="T_OPEN_TAG">&lt;?php</token>
+      </line>
+      <line no="2">
+        <token name="T_REQUIRE_ONCE">require_once</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">BASE_PATH</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'/config/Database.php'</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="3"/>
+      <line no="4">
+        <token name="T_CLASS">class</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">Estudiante</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="5">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PRIVATE">private</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$pdo</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="6"/>
+      <line no="7">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">__construct</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="8">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">pdo</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">Database</token>
+        <token name="T_DOUBLE_COLON">::</token>
+        <token name="T_STRING">getInstance</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">getConnection</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="9">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="10"/>
+      <line no="11">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_COMMENT">// Listar estudiantes inscritos en una clase espec&#xED;fica</token>
+      </line>
+      <line no="12">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">listarPorClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$claseId</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="13">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$stmt</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">pdo</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">prepare</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="14">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT E.ID_ESTUDIANTE, U.NOMBRE, U.APELLIDO</token>
+      </line>
+      <line no="15">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM inscripcion I</token>
+      </line>
+      <line no="16">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN estudiante E ON I.ID_ESTUDIANTE = E.ID_ESTUDIANTE</token>
+      </line>
+      <line no="17">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN usuario U ON E.ID_USUARIO = U.ID_USUARIO</token>
+      </line>
+      <line no="18">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE I.ID_CLASE = ?</token>
+      </line>
+      <line no="19">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="20">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$stmt</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">execute</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$claseId</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="21">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$stmt</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchAll</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">PDO</token>
+        <token name="T_DOUBLE_COLON">::</token>
+        <token name="T_STRING">FETCH_ASSOC</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="22">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="23">
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="24"/>
+    </source>
+  </file>
+</phpunit>

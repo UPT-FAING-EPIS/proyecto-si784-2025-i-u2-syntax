@@ -1,0 +1,2918 @@
+<?xml version="1.0"?>
+<phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
+  <file name="DocenteModel.php" path="\models">
+    <totals>
+      <lines total="462" comments="0" code="462" executable="156" executed="0" percent="0.00"/>
+      <methods count="14" tested="0" percent="0.00"/>
+      <functions count="0" tested="0" percent="0"/>
+      <classes count="1" tested="0" percent="0.00"/>
+      <traits count="0" tested="0" percent="0"/>
+    </totals>
+    <class name="DocenteModel" start="4" executable="155" executed="0" crap="1892">
+      <namespace name=""/>
+      <method name="__construct" signature="__construct()" start="8" end="10" crap="2" executable="1" executed="0" coverage="0"/>
+      <method name="obtenerIdDocente" signature="obtenerIdDocente($usuarioId)" start="12" end="26" crap="6" executable="6" executed="0" coverage="0"/>
+      <method name="obtenerClasesAsignadas" signature="obtenerClasesAsignadas($idDocente)" start="27" end="90" crap="42" executable="14" executed="0" coverage="0"/>
+      <method name="verificarPermisosClase" signature="verificarPermisosClase($idClase, $usuarioId)" start="92" end="101" crap="6" executable="3" executed="0" coverage="0"/>
+      <method name="cerrarClase" signature="cerrarClase($idClase)" start="103" end="126" crap="20" executable="12" executed="0" coverage="0"/>
+      <method name="iniciarClase" signature="iniciarClase($idClase, $enlace)" start="128" end="151" crap="20" executable="12" executed="0" coverage="0"/>
+      <method name="obtenerEstudiantesClase" signature="obtenerEstudiantesClase($idClase)" start="153" end="175" crap="2" executable="2" executed="0" coverage="0"/>
+      <method name="obtenerInfoClaseParaDiscord" signature="obtenerInfoClaseParaDiscord($idClase)" start="177" end="191" crap="2" executable="2" executed="0" coverage="0"/>
+      <method name="calificarEstudiante" signature="calificarEstudiante($idDocente, $idEstudiante, $idClase, $calificacion, $observacion, $usuarioRegistrador)" start="193" end="255" crap="42" executable="31" executed="0" coverage="0"/>
+      <method name="obtenerCalificacionesClase" signature="obtenerCalificacionesClase($idClase, $usuarioId)" start="257" end="300" crap="6" executable="10" executed="0" coverage="0"/>
+      <method name="obtenerInfoDocente" signature="obtenerInfoDocente($usuarioId)" start="302" end="314" crap="2" executable="2" executed="0" coverage="0"/>
+      <method name="obtenerClasesDisponibles" signature="obtenerClasesDisponibles()" start="316" end="373" crap="42" executable="14" executed="0" coverage="0"/>
+      <method name="tomarClase" signature="tomarClase($idClase, $idDocente)" start="375" end="393" crap="6" executable="12" executed="0" coverage="0"/>
+      <method name="puedeTomarClase" signature="puedeTomarClase($idClase, $idDocente)" start="395" end="460" crap="30" executable="34" executed="0" coverage="0"/>
+    </class>
+    <source>
+      <line no="1">
+        <token name="T_OPEN_TAG">&lt;?php</token>
+      </line>
+      <line no="2">
+        <token name="T_REQUIRE_ONCE">require_once</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">BASE_PATH</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'/config/Database.php'</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="3"/>
+      <line no="4">
+        <token name="T_CLASS">class</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">DocenteModel</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="5">
+        <token name="T_WHITESPACE">    </token>
+      </line>
+      <line no="6">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PRIVATE">private</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$db</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="7"/>
+      <line no="8">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">__construct</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="9">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">Database</token>
+        <token name="T_DOUBLE_COLON">::</token>
+        <token name="T_STRING">getInstance</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="10">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="11"/>
+      <line no="12">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerIdDocente</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="13">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="14">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="15">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT d.ID_DOCENTE, u.NOMBRE, u.APELLIDO, u.EMAIL</token>
+      </line>
+      <line no="16">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM docente d</token>
+      </line>
+      <line no="17">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN usuario u ON d.ID_USUARIO = u.ID_USUARIO </token>
+      </line>
+      <line no="18">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE d.ID_USUARIO = ? AND d.ESTADO = 1</token>
+      </line>
+      <line no="19">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="20">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="21">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="22">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="23">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_STRING">error_log</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"Error en obtenerIdDocente: "</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">getMessage</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="24">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="25">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="26">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="27">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerClasesAsignadas</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="28">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="29">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$clases</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchAll</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="30">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT DISTINCT</token>
+      </line>
+      <line no="31">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ID_CLASE,</token>
+      </line>
+      <line no="32">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.HORARIO,</token>
+      </line>
+      <line no="33">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ESTADO as ESTADO_CLASE,</token>
+      </line>
+      <line no="34">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_INICIO,</token>
+      </line>
+      <line no="35">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_FIN,</token>
+      </line>
+      <line no="36">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.CAPACIDAD,</token>
+      </line>
+      <line no="37">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ENLACE,</token>
+      </line>
+      <line no="38">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.RAZON,</token>
+      </line>
+      <line no="39">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.NOMBRE as NOMBRE_CURSO,</token>
+      </line>
+      <line no="40">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.CODIGO as CODIGO_CURSO,</token>
+      </line>
+      <line no="41">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    ci.NOMBRE as NOMBRE_CICLO,</token>
+      </line>
+      <line no="42">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    sa.CODIGO as SEMESTRE,</token>
+      </line>
+      <line no="43">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    COALESCE(COUNT(DISTINCT i.ID_ESTUDIANTE), 0) as PARTICIPANTES,</token>
+      </line>
+      <line no="44">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.ID_CURSO,</token>
+      </line>
+      <line no="45">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    ci.ID_CICLO,</token>
+      </line>
+      <line no="46">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    sa.ID_SEMESTRE,</token>
+      </line>
+      <line no="47">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    -- Indicadores adicionales</token>
+      </line>
+      <line no="48">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    CASE </token>
+      </line>
+      <line no="49">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        WHEN c.FECHA_INICIO &gt; NOW() THEN 'programada'</token>
+      </line>
+      <line no="50">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        WHEN c.FECHA_INICIO &lt;= NOW() AND (c.FECHA_FIN IS NULL OR c.FECHA_FIN &gt; NOW()) AND c.ESTADO = 1 THEN 'en_curso'</token>
+      </line>
+      <line no="51">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        WHEN c.FECHA_FIN &lt;= NOW() OR c.ESTADO = 0 THEN 'finalizada'</token>
+      </line>
+      <line no="52">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        ELSE 'indefinida'</token>
+      </line>
+      <line no="53">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    END as ESTADO_TEMPORAL</token>
+      </line>
+      <line no="54">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM registro_academico ra</token>
+      </line>
+      <line no="55">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN docente d ON ra.ID_DOCENTE = d.ID_DOCENTE</token>
+      </line>
+      <line no="56">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN clase c ON ra.ID_CLASE = c.ID_CLASE</token>
+      </line>
+      <line no="57">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN curso cu ON c.ID_CURSO = cu.ID_CURSO</token>
+      </line>
+      <line no="58">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN ciclo ci ON cu.ID_CICLO = ci.ID_CICLO</token>
+      </line>
+      <line no="59">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN semestre_academico sa ON ci.ID_SEMESTRE = sa.ID_SEMESTRE</token>
+      </line>
+      <line no="60">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                LEFT JOIN inscripcion i ON c.ID_CLASE = i.ID_CLASE</token>
+      </line>
+      <line no="61">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE d.ID_DOCENTE = ? AND d.ESTADO = 1</token>
+      </line>
+      <line no="62">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                GROUP BY </token>
+      </line>
+      <line no="63">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ID_CLASE, c.HORARIO, c.ESTADO, c.FECHA_INICIO, c.FECHA_FIN, </token>
+      </line>
+      <line no="64">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.CAPACIDAD, c.ENLACE, c.RAZON, cu.NOMBRE, cu.CODIGO, </token>
+      </line>
+      <line no="65">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    ci.NOMBRE, sa.CODIGO, cu.ID_CURSO, ci.ID_CICLO, sa.ID_SEMESTRE</token>
+      </line>
+      <line no="66">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                ORDER BY </token>
+      </line>
+      <line no="67">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ESTADO DESC, -- Clases activas primero</token>
+      </line>
+      <line no="68">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_INICIO DESC, </token>
+      </line>
+      <line no="69">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.NOMBRE ASC</token>
+      </line>
+      <line no="70">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="71"/>
+      <line no="72">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_FOREACH">foreach</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clases</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_AS">as</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG">&amp;</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="73">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'PORCENTAJE_OCUPACION'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'CAPACIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="74">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_QUESTION_MARK">?</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">round</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'PARTICIPANTES'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DIV">/</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'CAPACIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_MULT">*</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">100</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">1</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="75">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="76">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_INICIO'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="77">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_INICIO_FORMATEADA'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">date</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'d/m/Y H:i'</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">strtotime</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_INICIO'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="78">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="79">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_FIN'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="80">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_FIN_FORMATEADA'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">date</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'d/m/Y H:i'</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">strtotime</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_FIN'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="81">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="82">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="83"/>
+      <line no="84">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clases</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="85">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="86">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="87">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_STRING">error_log</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"Error en obtenerClasesAsignadas: "</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">getMessage</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="88">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="89">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="90">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="91"/>
+      <line no="92">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">verificarPermisosClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="93">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="94">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT COUNT(*) as count, d.ID_DOCENTE</token>
+      </line>
+      <line no="95">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM registro_academico ra</token>
+      </line>
+      <line no="96">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN docente d ON ra.ID_DOCENTE = d.ID_DOCENTE</token>
+      </line>
+      <line no="97">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE ra.ID_CLASE = ? AND d.ID_USUARIO = ?</token>
+      </line>
+      <line no="98">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="99"/>
+      <line no="100">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'count'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_QUESTION_MARK">?</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="101">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="102"/>
+      <line no="103">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">cerrarClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="104">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="105">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">beginTransaction</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="106">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="107">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$filasAfectadas</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">execute</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="108">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                UPDATE clase </token>
+      </line>
+      <line no="109">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SET ESTADO = 0, FECHA_FIN = NOW() </token>
+      </line>
+      <line no="110">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ID_CLASE = ?</token>
+      </line>
+      <line no="111">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="112"/>
+      <line no="113">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$filasAfectadas</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="114">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">commit</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="115">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">true</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="116">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="117">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">rollback</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="118">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="119">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="120">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="121">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">inTransaction</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="122">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">rollback</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="123">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="124">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="125">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="126">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="127"/>
+      <line no="128">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">iniciarClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$enlace</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="129">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="130">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">beginTransaction</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="131">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="132">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$filasAfectadas</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">execute</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="133">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                UPDATE clase </token>
+      </line>
+      <line no="134">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SET ENLACE = ?, FECHA_INICIO = NOW() </token>
+      </line>
+      <line no="135">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ID_CLASE = ?</token>
+      </line>
+      <line no="136">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$enlace</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="137"/>
+      <line no="138">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$filasAfectadas</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="139">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">commit</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="140">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">true</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="141">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="142">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">rollback</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="143">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="144">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="145">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="146">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">inTransaction</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="147">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">rollback</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="148">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="149">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="150">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="151">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="152"/>
+      <line no="153">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerEstudiantesClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="154">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchAll</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="155">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT </token>
+      </line>
+      <line no="156">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                e.ID_ESTUDIANTE,</token>
+      </line>
+      <line no="157">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.NOMBRE,</token>
+      </line>
+      <line no="158">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.APELLIDO,</token>
+      </line>
+      <line no="159">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                e.CODIGO,</token>
+      </line>
+      <line no="160">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                e.EMAIL_CORPORATIVO,</token>
+      </line>
+      <line no="161">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                COALESCE(n.CALIFICACION, 0) as CALIFICACION_ACTUAL</token>
+      </line>
+      <line no="162">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM inscripcion i</token>
+      </line>
+      <line no="163">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN estudiante e ON i.ID_ESTUDIANTE = e.ID_ESTUDIANTE</token>
+      </line>
+      <line no="164">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN usuario u ON e.ID_USUARIO = u.ID_USUARIO</token>
+      </line>
+      <line no="165">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            LEFT JOIN (</token>
+      </line>
+      <line no="166">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT ra.ID_ESTUDIANTE, AVG(n.CALIFICACION) as CALIFICACION</token>
+      </line>
+      <line no="167">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM registro_academico ra</token>
+      </line>
+      <line no="168">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN notas n ON ra.ID_REGISTRO = n.ID_REGISTRO</token>
+      </line>
+      <line no="169">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ra.ID_CLASE = ?</token>
+      </line>
+      <line no="170">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                GROUP BY ra.ID_ESTUDIANTE</token>
+      </line>
+      <line no="171">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            ) n ON e.ID_ESTUDIANTE = n.ID_ESTUDIANTE</token>
+      </line>
+      <line no="172">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE i.ID_CLASE = ?</token>
+      </line>
+      <line no="173">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            ORDER BY u.APELLIDO, u.NOMBRE</token>
+      </line>
+      <line no="174">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="175">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="176"/>
+      <line no="177">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerInfoClaseParaDiscord</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="178">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="179">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT </token>
+      </line>
+      <line no="180">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                c.ID_CLASE,</token>
+      </line>
+      <line no="181">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                cu.CODIGO as CODIGO_CURSO,</token>
+      </line>
+      <line no="182">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                cu.NOMBRE as NOMBRE_CURSO,</token>
+      </line>
+      <line no="183">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                sa.CODIGO as CICLO,</token>
+      </line>
+      <line no="184">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                c.CAPACIDAD</token>
+      </line>
+      <line no="185">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM clase c</token>
+      </line>
+      <line no="186">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN curso cu ON c.ID_CURSO = cu.ID_CURSO</token>
+      </line>
+      <line no="187">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN ciclo ci ON cu.ID_CICLO = ci.ID_CICLO</token>
+      </line>
+      <line no="188">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN semestre_academico sa ON ci.ID_SEMESTRE = sa.ID_SEMESTRE</token>
+      </line>
+      <line no="189">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE c.ID_CLASE = ?</token>
+      </line>
+      <line no="190">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="191">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="192"/>
+      <line no="193">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">calificarEstudiante</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idEstudiante</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$calificacion</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$observacion</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$usuarioRegistrador</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="194">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="195">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">beginTransaction</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="196"/>
+      <line no="197">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$registro</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="198">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT ID_REGISTRO </token>
+      </line>
+      <line no="199">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM registro_academico </token>
+      </line>
+      <line no="200">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ID_DOCENTE = ? AND ID_ESTUDIANTE = ? AND ID_CLASE = ?</token>
+      </line>
+      <line no="201">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idEstudiante</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="202"/>
+      <line no="203">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_EXCLAMATION_MARK">!</token>
+        <token name="T_VARIABLE">$registro</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="204">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$idRegistro</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">insert</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="205">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    INSERT INTO registro_academico (ID_DOCENTE, ID_ESTUDIANTE, ID_CLASE, FECHA_REG)</token>
+      </line>
+      <line no="206">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    VALUES (?, ?, ?, NOW())</token>
+      </line>
+      <line no="207">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idEstudiante</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="208">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="209">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$idRegistro</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$registro</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'ID_REGISTRO'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="210">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="211"/>
+      <line no="212">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$unidad</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"SELECT ID_UNIDAD FROM unidad LIMIT 1"</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="213"/>
+      <line no="214">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_EXCLAMATION_MARK">!</token>
+        <token name="T_VARIABLE">$unidad</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="215">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$idUnidad</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">insert</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"INSERT INTO unidad (NOMBRE) VALUES ('Unidad General')"</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="216">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="217">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$idUnidad</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$unidad</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'ID_UNIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="218">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="219"/>
+      <line no="220">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$notaExistente</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="221">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT ID_NOTAS </token>
+      </line>
+      <line no="222">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM notas </token>
+      </line>
+      <line no="223">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ID_REGISTRO = ? AND ID_UNIDAD = ?</token>
+      </line>
+      <line no="224">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idRegistro</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idUnidad</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="225"/>
+      <line no="226">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$notaExistente</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="227">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">execute</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="228">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    UPDATE notas </token>
+      </line>
+      <line no="229">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    SET CALIFICACION = ?, OBSERVACION = ?, FECHA_REG = NOW()</token>
+      </line>
+      <line no="230">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    WHERE ID_NOTAS = ?</token>
+      </line>
+      <line no="231">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$calificacion</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$observacion</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$notaExistente</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'ID_NOTAS'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="232">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_ELSE">else</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="233">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">insert</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="234">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    INSERT INTO notas (ID_REGISTRO, ID_UNIDAD, TIPO_NOTA, CALIFICACION, OBSERVACION, FECHA_REG, USUARIO_REGISTRADOR, IP_REGISTRADOR)</token>
+      </line>
+      <line no="235">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    VALUES (?, ?, 'Evaluaci&#xF3;n', ?, ?, NOW(), ?, ?)</token>
+      </line>
+      <line no="236">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="237">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$idRegistro</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="238">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$idUnidad</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="239">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$calificacion</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="240">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$observacion</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="241">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$usuarioRegistrador</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="242">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$_SERVER</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'REMOTE_ADDR'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_COALESCE">??</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'unknown'</token>
+      </line>
+      <line no="243">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="244">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="245"/>
+      <line no="246">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">commit</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="247">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">true</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="248"/>
+      <line no="249">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="250">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">inTransaction</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="251">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">rollback</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="252">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="253">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="254">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="255">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="256"/>
+      <line no="257">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerCalificacionesClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="258">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="259">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT </token>
+      </line>
+      <line no="260">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                c.ID_CLASE,</token>
+      </line>
+      <line no="261">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                cu.NOMBRE as NOMBRE_CURSO,</token>
+      </line>
+      <line no="262">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                cu.CODIGO as CODIGO_CURSO,</token>
+      </line>
+      <line no="263">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                ci.NOMBRE as NOMBRE_CICLO</token>
+      </line>
+      <line no="264">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM registro_academico ra</token>
+      </line>
+      <line no="265">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN clase c ON ra.ID_CLASE = c.ID_CLASE</token>
+      </line>
+      <line no="266">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN curso cu ON c.ID_CURSO = cu.ID_CURSO</token>
+      </line>
+      <line no="267">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN ciclo ci ON cu.ID_CICLO = ci.ID_CICLO</token>
+      </line>
+      <line no="268">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN docente d ON ra.ID_DOCENTE = d.ID_DOCENTE</token>
+      </line>
+      <line no="269">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE c.ID_CLASE = ? AND d.ID_USUARIO = ?</token>
+      </line>
+      <line no="270">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="271"/>
+      <line no="272">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_EXCLAMATION_MARK">!</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="273">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="274">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="275"/>
+      <line no="276">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_VARIABLE">$calificaciones</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchAll</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="277">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT </token>
+      </line>
+      <line no="278">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                e.ID_ESTUDIANTE,</token>
+      </line>
+      <line no="279">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.NOMBRE,</token>
+      </line>
+      <line no="280">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.APELLIDO,</token>
+      </line>
+      <line no="281">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                e.CODIGO,</token>
+      </line>
+      <line no="282">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                e.EMAIL_CORPORATIVO,</token>
+      </line>
+      <line no="283">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                AVG(n.CALIFICACION) as PROMEDIO,</token>
+      </line>
+      <line no="284">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                COUNT(n.ID_NOTAS) as TOTAL_NOTAS,</token>
+      </line>
+      <line no="285">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                MAX(n.FECHA_REG) as ULTIMA_CALIFICACION</token>
+      </line>
+      <line no="286">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM inscripcion i</token>
+      </line>
+      <line no="287">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN estudiante e ON i.ID_ESTUDIANTE = e.ID_ESTUDIANTE</token>
+      </line>
+      <line no="288">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN usuario u ON e.ID_USUARIO = u.ID_USUARIO</token>
+      </line>
+      <line no="289">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            LEFT JOIN registro_academico ra ON (e.ID_ESTUDIANTE = ra.ID_ESTUDIANTE AND ra.ID_CLASE = ?)</token>
+      </line>
+      <line no="290">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            LEFT JOIN notas n ON ra.ID_REGISTRO = n.ID_REGISTRO</token>
+      </line>
+      <line no="291">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE i.ID_CLASE = ?</token>
+      </line>
+      <line no="292">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            GROUP BY e.ID_ESTUDIANTE, u.NOMBRE, u.APELLIDO, e.CODIGO, e.EMAIL_CORPORATIVO</token>
+      </line>
+      <line no="293">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            ORDER BY u.APELLIDO, u.NOMBRE</token>
+      </line>
+      <line no="294">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="295"/>
+      <line no="296">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="297">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'clase'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="298">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'calificaciones'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$calificaciones</token>
+      </line>
+      <line no="299">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="300">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="301"/>
+      <line no="302">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerInfoDocente</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="303">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="304">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            SELECT </token>
+      </line>
+      <line no="305">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                d.ID_DOCENTE,</token>
+      </line>
+      <line no="306">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.NOMBRE,</token>
+      </line>
+      <line no="307">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.APELLIDO,</token>
+      </line>
+      <line no="308">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.EMAIL,</token>
+      </line>
+      <line no="309">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                u.DNI</token>
+      </line>
+      <line no="310">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            FROM docente d</token>
+      </line>
+      <line no="311">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            INNER JOIN usuario u ON d.ID_USUARIO = u.ID_USUARIO</token>
+      </line>
+      <line no="312">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            WHERE u.ID_USUARIO = ?</token>
+      </line>
+      <line no="313">
+        <token name="T_CONSTANT_ENCAPSED_STRING">        "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$usuarioId</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="314">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="315"/>
+      <line no="316">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">obtenerClasesDisponibles</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="317">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="318">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$clases</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchAll</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="319">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT DISTINCT</token>
+      </line>
+      <line no="320">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ID_CLASE,</token>
+      </line>
+      <line no="321">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.HORARIO,</token>
+      </line>
+      <line no="322">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ESTADO as ESTADO_CLASE,</token>
+      </line>
+      <line no="323">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_INICIO,</token>
+      </line>
+      <line no="324">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_FIN,</token>
+      </line>
+      <line no="325">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.CAPACIDAD,</token>
+      </line>
+      <line no="326">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ENLACE,</token>
+      </line>
+      <line no="327">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.RAZON,</token>
+      </line>
+      <line no="328">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.NOMBRE as NOMBRE_CURSO,</token>
+      </line>
+      <line no="329">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.CODIGO as CODIGO_CURSO,</token>
+      </line>
+      <line no="330">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    ci.NOMBRE as NOMBRE_CICLO,</token>
+      </line>
+      <line no="331">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    sa.CODIGO as SEMESTRE,</token>
+      </line>
+      <line no="332">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    COALESCE(COUNT(DISTINCT i.ID_ESTUDIANTE), 0) as PARTICIPANTES,</token>
+      </line>
+      <line no="333">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.ID_CURSO,</token>
+      </line>
+      <line no="334">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    ci.ID_CICLO,</token>
+      </line>
+      <line no="335">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    sa.ID_SEMESTRE</token>
+      </line>
+      <line no="336">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM clase c</token>
+      </line>
+      <line no="337">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN curso cu ON c.ID_CURSO = cu.ID_CURSO</token>
+      </line>
+      <line no="338">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN ciclo ci ON cu.ID_CICLO = ci.ID_CICLO</token>
+      </line>
+      <line no="339">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN semestre_academico sa ON ci.ID_SEMESTRE = sa.ID_SEMESTRE</token>
+      </line>
+      <line no="340">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                LEFT JOIN inscripcion i ON c.ID_CLASE = i.ID_CLASE</token>
+      </line>
+      <line no="341">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                LEFT JOIN registro_academico ra ON (c.ID_CLASE = ra.ID_CLASE AND ra.ID_DOCENTE IS NOT NULL)</token>
+      </line>
+      <line no="342">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ra.ID_CLASE IS NULL  </token>
+      </line>
+      <line no="343">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                AND c.ESTADO = 1           </token>
+      </line>
+      <line no="344">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                AND c.FECHA_INICIO &gt; NOW() </token>
+      </line>
+      <line no="345">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                GROUP BY </token>
+      </line>
+      <line no="346">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ID_CLASE, c.HORARIO, c.ESTADO, c.FECHA_INICIO, c.FECHA_FIN, </token>
+      </line>
+      <line no="347">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.CAPACIDAD, c.ENLACE, c.RAZON, cu.NOMBRE, cu.CODIGO, </token>
+      </line>
+      <line no="348">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    ci.NOMBRE, sa.CODIGO, cu.ID_CURSO, ci.ID_CICLO, sa.ID_SEMESTRE</token>
+      </line>
+      <line no="349">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                ORDER BY </token>
+      </line>
+      <line no="350">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_INICIO ASC, </token>
+      </line>
+      <line no="351">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.NOMBRE ASC</token>
+      </line>
+      <line no="352">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="353"/>
+      <line no="354">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_FOREACH">foreach</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clases</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_AS">as</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_AMPERSAND_FOLLOWED_BY_VAR_OR_VARARG">&amp;</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="355">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'PORCENTAJE_OCUPACION'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'CAPACIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_GT">&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="356">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_QUESTION_MARK">?</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">round</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'PARTICIPANTES'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DIV">/</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'CAPACIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_MULT">*</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">100</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">1</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+      </line>
+      <line no="357">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_COLON">:</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_LNUMBER">0</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="358">
+        <token name="T_WHITESPACE">                </token>
+      </line>
+      <line no="359">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_INICIO'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="360">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_INICIO_FORMATEADA'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">date</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'d/m/Y H:i'</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">strtotime</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_INICIO'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="361">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="362">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_FIN'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="363">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_FIN_FORMATEADA'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">date</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'d/m/Y H:i'</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">strtotime</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$clase</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'FECHA_FIN'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="364">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="365">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="366"/>
+      <line no="367">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$clases</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="368">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="369">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="370">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_STRING">error_log</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"Error en obtenerClasesDisponibles: "</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">getMessage</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="371">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="372">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="373">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="374"/>
+      <line no="375">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">tomarClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="376">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="377">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">query</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"CALL sp_tomar_clase(?, ?, @resultado, @success)"</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="378">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="379">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$result</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"SELECT @resultado as resultado, @success as success"</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="380">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="381">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="382">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'success'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_BOOL_CAST">(bool)</token>
+        <token name="T_VARIABLE">$result</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'success'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="383">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$result</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'resultado'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+      </line>
+      <line no="384">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="385">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="386">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="387">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_STRING">error_log</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"Error en tomarClase: "</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">getMessage</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="388">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="389">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'success'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="390">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'message'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'Error interno del servidor'</token>
+      </line>
+      <line no="391">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="392">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="393">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="394"/>
+      <line no="395">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_PUBLIC">public</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_FUNCTION">function</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">puedeTomarClase</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="396">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_TRY">try</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="397">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="398">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT </token>
+      </line>
+      <line no="399">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ID_CLASE,</token>
+      </line>
+      <line no="400">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.ESTADO,</token>
+      </line>
+      <line no="401">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    c.FECHA_INICIO,</token>
+      </line>
+      <line no="402">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    cu.NOMBRE as NOMBRE_CURSO,</token>
+      </line>
+      <line no="403">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    CASE </token>
+      </line>
+      <line no="404">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        WHEN ra.ID_CLASE IS NULL THEN 'YA_ASIGNADA'</token>
+      </line>
+      <line no="405">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        WHEN c.ESTADO != 1 THEN 'INACTIVA'</token>
+      </line>
+      <line no="406">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        WHEN c.FECHA_INICIO &lt;= NOW() THEN 'YA_INICIADA'</token>
+      </line>
+      <line no="407">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                        ELSE 'DISPONIBLE'</token>
+      </line>
+      <line no="408">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                    END as ESTADO_DISPONIBILIDAD</token>
+      </line>
+      <line no="409">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM clase c</token>
+      </line>
+      <line no="410">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                INNER JOIN curso cu ON c.ID_CURSO = cu.ID_CURSO</token>
+      </line>
+      <line no="411">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                LEFT JOIN registro_academico ra ON c.ID_CLASE = ra.ID_CLASE</token>
+      </line>
+      <line no="412">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE c.ID_CLASE = ?</token>
+      </line>
+      <line no="413">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="414"/>
+      <line no="415">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_EXCLAMATION_MARK">!</token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="416">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="417">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'puede_tomar'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="418">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'razon'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'La clase no existe'</token>
+      </line>
+      <line no="419">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="420">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="421"/>
+      <line no="422">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'ESTADO_DISPONIBILIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_IS_NOT_IDENTICAL">!==</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'DISPONIBLE'</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="423">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_VARIABLE">$razones</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="424">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'YA_ASIGNADA'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'La clase ya tiene un mentor asignado'</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="425">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'INACTIVA'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'La clase no est&#xE1; activa'</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="426">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'YA_INICIADA'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'La clase ya ha iniciado'</token>
+      </line>
+      <line no="427">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="428">
+        <token name="T_WHITESPACE">                </token>
+      </line>
+      <line no="429">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="430">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'puede_tomar'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="431">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'razon'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$razones</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$resultado</token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'ESTADO_DISPONIBILIDAD'</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+      </line>
+      <line no="432">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="433">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="434"/>
+      <line no="435">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_VARIABLE">$yaAsignado</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_EQUAL">=</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$this</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">db</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">fetchOne</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"</token>
+      </line>
+      <line no="436">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                SELECT ID_REGISTRO </token>
+      </line>
+      <line no="437">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                FROM registro_academico </token>
+      </line>
+      <line no="438">
+        <token name="T_CONSTANT_ENCAPSED_STRING">                WHERE ID_CLASE = ? AND ID_DOCENTE = ?</token>
+      </line>
+      <line no="439">
+        <token name="T_CONSTANT_ENCAPSED_STRING">            "</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+        <token name="T_VARIABLE">$idClase</token>
+        <token name="T_COMMA">,</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$idDocente</token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="440"/>
+      <line no="441">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_IF">if</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_VARIABLE">$yaAsignado</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="442">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="443">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'puede_tomar'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="444">
+        <token name="T_WHITESPACE">                    </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'razon'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'Ya est&#xE1;s asignado como mentor de esta clase'</token>
+      </line>
+      <line no="445">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="446">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="447"/>
+      <line no="448">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="449">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'puede_tomar'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">true</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="450">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'clase'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$resultado</token>
+      </line>
+      <line no="451">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="452">
+        <token name="T_WHITESPACE">            </token>
+      </line>
+      <line no="453">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CATCH">catch</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_STRING">Exception</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_CURLY">{</token>
+      </line>
+      <line no="454">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_STRING">error_log</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">"Error en puedeTomarClase: "</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOT">.</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_VARIABLE">$e</token>
+        <token name="T_OBJECT_OPERATOR">-&gt;</token>
+        <token name="T_STRING">getMessage</token>
+        <token name="T_OPEN_BRACKET">(</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_CLOSE_BRACKET">)</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="455">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_RETURN">return</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_OPEN_SQUARE">[</token>
+      </line>
+      <line no="456">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'puede_tomar'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_STRING">false</token>
+        <token name="T_COMMA">,</token>
+      </line>
+      <line no="457">
+        <token name="T_WHITESPACE">                </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'razon'</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_DOUBLE_ARROW">=&gt;</token>
+        <token name="T_WHITESPACE"> </token>
+        <token name="T_CONSTANT_ENCAPSED_STRING">'Error al verificar disponibilidad'</token>
+      </line>
+      <line no="458">
+        <token name="T_WHITESPACE">            </token>
+        <token name="T_CLOSE_SQUARE">]</token>
+        <token name="T_SEMICOLON">;</token>
+      </line>
+      <line no="459">
+        <token name="T_WHITESPACE">        </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="460">
+        <token name="T_WHITESPACE">    </token>
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="461">
+        <token name="T_CLOSE_CURLY">}</token>
+      </line>
+      <line no="462">
+        <token name="T_CLOSE_TAG">?&gt;</token>
+      </line>
+    </source>
+  </file>
+</phpunit>

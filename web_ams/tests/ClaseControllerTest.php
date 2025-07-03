@@ -58,9 +58,10 @@ class ClaseControllerTest extends TestCase
         $this->setPrivateProperty($controller, 'claseModel', $mockClaseModel);
         $this->setPrivateProperty($controller, 'usuarioModel', $mockUsuarioModel);
 
+        $ob = ob_get_level();
         ob_start();
         $controller->inscribir_clasePost();
-        ob_end_clean();
+        while (ob_get_level() > $ob) ob_end_clean();
 
         $this->assertEquals("¡Te has inscrito exitosamente a la clase!", $_SESSION['mensaje']);
         $this->assertEquals("success", $_SESSION['tipo_mensaje']);
@@ -81,9 +82,10 @@ class ClaseControllerTest extends TestCase
         $this->setPrivateProperty($controller, 'claseModel', $mockClaseModel);
         $this->setPrivateProperty($controller, 'usuarioModel', $mockUsuarioModel);
 
+        $ob = ob_get_level();
         ob_start();
         $controller->inscribir_clasePost();
-        ob_end_clean();
+        while (ob_get_level() > $ob) ob_end_clean();
 
         $this->assertStringContainsString("ID de clase no válido", $_SESSION['mensaje']);
         $this->assertEquals("danger", $_SESSION['tipo_mensaje']);
@@ -111,9 +113,10 @@ class ClaseControllerTest extends TestCase
         $this->setPrivateProperty($controller, 'claseModel', $mockClaseModel);
         $this->setPrivateProperty($controller, 'usuarioModel', $mockUsuarioModel);
 
+        $ob = ob_get_level();
         ob_start();
         $controller->crear_clasePost();
-        ob_end_clean();
+        while (ob_get_level() > $ob) ob_end_clean();
 
         $this->assertEquals("¡Nueva clase creada exitosamente! Ya estás inscrito.", $_SESSION['mensaje']);
         $this->assertEquals("success", $_SESSION['tipo_mensaje']);
@@ -138,9 +141,10 @@ class ClaseControllerTest extends TestCase
     $this->setPrivateProperty($controller, 'claseModel', $mockClaseModel);
     $this->setPrivateProperty($controller, 'usuarioModel', $mockUsuarioModel);
 
+     $ob = ob_get_level();
     ob_start();
     $controller->crear_clasePost();
-    ob_end_clean();
+    while (ob_get_level() > $ob) ob_end_clean();
 
     $this->assertStringContainsString("La razón debe tener al menos 10 caracteres", $_SESSION['mensaje']);
     $this->assertEquals("danger", $_SESSION['tipo_mensaje']);
@@ -166,10 +170,11 @@ public function testCrearClasePostMaximoAlcanzado()
     $this->setPrivateProperty($controller, 'claseModel', $mockClaseModel);
     $this->setPrivateProperty($controller, 'usuarioModel', $mockUsuarioModel);
 
+     $ob = ob_get_level();
     ob_start();
     $controller->crear_clasePost();
-    ob_end_clean();
-
+    while (ob_get_level() > $ob) ob_end_clean();
+    
     $this->assertStringContainsString("No puedes crear más clases", $_SESSION['mensaje']);
     $this->assertEquals("danger", $_SESSION['tipo_mensaje']);
 }

@@ -6,12 +6,22 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   infection:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-php-
 
       - name: Configurar PHP
         uses: shivammathur/setup-php@v2
@@ -23,7 +33,7 @@ jobs:
         working-directory: web_ams
         run: composer install --ignore-platform-req=ext-mongodb
 
-      - name: Instalar Infection (compatible con PHP 8.1)
+      - name: Instalar Infection
         working-directory: web_ams
         run: composer require --dev infection/infection:^0.28 --ignore-platform-req=ext-mongodb
 

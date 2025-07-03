@@ -1,6 +1,13 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', realpath(__DIR__ . '/..'));
+}
+if (!defined('PHPUNIT_RUNNING')) {
+    define('PHPUNIT_RUNNING', true);
+}
+
 require_once BASE_PATH . '/config/constants.php';
 
 require_once BASE_PATH . '/controllers/EstudianteController.php';
@@ -27,9 +34,9 @@ class EstudianteControllerTest extends TestCase
 
     protected function tearDown(): void
     {
-        if (ob_get_level() > 0) {
-            ob_end_clean();
-        }
+        while (ob_get_level() > 0) {
+        ob_end_clean(); // 🔁 cierra todos los buffers si quedaron abiertos
+    }
 
         $_SESSION = [];
     }
@@ -220,7 +227,7 @@ public function testEnviarCodigoVinculacionExitoso()
         'apellidos' => 'Sánchez',
         'email_institucional' => 'lsanchez@virtual.upt.pe'
     ]);
-    $mockModel->method('guardarCodigoVerificacion')->willReturn(true);
+    $mockModel->method('guardarCodigoVerificacion')->willReturn(true); 
 
     // Subclase anónima para mockear métodos privados
     $controller = new class($mockModel) extends EstudianteController {
@@ -231,19 +238,20 @@ public function testEnviarCodigoVinculacionExitoso()
         public function generarCodigoVerificacion() {
             return '123456';
         }
-        public function enviarEmailVerificacion($email, $codigo, $estudiante) {
-            return true;
-        }
+   public function enviarEmailVerificacion($email, $codigo, $estudiante) {
+    return true; // ✅ ahora entra al if
+}
     };
 
     ob_start();
     $controller->enviar_codigo_vinculacionPost();
     ob_end_clean();
 
-    $this->assertEquals('Código de verificación enviado correctamente', $_SESSION['mensaje']);
-    $this->assertEquals('success', $_SESSION['tipo_mensaje']);
-    $this->assertTrue($_SESSION['codigo_enviado']);
-    $this->assertEquals('2022123456', $_SESSION['datos_estudiante']['codigo_estudiante']);
+    $this->assertEquals('Código de verificación enviado correctamente', $_SESSION['mensaje'] ?? 'Mensaje no seteado');
+    $this->assertEquals('success', $_SESSION['tipo_mensaje'] ?? 'Tipo no seteado');
+    $this->assertTrue($_SESSION['codigo_enviado'] ?? false);
+    $this->assertEquals('2022123456', $_SESSION['datos_estudiante']['codigo_estudiante'] ?? 'Código no seteado');
+
 }
 /**
  * @covers EstudianteController::reenviar_codigo_vinculacionPost

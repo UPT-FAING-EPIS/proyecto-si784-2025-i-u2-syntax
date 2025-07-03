@@ -8,7 +8,7 @@ require_once BASE_PATH . '/config/constants.php';
 require_once BASE_PATH . '/controllers/DocenteController.php';
 
 /**
- * @covers DocenteController
+ * @coversDefaultClass \DocenteController
  */
 class DocenteControllerTest extends TestCase
 {
@@ -36,6 +36,9 @@ class DocenteControllerTest extends TestCase
     $_POST = [];
     $_GET = [];
 }
+    /**
+ * @covers ::__construct
+ */
 
     public function testInstanciarControlador()
     {
@@ -43,6 +46,9 @@ class DocenteControllerTest extends TestCase
         $this->assertInstanceOf(DocenteController::class, $controller);
     }
 
+     /**
+     * @covers ::clases_asignadas
+     */
     public function testRedireccionSinSesionClasesAsignadas()
     {
         unset($_SESSION['usuario_id']);
@@ -59,6 +65,9 @@ class DocenteControllerTest extends TestCase
         $this->assertNotEmpty($locationHeader, 'Debe redirigir sin sesión activa');
     }
 
+     /**
+     * @covers ::cerrar_clase
+     */
     public function testCerrarClaseMetodoIncorrecto()
     {
         $_SERVER['REQUEST_METHOD'] = 'GET';
@@ -75,7 +84,9 @@ class DocenteControllerTest extends TestCase
         $this->assertFalse($json['success']);
         $this->assertEquals('Método no permitido', $json['message']);
     }
-
+     /**
+     * @covers ::empezar_clase
+     */
     public function testEmpezarClaseSinSesion()
     {
         $_SERVER['REQUEST_METHOD'] = 'POST';
@@ -92,7 +103,9 @@ class DocenteControllerTest extends TestCase
         $this->assertFalse($json['success']);
         $this->assertEquals('No autorizado', $json['message']);
     }
-
+    /**
+     * @covers ::obtener_estudiantes_clase
+     */
     public function testObtenerEstudiantesClaseSinId()
     {
         $_SESSION['usuario_id'] = 10;
@@ -109,6 +122,9 @@ class DocenteControllerTest extends TestCase
         $this->assertArrayHasKey('error', $json);
         $this->assertEquals('ID de clase requerido', $json['error']);
     }
+    /**
+     * @covers ::clases_asignadas
+     */
     public function testClasesAsignadasJsonConSesionValida()
 {
     $_SESSION['usuario_id'] = 10;
@@ -133,7 +149,9 @@ class DocenteControllerTest extends TestCase
     $this->assertTrue($json['success']);
     $this->assertEquals(1, $json['total']);
 }
-
+  /**
+     * @covers ::cerrar_clase
+     */
 public function testCerrarClaseConPermisos()
 {
     $_SERVER['REQUEST_METHOD'] = 'POST';
@@ -163,6 +181,9 @@ private function injectModel($controller, $mock)
     $prop->setAccessible(true);
     $prop->setValue($controller, $mock);
 }
+ /**
+     * @covers ::handle
+     */
 public function testHandleConAccionValida()
 {
     $_SERVER['REQUEST_METHOD'] = 'POST';
@@ -184,6 +205,9 @@ public function testHandleConAccionValida()
     $json = json_decode($output, true);
     $this->assertTrue($json['success']);
 }
+/**
+     * @covers ::handle
+     */
 public function testHandleConAccionInvalida()
 {
     $controller = new DocenteController();
@@ -194,6 +218,9 @@ public function testHandleConAccionInvalida()
 
     $this->assertStringContainsString('Acción no encontrada', $output);
 }
+  /**
+     * @covers ::calificar_estudiante
+     */
 public function testCalificarEstudianteConDatosValidos()
 {
     $_SERVER['REQUEST_METHOD'] = 'POST';
@@ -221,6 +248,9 @@ public function testCalificarEstudianteConDatosValidos()
     $this->assertTrue($json['success']);
     $this->assertEquals(18, $json['calificacion']);
 }
+ /**
+     * @covers ::procesar_tomar_clase
+     */
 public function testProcesarTomarClaseConExito()
 {
     $_SERVER['REQUEST_METHOD'] = 'POST';

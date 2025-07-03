@@ -1,7 +1,11 @@
 <?php
 use PHPUnit\Framework\TestCase;
-define('BASE_PATH', realpath(__DIR__ . '/..'));
-define('PHPUNIT_RUNNING', true); // para evitar redirección y header()
+if (!defined('BASE_PATH')) {
+    define('BASE_PATH', realpath(__DIR__ . '/..'));
+}
+if (!defined('PHPUNIT_RUNNING')) {
+    define('PHPUNIT_RUNNING', true);
+}
 require_once BASE_PATH . '/models/Usuario.php';
 require_once BASE_PATH . '/config/constants.php';
 require_once BASE_PATH . '/controllers/AuthController.php';
@@ -66,28 +70,27 @@ protected function setUp(): void
      * @covers AuthController::loginPost
      */
 
-    public function testLoginPostConCredencialesInvalidas()
-    {
-        $_POST['email'] = 'wrong@example.com';
-        $_POST['password'] = 'incorrecto';
+   public function testLoginPostConCredencialesInvalidas()
+{
+    $_POST['email'] = 'wrong@example.com';
+    $_POST['password'] = 'incorrecto';
 
-        $mockUsuario = $this->createMock(Usuario::class);
-        $mockUsuario->method('verificarCredenciales')->willReturn(false);
+    $mockUsuario = $this->createMock(Usuario::class);
+    $mockUsuario->method('verificarCredenciales')->willReturn(false);
 
-        $controller = new AuthController();
-        $this->injectModel($controller, $mockUsuario, 'Usuario');
+    $controller = new AuthController();
+    $this->injectModel($controller, $mockUsuario, 'Usuario');
 
-        ob_start();
-        $controller->loginPost();
-        $output = ob_get_clean();
+    $response = $controller->loginPost();
 
-        $this->assertStringContainsString('Credenciales incorrectas', $output);
-    }
-
+    $this->assertIsArray($response);
+    $this->assertFalse($response['success']);
+    $this->assertEquals('Credenciales incorrectas', $response['message']);
+}
       /**
      * @covers AuthController::registroPost
      */
-   public function testRegistroPostConDatosValidos()
+  public function testRegistroPostConDatosValidos()
 {
     $_POST = [
         'dni' => '12345678',
@@ -107,51 +110,43 @@ protected function setUp(): void
     $controller = new AuthController();
     $this->injectModel($controller, $mockUsuario, 'Usuario');
 
-    ob_start();
-    $controller->registroPost();
-    $output = ob_get_clean();
+    $response = $controller->registroPost();
 
-    // Validar que el JSON sea válido
-    $json = json_decode($output, true);
-    $this->assertIsArray($json, 'La salida no es un JSON válido');
+    $this->assertIsArray($response);
+    $this->assertTrue($response['success']);
+    $this->assertEquals('Registro exitoso', $response['message']);
 
-    // Validar contenido del JSON
-    $this->assertArrayHasKey('success', $json);
-    $this->assertTrue($json['success']);
-    $this->assertEquals('Registro exitoso', $json['message'] ?? '');
-
-    // Validar sesión
     $this->assertEquals(42, $_SESSION['usuario_id']);
     $this->assertEquals(2, $_SESSION['rol_id']);
     $this->assertEquals('Estudiante', $_SESSION['rol_nombre']);
 }
 
+
     /**
      * @covers AuthController::registroPost
      */
-    public function testRegistroPostConFallo()
-    {
-        $_POST = [
-            'dni' => '00000000',
-            'nombre' => 'Error',
-            'apellido' => 'Test',
-            'email' => 'error@test.com',
-            'password' => 'fail'
-        ];
+   public function testRegistroPostConFallo()
+{
+    $_POST = [
+        'dni' => '00000000',
+        'nombre' => 'Error',
+        'apellido' => 'Test',
+        'email' => 'error@test.com',
+        'password' => 'fail'
+    ];
 
-        $mockUsuario = $this->createMock(Usuario::class);
-        $mockUsuario->method('registrarUsuario')->willReturn(false);
+    $mockUsuario = $this->createMock(Usuario::class);
+    $mockUsuario->method('registrarUsuario')->willReturn(false);
 
-        $controller = new AuthController();
-        $this->injectModel($controller, $mockUsuario, 'Usuario');
+    $controller = new AuthController();
+    $this->injectModel($controller, $mockUsuario, 'Usuario');
 
-        ob_start();
-        $controller->registroPost();
-        $output = ob_get_clean();
+    $response = $controller->registroPost();
 
-        $this->assertStringContainsString('"success":false', $output);
-        $this->assertStringContainsString('Error al registrar el usuario', $output);
-    }
+    $this->assertIsArray($response);
+    $this->assertFalse($response['success']);
+    $this->assertEquals('Error al registrar el usuario', $response['message']);
+}
 
     private function injectModel($controller, $mock, $modelClassName)
     {
@@ -213,48 +208,45 @@ protected function setUp(): void
 
         $this->assertStringContainsString('Acción de autenticación no válida', $output);
     }
-    /**
+/**
  * @covers AuthController::loginGet
  */
 public function testLoginGet()
 {
-    // Crear un archivo temporal vacío para simular la vista
-    $rutaVista = BASE_PATH . '/views/login.php';
-    if (!file_exists(dirname($rutaVista))) {
-        mkdir(dirname($rutaVista), 0777, true);
-    }
-    file_put_contents($rutaVista, '<form>Login</form>');
-
     $controller = new AuthController();
     ob_start();
     $controller->loginGet();
     $output = ob_get_clean();
 
-    $this->assertStringContainsString('<form>Login</form>', $output);
+    // Verifica que se esté mostrando el formulario de login
+    $this->assertStringContainsString('<form method="post" action="' . BASE_URL . '/index.php?accion=procesar_login">', $output);
 
-    // Limpiar
-    unlink($rutaVista);
+    // Verifica que los campos del formulario estén presentes
+    $this->assertStringContainsString('name="email"', $output);
+    $this->assertStringContainsString('name="password"', $output);
+    $this->assertStringContainsString('type="submit"', $output);
 }
+
 /**
  * @covers AuthController::registroGet
  */
 public function testRegistroGet()
 {
-    $rutaVista = BASE_PATH . '/views/register.php';
-    if (!file_exists(dirname($rutaVista))) {
-        mkdir(dirname($rutaVista), 0777, true);
-    }
-    file_put_contents($rutaVista, '<form>Registro</form>');
-
     $controller = new AuthController();
     ob_start();
     $controller->registroGet();
     $output = ob_get_clean();
 
-    $this->assertStringContainsString('<form>Registro</form>', $output);
+    // Verifica que se esté mostrando el formulario de registro real
+    $this->assertStringContainsString('<form id="formRegistro" method="post">', $output);
 
-    unlink($rutaVista);
+    // Verifica campos esenciales del formulario
+    $this->assertStringContainsString('name="dni"', $output);
+    $this->assertStringContainsString('name="email"', $output);
+    $this->assertStringContainsString('name="password"', $output);
+    $this->assertStringContainsString('type="submit"', $output);
 }
+
 /**
  * @covers AuthController::consultaDNI
  */

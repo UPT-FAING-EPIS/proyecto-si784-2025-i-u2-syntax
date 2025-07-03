@@ -8,10 +8,10 @@ class RangoController {
     
     private $usuarioModel;
     private $mongodb;
-    
-    public function __construct() {
-        $this->usuarioModel = new Usuario();
-        $this->mongodb = new MongoDB();
+
+    public function __construct($usuarioModel = null, $mongodb = null) {
+        $this->usuarioModel = $usuarioModel ?? new Usuario();
+        $this->mongodb = $mongodb ?? new MongoDB();
     }
     
     public function generarClaveReclamo($usuarioId, $discordUsername = '', $emailUsuario = '') {

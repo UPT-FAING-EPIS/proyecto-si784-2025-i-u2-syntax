@@ -1,5 +1,9 @@
 <?php
-
+if (!defined('PHPUNIT_RUNNING')) {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+}
 require_once __DIR__ . '/../core/BaseController.php';
 require_once __DIR__ . '/../models/Usuario.php';
 
@@ -38,49 +42,41 @@ class AuthController extends BaseController {
         require BASE_PATH . '/views/login.php';
     }
 
-  public function loginPost() {
+public function loginPost() {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // ✅ VALIDACIÓN DE CAMPOS VACÍOS
     if (empty($email) || empty($password)) {
-        if (defined('PHPUNIT_RUNNING')) {
-            echo "Campos vacíos";
-            return;
-        }
-        header("Location: " . BASE_URL . "/index.php?accion=login&error=2");
-        exit;
+        $respuesta = ['success' => false, 'message' => 'Campos vacíos'];
+        return $this->retornarRespuesta($respuesta);
     }
 
     $usuarioModel = $this->usuarioModel ?? new Usuario();
     $datos = $usuarioModel->verificarCredenciales($email, $password);
 
     if ($datos) {
-        if (session_status() === PHP_SESSION_NONE) {
+        if (!defined('PHPUNIT_RUNNING') && session_status() === PHP_SESSION_NONE) {
             session_start();
         }
 
         $_SESSION['usuario_id'] = $datos['ID_USUARIO'];
-        $_SESSION['rol_id'] = (int)$datos['ID_ROL']; 
-        $_SESSION['rol_nombre'] = $datos['ROL'];   
+        $_SESSION['rol_id'] = (int)$datos['ID_ROL'];
+        $_SESSION['rol_nombre'] = $datos['ROL'];
 
-        if (defined('PHPUNIT_RUNNING')) {
-            return;
-        }
-
-        header('Location: ' . BASE_URL . '/index.php');
-        exit;
+        $respuesta = [
+            'success' => true,
+            'message' => 'Inicio de sesión exitoso',
+            'usuario_id' => $datos['ID_USUARIO']
+        ];
     } else {
-        if (defined('PHPUNIT_RUNNING')) {
-            echo "Credenciales incorrectas";
-            return;
-        }
-
-        header("Location: " . BASE_URL . "/index.php?accion=login&error=1");
-        exit;
+        $respuesta = [
+            'success' => false,
+            'message' => 'Credenciales incorrectas'
+        ];
     }
-}
 
+    return $this->retornarRespuesta($respuesta);
+}
 
 
     public function registroGet() {
@@ -88,7 +84,10 @@ class AuthController extends BaseController {
     }
 
 public function registroPost() {
-    header('Content-Type: application/json');
+    // 🧪 Evitar enviar headers si estás en entorno de pruebas
+    if (!defined('PHPUNIT_RUNNING')) {
+        header('Content-Type: application/json');
+    }
 
     $dni      = $_POST['dni'] ?? '';
     $nombre   = $_POST['nombre'] ?? '';
@@ -96,23 +95,30 @@ public function registroPost() {
     $email    = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
+    if (empty($dni) || empty($nombre) || empty($apellido) || empty($email) || empty($password)) {
+        $response = [
+            'success' => false,
+            'message' => 'Todos los campos son obligatorios'
+        ];
+
+        return $this->retornarRespuesta($response);
+    }
+
     try {
-        // Asegurar que el modelo esté instanciado o mockeado
         if (!$this->usuarioModel) {
             $this->usuarioModel = new Usuario();
         }
-        $usuarioModel = $this->usuarioModel;
 
-        $user_id = $usuarioModel->registrarUsuario($dni, $nombre, $apellido, $email, $password);
+        $user_id = $this->usuarioModel->registrarUsuario($dni, $nombre, $apellido, $email, $password);
 
         if ($user_id) {
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
+           if (!defined('PHPUNIT_RUNNING') && session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
             $_SESSION['usuario_id'] = $user_id;
 
-            $datosUsuario = $usuarioModel->buscarPorCorreo($email);
+            $datosUsuario = $this->usuarioModel->buscarPorCorreo($email);
             if ($datosUsuario) {
                 $_SESSION['rol_id'] = (int)$datosUsuario['ID_ROL'];
                 $_SESSION['rol_nombre'] = $datosUsuario['ROL'];
@@ -120,7 +126,8 @@ public function registroPost() {
 
             $response = [
                 'success' => true,
-                'message' => 'Registro exitoso'
+                'message' => 'Registro exitoso',
+                'usuario_id' => $user_id
             ];
         } else {
             $response = [
@@ -130,26 +137,29 @@ public function registroPost() {
         }
 
     } catch (Exception $e) {
-        $response = [
-            'success' => false,
-            'message' => 'Error en el registro'
-        ];
+        $mensajeError = $e->getMessage();
+
+        if (strpos($mensajeError, 'Duplicate entry') !== false || $e->getCode() === '23000') {
+            $response = [
+                'success' => false,
+                'message' => 'El DNI o correo ya está registrado'
+            ];
+        } else {
+            $response = [
+                'success' => false,
+                'message' => 'Error en el registro: ' . $mensajeError
+            ];
+        }
     }
 
-    // ✅ Imprimir respuesta como JSON para PHPUnit y producción
-    $json = json_encode($response);
-
-    if (defined('PHPUNIT_RUNNING')) {
-        echo $json;
-        return;
-    }
-
-    echo $json;
-    exit;
+    return $this->retornarRespuesta($response);
 }
 
+
     private function consultaDNI() {
-        header('Content-Type: application/json; charset=utf-8');
+        if (!defined('PHPUNIT_RUNNING')) {
+            header('Content-Type: application/json; charset=utf-8');
+        }
 
         try {
             if (!isset($_GET['dni']) || !preg_match('/^\d{8}$/', $_GET['dni'])) {
@@ -226,11 +236,26 @@ public function registroPost() {
     }
 
     private function sendErrorResponse($code, $message) {
-        http_response_code($code);
-        echo json_encode([
-            'success' => false,
-            'error' => $message,
-            'code' => $code
-        ], JSON_UNESCAPED_UNICODE);
+        if (!defined('PHPUNIT_RUNNING')) {
+    http_response_code($code);
+}
+echo json_encode([
+    'success' => false,
+    'error' => $message,
+    'code' => $code
+], JSON_UNESCAPED_UNICODE);
+    if (!defined('PHPUNIT_RUNNING')) {
+        exit;
     }
+    }
+
+private function retornarRespuesta($response) {
+    if (defined('PHPUNIT_RUNNING')) {
+        return $response; // ✅ Esto es clave para los tests
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}
 }

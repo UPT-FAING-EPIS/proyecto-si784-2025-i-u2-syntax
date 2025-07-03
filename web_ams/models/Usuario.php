@@ -221,5 +221,8 @@ class Usuario {
         
         return $this->db->fetchAll($sql, $params);
     }
-
+    public function eliminarUsuarioPorId($idUsuario) {
+        $sql = "DELETE FROM usuario WHERE ID_USUARIO = ?";
+        return $this->db->execute($sql, [$idUsuario]);
+    }
 }

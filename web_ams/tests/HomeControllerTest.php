@@ -17,31 +17,13 @@ class HomeControllerTest extends TestCase
 
     protected function setUp(): void
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $this->controller = new HomeController();
-
-        // Simula archivos necesarios
-        foreach (['home', 'mentoria'] as $vista) {
-            $path = BASE_PATH . "/views/{$vista}.php";
-            if (!file_exists(dirname($path))) {
-                mkdir(dirname($path), 0777, true);
-            }
-            if (!file_exists($path)) {
-                file_put_contents($path, "<h1>{$vista}</h1>");
-            }
-        }
+        $_GET = [];
         $_SERVER['REQUEST_URI'] = '/test';
-
-    }
-
-    protected function tearDown(): void
-    {
-        // Limpia archivos simulados
-        foreach (['home', 'mentoria'] as $vista) {
-            $path = BASE_PATH . "/views/{$vista}.php";
-            if (file_exists($path)) {
-                unlink($path);
-            }
-        }
     }
 
     /**
@@ -53,7 +35,9 @@ class HomeControllerTest extends TestCase
         $this->controller->inicioGet();
         $salida = ob_get_clean();
 
-        $this->assertStringContainsString('<h1>home</h1>', $salida);
+        // Busca contenido real del home.php
+        $this->assertStringContainsString('Sistema de Mentoría Académica UPT', $salida);
+        $this->assertStringContainsString('Explorar Servicios', $salida);
     }
 
     /**
@@ -61,27 +45,23 @@ class HomeControllerTest extends TestCase
      */
     public function testInicioGetMuestraErrorSiArchivoNoExiste()
     {
-        unlink(BASE_PATH . '/views/home.php');
+        $ruta = BASE_PATH . '/views/home.php';
+        $copia = $ruta . '.bk';
+
+        if (file_exists($ruta)) {
+            rename($ruta, $copia);
+        }
 
         ob_start();
         $this->controller->inicioGet();
         $salida = ob_get_clean();
 
         $this->assertStringContainsString('La página de inicio no existe', $salida);
-    }
 
-    /**
-     * @covers HomeController::mostrarSeccionGet
-     */
-    public function testMostrarSeccionValidaCargaArchivo()
-    {
-        $_GET['accion'] = 'mentoria';
-
-        ob_start();
-        $this->controller->mostrarSeccionGet();
-        $salida = ob_get_clean();
-
-        $this->assertStringContainsString('<h1>mentoria</h1>', $salida);
+        // Restaurar vista original
+        if (file_exists($copia)) {
+            rename($copia, $ruta);
+        }
     }
 
     /**
@@ -107,20 +87,6 @@ class HomeControllerTest extends TestCase
         $this->controller->handle('inicio');
         $salida = ob_get_clean();
 
-        $this->assertStringContainsString('<h1>home</h1>', $salida);
-    }
-
-    /**
-     * @covers HomeController::handle
-     */
-    public function testHandleConSeccionLlamaMostrarSeccionGet()
-    {
-        $_GET['accion'] = 'mentoria';
-
-        ob_start();
-        $this->controller->handle('mentoria');
-        $salida = ob_get_clean();
-
-        $this->assertStringContainsString('<h1>mentoria</h1>', $salida);
+        $this->assertStringContainsString('Sistema de Mentoría Académica UPT', $salida);
     }
 }

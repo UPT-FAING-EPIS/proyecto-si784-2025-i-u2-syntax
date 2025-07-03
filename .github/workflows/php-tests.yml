@@ -1,4 +1,4 @@
-name: CI - Pruebas con PHPUnit
+name: CI - Pruebas + Cobertura + Deploy
 
 on:
   push:
@@ -25,14 +25,33 @@ jobs:
         working-directory: web_ams
         run: composer install
 
-      - name: Ejecutar PHPUnit con configuración xml
+      - name: Ejecutar PHPUnit con cobertura
         working-directory: web_ams
-        run: vendor/bin/phpunit
+        run: vendor/bin/phpunit --coverage-html docs/coverage
 
-      - name: Subir reporte de cobertura al repositorio
-        working-directory: web_ams
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add docs/coverage
-          git diff --cached --quiet || (git commit -m "chore: subir cobertura PHPUnit" && git push)
+      - name: Subir cobertura como artefacto
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: web_ams/docs/coverage
+
+      - name: Subir cobertura para Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: web_ams/docs/coverage
+
+  deploy:
+    name: Deploy cobertura a GitHub Pages
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2

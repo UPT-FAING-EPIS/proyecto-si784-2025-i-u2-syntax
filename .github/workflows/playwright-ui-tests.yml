@@ -19,21 +19,51 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install dependencies (Node)
         run: npm install
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Start PHP server
+        run: php -S localhost:8000 -t web_ams &
+        shell: bash
+
+      - name: Wait for server to be ready
+        run: sleep 5
+
       - name: Run UI Tests
         run: npx playwright test
 
-      - name: Commit UI Report to GitHub
+      - name: Upload UI Report Artifact
         if: always()
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git pull origin main
-          git add docs/ui-report
-          git commit -m "🔄 Actualizar reporte UI Playwright [auto]" || echo "No changes"
-          git push origin main
+        uses: actions/upload-artifact@v3
+        with:
+          name: ui-report
+          path: docs/ui-report
+
+      - name: Upload UI Report to GitHub Pages
+        if: always()
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: docs/ui-report
+
+  deploy:
+    needs: test-ui
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy UI Report to GitHub Pages
+        uses: actions/deploy-pages@v2

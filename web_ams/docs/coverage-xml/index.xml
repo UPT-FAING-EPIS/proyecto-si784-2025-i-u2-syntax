@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
+  <build time="Thu Jul 3 15:57:31 CEST 2025" phpunit="9.6.23" coverage="9.2.32">
+    <runtime name="PHP" version="8.1.32" url="https://secure.php.net/"/>
+    <driver name="xdebug" version="3.4.4"/>
+  </build>
+  <project source="C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams">
+    <tests>
+      <test name="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso" size="unknown" result="4" status="ERROR"/>
+    </tests>
+    <directory name="/">
+      <totals>
+        <lines total="3497" comments="7" code="3490" executable="1700" executed="11" percent="0.65"/>
+        <methods count="135" tested="0" percent="0.00"/>
+        <functions count="0" tested="0" percent="0"/>
+        <classes count="19" tested="0" percent="0.00"/>
+        <traits count="0" tested="0" percent="0"/>
+      </totals>
+      <directory name="controllers">
+        <totals>
+          <lines total="1562" comments="6" code="1556" executable="906" executed="11" percent="1.21"/>
+          <methods count="48" tested="0" percent="0.00"/>
+          <functions count="0" tested="0" percent="0"/>
+          <classes count="6" tested="0" percent="0.00"/>
+          <traits count="0" tested="0" percent="0"/>
+        </totals>
+        <file name="AuthController.php" href="controllers/AuthController.php.xml">
+          <totals>
+            <lines total="262" comments="2" code="260" executable="158" executed="0" percent="0.00"/>
+            <methods count="9" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="ClaseController.php" href="controllers/ClaseController.php.xml">
+          <totals>
+            <lines total="206" comments="0" code="206" executable="116" executed="0" percent="0.00"/>
+            <methods count="7" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="DocenteController.php" href="controllers/DocenteController.php.xml">
+          <totals>
+            <lines total="552" comments="1" code="551" executable="324" executed="0" percent="0.00"/>
+            <methods count="14" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="EstudianteController.php" href="controllers/EstudianteController.php.xml">
+          <totals>
+            <lines total="283" comments="0" code="283" executable="161" executed="11" percent="6.83"/>
+            <methods count="9" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="HomeController.php" href="controllers/HomeController.php.xml">
+          <totals>
+            <lines total="46" comments="1" code="45" executable="20" executed="0" percent="0.00"/>
+            <methods count="3" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="RangoController.php" href="controllers/RangoController.php.xml">
+          <totals>
+            <lines total="213" comments="2" code="211" executable="127" executed="0" percent="0.00"/>
+            <methods count="6" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+      </directory>
+      <directory name="core">
+        <totals>
+          <lines total="33" comments="0" code="33" executable="10" executed="0" percent="0.00"/>
+          <methods count="1" tested="0" percent="0.00"/>
+          <functions count="0" tested="0" percent="0"/>
+          <classes count="1" tested="0" percent="0.00"/>
+          <traits count="0" tested="0" percent="0"/>
+        </totals>
+        <file name="BaseController.php" href="core/BaseController.php.xml">
+          <totals>
+            <lines total="33" comments="0" code="33" executable="10" executed="0" percent="0.00"/>
+            <methods count="1" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+      </directory>
+      <directory name="models">
+        <totals>
+          <lines total="1902" comments="1" code="1901" executable="784" executed="0" percent="0.00"/>
+          <methods count="86" tested="0" percent="0.00"/>
+          <functions count="0" tested="0" percent="0"/>
+          <classes count="12" tested="0" percent="0.00"/>
+          <traits count="0" tested="0" percent="0"/>
+        </totals>
+        <file name="AdminModel.php" href="models/AdminModel.php.xml">
+          <totals>
+            <lines total="353" comments="0" code="353" executable="211" executed="0" percent="0.00"/>
+            <methods count="10" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Asistencia.php" href="models/Asistencia.php.xml">
+          <totals>
+            <lines total="30" comments="0" code="30" executable="10" executed="0" percent="0.00"/>
+            <methods count="3" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Aula.php" href="models/Aula.php.xml">
+          <totals>
+            <lines total="17" comments="0" code="17" executable="5" executed="0" percent="0.00"/>
+            <methods count="2" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="ClaseModel.php" href="models/ClaseModel.php.xml">
+          <totals>
+            <lines total="457" comments="0" code="457" executable="148" executed="0" percent="0.00"/>
+            <methods count="16" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Comentario.php" href="models/Comentario.php.xml">
+          <totals>
+            <lines total="22" comments="0" code="22" executable="7" executed="0" percent="0.00"/>
+            <methods count="3" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Curso.php" href="models/Curso.php.xml">
+          <totals>
+            <lines total="17" comments="0" code="17" executable="5" executed="0" percent="0.00"/>
+            <methods count="2" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="DocenteModel.php" href="models/DocenteModel.php.xml">
+          <totals>
+            <lines total="462" comments="0" code="462" executable="156" executed="0" percent="0.00"/>
+            <methods count="14" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Estudiante.php" href="models/Estudiante.php.xml">
+          <totals>
+            <lines total="24" comments="1" code="23" executable="6" executed="0" percent="0.00"/>
+            <methods count="2" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="EstudianteModel.php" href="models/EstudianteModel.php.xml">
+          <totals>
+            <lines total="245" comments="0" code="245" executable="122" executed="0" percent="0.00"/>
+            <methods count="12" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Nota.php" href="models/Nota.php.xml">
+          <totals>
+            <lines total="30" comments="0" code="30" executable="9" executed="0" percent="0.00"/>
+            <methods count="3" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Unidad.php" href="models/Unidad.php.xml">
+          <totals>
+            <lines total="17" comments="0" code="17" executable="5" executed="0" percent="0.00"/>
+            <methods count="2" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+        <file name="Usuario.php" href="models/Usuario.php.xml">
+          <totals>
+            <lines total="228" comments="0" code="228" executable="100" executed="0" percent="0.00"/>
+            <methods count="17" tested="0" percent="0.00"/>
+            <functions count="0" tested="0" percent="0"/>
+            <classes count="1" tested="0" percent="0.00"/>
+            <traits count="0" tested="0" percent="0"/>
+          </totals>
+        </file>
+      </directory>
+    </directory>
+  </project>
+</phpunit>

@@ -7,9 +7,9 @@ module.exports = defineConfig({
   retries: 0,
   use: {
     headless: true,
-    baseURL: 'http://localhost/proyecto-si784-2025-i-u2-syntax/web_ams/',
+    baseURL: 'http://localhost:8000', // ⚠️ CAMBIADO para usar el servidor PHP embebido
     screenshot: 'only-on-failure',
-    video: 'on', // ✅ Graba video en todas las ejecuciones
+    video: 'on',
   },
-  reporter: [['html', { outputFolder: 'docs/ui-report', open: 'never' }]]
+  reporter: [['html', { outputFolder: 'docs/ui-report', open: 'never' }]],
 });
