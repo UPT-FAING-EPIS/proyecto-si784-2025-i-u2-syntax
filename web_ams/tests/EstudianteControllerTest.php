@@ -34,11 +34,13 @@ class EstudianteControllerTest extends TestCase
 
     protected function tearDown(): void
     {
-        while (ob_get_level() > 0) {
-        ob_end_clean(); // 🔁 cierra todos los buffers si quedaron abiertos
+          while (ob_get_level() > 0) {
+        @ob_end_clean();
     }
 
-        $_SESSION = [];
+    $_SESSION = [];
+    $_POST = [];
+    $_GET = [];
     }
 
     /**
@@ -87,9 +89,13 @@ class EstudianteControllerTest extends TestCase
         $refProp->setAccessible(true);
         $refProp->setValue($controller, $mockModel);
 
-        // Capturar headers para verificar redirección
-        $this->expectOutputRegex('/.*/'); // evita fallo por falta de salida
+            $outputLevel = ob_get_level();
+        ob_start();
         $controller->verificar_codigo_vinculacionPost();
+        while (ob_get_level() > $outputLevel) {
+            @ob_end_clean();
+        }
+
 
         // Verificar que la sesión fue modificada correctamente
         $this->assertEquals(2, $_SESSION['rol_id']);
@@ -123,9 +129,12 @@ class EstudianteControllerTest extends TestCase
     $refProp->setAccessible(true);
     $refProp->setValue($controller, $mockModel);
 
-    // Esperamos redirección (simulada)
-    $this->expectOutputRegex('/.*/');
-    $controller->verificar_codigo_vinculacionPost();
+     $outputLevel = ob_get_level();
+        ob_start();
+        $controller->verificar_codigo_vinculacionPost();
+        while (ob_get_level() > $outputLevel) {
+            @ob_end_clean();
+        }
 
     // Se espera mensaje de error en sesión
     $this->assertEquals('Código incompleto. Ingresa los 6 dígitos.', $_SESSION['error']);
@@ -154,9 +163,12 @@ public function testBuscarEstudiantePostConCodigoValido()
     $refProp->setAccessible(true);
     $refProp->setValue($controller, $mockModel);
 
-    ob_start();
-    $controller->buscar_estudiantePost();
-    ob_end_clean();
+  $outputLevel = ob_get_level();
+ob_start();
+$controller->buscar_estudiantePost();
+while (ob_get_level() > $outputLevel) {
+    @ob_end_clean();
+}
 
     // Verifica que los datos estén en sesión
     $this->assertEquals('Luis', $_SESSION['datos_estudiante']['nombres']);
@@ -181,9 +193,12 @@ public function testBuscarEstudiantePostCodigoYaVinculado()
     $refProp->setAccessible(true);
     $refProp->setValue($controller, $mockModel);
 
-    ob_start();
-    $controller->buscar_estudiantePost();
-    ob_end_clean();
+$outputLevel = ob_get_level();
+ob_start();
+$controller->buscar_estudiantePost();
+while (ob_get_level() > $outputLevel) {
+    @ob_end_clean();
+}
 
     $this->assertEquals('Este código de estudiante ya está vinculado a otra cuenta', $_SESSION['error']);
 }
@@ -205,10 +220,12 @@ public function testBuscarEstudiantePostCodigoNoExiste()
     $refProp->setAccessible(true);
     $refProp->setValue($controller, $mockModel);
 
-    ob_start();
-    $controller->buscar_estudiantePost();
-    ob_end_clean();
-
+$outputLevel = ob_get_level();
+ob_start();
+$controller->buscar_estudiantePost();
+while (ob_get_level() > $outputLevel) {
+    @ob_end_clean();
+}
     $this->assertEquals('Código de estudiante no encontrado en el sistema UPT', $_SESSION['error']);
 }
 /**
@@ -222,6 +239,7 @@ public function testEnviarCodigoVinculacionExitoso()
 
     $mockModel = $this->createMock(EstudianteModel::class);
     $mockModel->method('buscarPorCodigo')->willReturn([
+        'ID_ESTUDIANTE' => 99,
         'codigo_estudiante' => '2022123456',
         'nombres' => 'Luis',
         'apellidos' => 'Sánchez',
@@ -230,22 +248,25 @@ public function testEnviarCodigoVinculacionExitoso()
     $mockModel->method('guardarCodigoVerificacion')->willReturn(true); 
 
     // Subclase anónima para mockear métodos privados
-    $controller = new class($mockModel) extends EstudianteController {
-        public function __construct($model) {
-            parent::__construct();
-            $this->estudianteModel = $model;
-        }
-        public function generarCodigoVerificacion() {
-            return '123456';
-        }
-   public function enviarEmailVerificacion($email, $codigo, $estudiante) {
-    return true; // ✅ ahora entra al if
-}
+  $controller = new class($mockModel) extends EstudianteController {
+    public function __construct($model) {
+        parent::__construct($model); // ✅ pasa el mock correctamente
+    }
+    public function generarCodigoVerificacion() {
+        return '123456';
+    }
+    public function enviarEmailVerificacion($email, $codigo, $estudiante) {
+        return true;
+    }
     };
 
-    ob_start();
-    $controller->enviar_codigo_vinculacionPost();
-    ob_end_clean();
+  $outputLevel = ob_get_level();
+ob_start();
+$controller->enviar_codigo_vinculacionPost();
+while (ob_get_level() > $outputLevel) {
+    @ob_end_clean();
+}
+  
 
     $this->assertEquals('Código de verificación enviado correctamente', $_SESSION['mensaje'] ?? 'Mensaje no seteado');
     $this->assertEquals('success', $_SESSION['tipo_mensaje'] ?? 'Tipo no seteado');
@@ -270,10 +291,12 @@ public function testReenviarCodigoVinculacionConLimiteExcedido()
     $refProp->setAccessible(true);
     $refProp->setValue($controller, $mockModel);
 
-    ob_start();
-    $controller->reenviar_codigo_vinculacionPost();
-    ob_end_clean();
-
+  $outputLevel = ob_get_level();
+ob_start();
+$controller->reenviar_codigo_vinculacionPost();
+while (ob_get_level() > $outputLevel) {
+    @ob_end_clean();
+}
     $this->assertEquals('Has alcanzado el límite de reenvíos. Intenta en una hora.', $_SESSION['error']);
 }
 

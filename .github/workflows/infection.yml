@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: read
+  pages: write
+  id-token: write
 
 jobs:
   infection:
@@ -37,6 +39,13 @@ jobs:
         working-directory: web_ams
         run: composer require --dev infection/infection:^0.28 --ignore-platform-req=ext-mongodb
 
-      - name: Ejecutar Infection
+      - name: Ejecutar Infection y generar HTML
         working-directory: web_ams
-        run: vendor/bin/infection --ansi --no-interaction
+        run: |
+          mkdir -p docs/mutation-report
+          vendor/bin/infection --logger-html=docs/mutation-report/index.html --ansi --no-interaction
+
+      - name: Subir reporte de Infection a GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: web_ams/docs/mutation-report

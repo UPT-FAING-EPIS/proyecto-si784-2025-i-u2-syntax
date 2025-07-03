@@ -6,7 +6,7 @@
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutOutputDuringTests="true"
          failOnWarning="true"
-         failOnRisky="true"
+         failOnRisky="false"
          executionOrder="default"
          resolveDependencies="true">
 

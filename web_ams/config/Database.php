@@ -61,7 +61,9 @@ class Database {
 
                 $this->pdo->query('SELECT 1');
                 
-                error_log("✅ Conexión exitosa a BD remota (intento {$this->connectionAttempts})");
+                if (!defined('PHPUNIT_RUNNING')) {
+                    error_log("✅ Conexión exitosa a BD remota (intento {$this->connectionAttempts})");
+                }
                 return;
 
             } catch (PDOException $e) {

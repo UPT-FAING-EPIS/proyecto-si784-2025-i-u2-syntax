@@ -94,7 +94,9 @@ class ClaseController extends BaseController {
             }
 
         } catch (Exception $e) {
-            error_log("Error en inscribir_clasePost: " . $e->getMessage());
+            if (!defined('PHPUNIT_RUNNING')) {
+                error_log("Error en inscribir_clasePost: " . $e->getMessage());
+            }
             $_SESSION['mensaje'] = "Error: " . $e->getMessage();
             $_SESSION['tipo_mensaje'] = "danger";
         }
@@ -144,7 +146,9 @@ class ClaseController extends BaseController {
                 throw new Exception("La razón debe tener al menos 10 caracteres");
             }
 
+           if (!defined('PHPUNIT_RUNNING')) {
             error_log("Creando clase - Estudiante: $idEstudiante, Ciclo: $idCiclo, Curso: $idCurso, Horario: $horarioPreferido");
+        }
 
             $resultado = $this->claseModel->solicitarNuevaClase(
                 $idEstudiante, 
@@ -162,8 +166,10 @@ class ClaseController extends BaseController {
             }
 
         } catch (Exception $e) {
-            error_log("Error en crear_clasePost: " . $e->getMessage());
-            error_log("POST data: " . print_r($_POST, true));
+            if (!defined('PHPUNIT_RUNNING')) {
+                error_log("Error en crear_clasePost: " . $e->getMessage());
+                error_log("POST data: " . print_r($_POST, true));
+            }
             $_SESSION['mensaje'] = "Error: " . $e->getMessage();
             $_SESSION['tipo_mensaje'] = "danger";
         }

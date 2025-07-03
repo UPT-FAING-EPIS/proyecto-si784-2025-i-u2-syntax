@@ -11,7 +11,7 @@
   },
   "phpUnit": {
     "configDir": ".",
-    "customPath": "vendor/bin/phpunit"
+    "customPath": "vendor/bin/phpunit",
   },
   "testFramework": "phpunit"
 }

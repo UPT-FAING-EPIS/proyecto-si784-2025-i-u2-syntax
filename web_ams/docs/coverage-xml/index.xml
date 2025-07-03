@@ -1,16 +1,14 @@
 <?xml version="1.0"?>
 <phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
-  <build time="Thu Jul 3 15:57:31 CEST 2025" phpunit="9.6.23" coverage="9.2.32">
+  <build time="Fri Jul 4 0:44:30 CEST 2025" phpunit="9.6.23" coverage="9.2.32">
     <runtime name="PHP" version="8.1.32" url="https://secure.php.net/"/>
     <driver name="xdebug" version="3.4.4"/>
   </build>
   <project source="C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams">
-    <tests>
-      <test name="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso" size="unknown" result="4" status="ERROR"/>
-    </tests>
+    <tests/>
     <directory name="/">
       <totals>
-        <lines total="3497" comments="7" code="3490" executable="1700" executed="11" percent="0.65"/>
+        <lines total="3497" comments="7" code="3490" executable="1700" executed="0" percent="0.00"/>
         <methods count="135" tested="0" percent="0.00"/>
         <functions count="0" tested="0" percent="0"/>
         <classes count="19" tested="0" percent="0.00"/>
@@ -18,7 +16,7 @@
       </totals>
       <directory name="controllers">
         <totals>
-          <lines total="1562" comments="6" code="1556" executable="906" executed="11" percent="1.21"/>
+          <lines total="1562" comments="6" code="1556" executable="906" executed="0" percent="0.00"/>
           <methods count="48" tested="0" percent="0.00"/>
           <functions count="0" tested="0" percent="0"/>
           <classes count="6" tested="0" percent="0.00"/>
@@ -53,7 +51,7 @@
         </file>
         <file name="EstudianteController.php" href="controllers/EstudianteController.php.xml">
           <totals>
-            <lines total="283" comments="0" code="283" executable="161" executed="11" percent="6.83"/>
+            <lines total="283" comments="0" code="283" executable="161" executed="0" percent="0.00"/>
             <methods count="9" tested="0" percent="0.00"/>
             <functions count="0" tested="0" percent="0"/>
             <classes count="1" tested="0" percent="0.00"/>

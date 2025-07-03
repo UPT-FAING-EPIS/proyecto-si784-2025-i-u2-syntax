@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1751551049">
-  <project timestamp="1751551049">
+<coverage generated="1751582669">
+  <project timestamp="1751582669">
     <file name="C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams\controllers\AuthController.php">
       <class name="AuthController" namespace="global">
         <metrics complexity="47" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="158" coveredstatements="0" elements="167" coveredelements="0"/>
@@ -649,7 +649,7 @@
     </file>
     <file name="C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams\controllers\EstudianteController.php">
       <class name="EstudianteController" namespace="global">
-        <metrics complexity="48" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="161" coveredstatements="11" elements="170" coveredelements="11"/>
+        <metrics complexity="48" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="161" coveredstatements="0" elements="170" coveredelements="0"/>
       </class>
       <line num="9" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="10" type="stmt" count="0"/>
@@ -697,16 +697,16 @@
       <line num="80" type="stmt" count="0"/>
       <line num="81" type="stmt" count="0"/>
       <line num="83" type="stmt" count="0"/>
-      <line num="87" type="method" name="enviar_codigo_vinculacionPost" visibility="public" complexity="9" crap="38.06" count="1"/>
-      <line num="89" type="stmt" count="1"/>
+      <line num="87" type="method" name="enviar_codigo_vinculacionPost" visibility="public" complexity="9" crap="90" count="0"/>
+      <line num="89" type="stmt" count="0"/>
       <line num="90" type="stmt" count="0"/>
       <line num="91" type="stmt" count="0"/>
-      <line num="94" type="stmt" count="1"/>
-      <line num="96" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="0"/>
+      <line num="96" type="stmt" count="0"/>
       <line num="97" type="stmt" count="0"/>
-      <line num="99" type="stmt" count="1"/>
-      <line num="100" type="stmt" count="1"/>
-      <line num="101" type="stmt" count="1"/>
+      <line num="99" type="stmt" count="0"/>
+      <line num="100" type="stmt" count="0"/>
+      <line num="101" type="stmt" count="0"/>
       <line num="103" type="stmt" count="0"/>
       <line num="104" type="stmt" count="0"/>
       <line num="105" type="stmt" count="0"/>
@@ -729,13 +729,13 @@
       <line num="125" type="stmt" count="0"/>
       <line num="126" type="stmt" count="0"/>
       <line num="128" type="stmt" count="0"/>
-      <line num="131" type="stmt" count="1"/>
-      <line num="132" type="stmt" count="1"/>
-      <line num="133" type="stmt" count="1"/>
-      <line num="136" type="stmt" count="1"/>
+      <line num="131" type="stmt" count="0"/>
+      <line num="132" type="stmt" count="0"/>
+      <line num="133" type="stmt" count="0"/>
+      <line num="136" type="stmt" count="0"/>
       <line num="137" type="stmt" count="0"/>
       <line num="138" type="stmt" count="0"/>
-      <line num="140" type="stmt" count="1"/>
+      <line num="140" type="stmt" count="0"/>
       <line num="144" type="method" name="verificar_codigo_vinculacionPost" visibility="public" complexity="13" crap="182" count="0"/>
       <line num="146" type="stmt" count="0"/>
       <line num="147" type="stmt" count="0"/>
@@ -821,7 +821,7 @@
       <line num="277" type="stmt" count="0"/>
       <line num="278" type="stmt" count="0"/>
       <line num="281" type="stmt" count="0"/>
-      <metrics loc="283" ncloc="283" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="161" coveredstatements="11" elements="170" coveredelements="11"/>
+      <metrics loc="283" ncloc="283" classes="1" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="161" coveredstatements="0" elements="170" coveredelements="0"/>
     </file>
     <file name="C:\xampp\htdocs\proyecto-si784-2025-i-u2-syntax\web_ams\controllers\HomeController.php">
       <class name="HomeController" namespace="global">
@@ -1950,6 +1950,6 @@
       <line num="226" type="stmt" count="0"/>
       <metrics loc="228" ncloc="228" classes="1" methods="17" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="100" coveredstatements="0" elements="117" coveredelements="0"/>
     </file>
-    <metrics files="19" loc="3497" ncloc="3490" classes="19" methods="135" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1700" coveredstatements="11" elements="1835" coveredelements="11"/>
+    <metrics files="19" loc="3497" ncloc="3490" classes="19" methods="135" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1700" coveredstatements="0" elements="1835" coveredelements="0"/>
   </project>
 </coverage>

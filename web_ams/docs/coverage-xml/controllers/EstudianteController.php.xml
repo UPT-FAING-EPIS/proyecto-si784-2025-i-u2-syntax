@@ -2,59 +2,24 @@
 <phpunit xmlns="https://schema.phpunit.de/coverage/1.0">
   <file name="EstudianteController.php" path="\controllers">
     <totals>
-      <lines total="283" comments="0" code="283" executable="161" executed="11" percent="6.83"/>
+      <lines total="283" comments="0" code="283" executable="161" executed="0" percent="0.00"/>
       <methods count="9" tested="0" percent="0.00"/>
       <functions count="0" tested="0" percent="0"/>
       <classes count="1" tested="0" percent="0.00"/>
       <traits count="0" tested="0" percent="0"/>
     </totals>
-    <class name="EstudianteController" start="6" executable="161" executed="11" crap="1911.28">
+    <class name="EstudianteController" start="6" executable="161" executed="0" crap="2352">
       <namespace name=""/>
       <method name="__construct" signature="__construct($model)" start="9" end="11" crap="2" executable="1" executed="0" coverage="0"/>
       <method name="vincularGet" signature="vincularGet()" start="13" end="32" crap="20" executable="12" executed="0" coverage="0"/>
       <method name="buscar_estudiantePost" signature="buscar_estudiantePost()" start="34" end="85" crap="90" executable="30" executed="0" coverage="0"/>
-      <method name="enviar_codigo_vinculacionPost" signature="enviar_codigo_vinculacionPost()" start="87" end="142" crap="38.06" executable="38" executed="11" coverage="28.947368421053"/>
+      <method name="enviar_codigo_vinculacionPost" signature="enviar_codigo_vinculacionPost()" start="87" end="142" crap="90" executable="38" executed="0" coverage="0"/>
       <method name="verificar_codigo_vinculacionPost" signature="verificar_codigo_vinculacionPost()" start="144" end="219" crap="182" executable="46" executed="0" coverage="0"/>
       <method name="reenviar_codigo_vinculacionPost" signature="reenviar_codigo_vinculacionPost()" start="221" end="253" crap="72" executable="19" executed="0" coverage="0"/>
       <method name="generarCodigoVerificacion" signature="generarCodigoVerificacion()" start="255" end="257" crap="2" executable="1" executed="0" coverage="0"/>
       <method name="generarEmailInstitucional" signature="generarEmailInstitucional($estudiante)" start="259" end="267" crap="2" executable="5" executed="0" coverage="0"/>
       <method name="enviarEmailVerificacion" signature="enviarEmailVerificacion($email, $codigo, $estudiante)" start="268" end="282" crap="6" executable="9" executed="0" coverage="0"/>
     </class>
-    <coverage>
-      <line nr="89">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="94">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="96">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="99">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="100">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="101">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="131">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="132">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="133">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="136">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-      <line nr="140">
-        <covered by="EstudianteControllerTest::testEnviarCodigoVinculacionExitoso"/>
-      </line>
-    </coverage>
     <source>
       <line no="1">
         <token name="T_OPEN_TAG">&lt;?php</token>
